@@ -4,29 +4,31 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import dev.codewizz.gfx.Camera;
+import dev.codewizz.gfx.Renderer;
+import dev.codewizz.world.World;
+import dev.codewizz.world.objects.Prop;
 
 public class Main extends ApplicationAdapter {
 
-    public Camera camera;
+    private Renderer renderer;
 
-    public ModelBatch modelBatch;
+    private World world;
 
     @Override
     public void create () {
-        camera = new Camera();
+        renderer = new Renderer();
+
+        world = new World();
+        world.addObject(new Prop());
     }
 
     @Override
     public void render () {
-        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f, true);
-
-        modelBatch.begin(camera.getPerspectiveCamera());
-        //TODO: bulk render
-        modelBatch.end();
+        renderer.render(world.getObjectsToRender());
     }
 
     @Override
     public void dispose () {
-        modelBatch.dispose();
+        renderer.dispose();
     }
 }
