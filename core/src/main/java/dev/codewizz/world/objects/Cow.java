@@ -6,6 +6,7 @@ import com.badlogic.gdx.ai.btree.branch.Selector;
 import com.badlogic.gdx.ai.btree.branch.Sequence;
 import com.badlogic.gdx.ai.btree.decorator.Repeat;
 import com.badlogic.gdx.ai.btree.leaf.Wait;
+import com.badlogic.gdx.ai.utils.random.UniformFloatDistribution;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.graphics.g3d.Material;
@@ -26,19 +27,20 @@ public class Cow extends Entity {
             VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal)
         );
 
+        /*
+                    RED: Idle animation
+                    YELLOW: Eating animation
+                    GREEN:
+                     - find suitable cell/set path
+                     - move return succeeded when arriving
+                     */
         behaviour = new BehaviorTree<>(
             new Repeat<>(
-                new RandomSelector<>(
-                    new Sequence<>(
-                        new Wait<>(5f),
-                        new ChangeColourLeaf(Color.RED)
-                    ),
-                    new Sequence<>(
-                        new Wait<>(5f),
-                        new ChangeColourLeaf(Color.YELLOW)
-                    ),
-                    new Sequence<>(
-                        new Wait<>(5f),
+                new Sequence<>(
+                    new Wait<>(new UniformFloatDistribution(2f, 5f)),
+                    new RandomSelector<>(
+                        new ChangeColourLeaf(Color.RED),
+                        new ChangeColourLeaf(Color.YELLOW),
                         new ChangeColourLeaf(Color.GREEN)
                     )
                 )
