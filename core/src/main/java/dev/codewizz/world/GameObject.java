@@ -11,7 +11,11 @@ public abstract class GameObject {
     private final Quaternion rotation;
     private final Vector3 scale;
 
-    public GameObject() {
+    private final String id;
+
+    public GameObject(String id) {
+        this.id = id;
+
         position = new Vector3();
         rotation = new Quaternion();
         scale = new Vector3(1, 1, 1);
@@ -30,5 +34,9 @@ public abstract class GameObject {
 
     public Vector3 getScale() {
         return scale;
+    }
+
+    public String getId() {
+        return id;
     }
 }

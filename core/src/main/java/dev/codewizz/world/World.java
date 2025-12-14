@@ -7,8 +7,14 @@ public class World {
 
     private final List<GameObject> objects = new ArrayList<>();
 
-    public boolean addObject(GameObject object) {
-        return objects.add(object);
+    public void addObject(GameObject object) {
+        objects.add(object);
+    }
+
+    public void update(float dt) {
+        for (GameObject object : objects) {
+            object.update(dt);
+        }
     }
 
     public List<GameObject> getObjectsToRender() {
