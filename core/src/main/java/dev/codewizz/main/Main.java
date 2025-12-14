@@ -2,12 +2,10 @@ package dev.codewizz.main;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g3d.ModelBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
-import dev.codewizz.gfx.Camera;
+import com.badlogic.gdx.ai.GdxAI;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.world.World;
-import dev.codewizz.world.objects.Prop;
+import dev.codewizz.world.objects.Cow;
 import dev.codewizz.world.objects.Terrain;
 
 public class Main extends ApplicationAdapter {
@@ -22,11 +20,12 @@ public class Main extends ApplicationAdapter {
 
         world = new World();
         world.addObject(new Terrain());
-        world.addObject(new Prop());
+        world.addObject(new Cow());
     }
 
     @Override
     public void render () {
+        GdxAI.getTimepiece().update(Gdx.graphics.getDeltaTime());
         world.update(Gdx.graphics.getDeltaTime());
         renderer.render(world.getObjectsToRender());
     }
