@@ -10,12 +10,17 @@ import dev.codewizz.world.objects.Terrain;
 
 public class Main extends ApplicationAdapter {
 
+    public static Main instance;
+
     private Renderer renderer;
 
-    private World world;
+    public World world;
 
     @Override
     public void create () {
+        instance = this;
+
+
         renderer = new Renderer();
 
         world = new World();

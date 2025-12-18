@@ -5,7 +5,6 @@ import com.badlogic.gdx.ai.btree.Task;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import dev.codewizz.world.Entity;
-import dev.codewizz.world.objects.Cow;
 
 public class ChangeColourLeaf extends LeafTask<Entity> {
 

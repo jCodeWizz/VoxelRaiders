@@ -2,13 +2,18 @@ package dev.codewizz.world;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class World {
 
-    private final List<GameObject> objects = new ArrayList<>();
+    private final List<GameObject> objects = new CopyOnWriteArrayList<>();
 
     public void addObject(GameObject object) {
         objects.add(object);
+    }
+
+    public void removeObject(GameObject object) {
+        objects.remove(object);
     }
 
     public void update(float dt) {
