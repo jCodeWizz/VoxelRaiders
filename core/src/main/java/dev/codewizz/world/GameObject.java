@@ -1,6 +1,5 @@
 package dev.codewizz.world;
 
-import com.badlogic.gdx.graphics.g3d.utils.BaseAnimationController;
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import dev.codewizz.gfx.Renderer;

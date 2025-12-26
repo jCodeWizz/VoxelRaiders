@@ -4,7 +4,6 @@ import com.badlogic.gdx.ai.pfa.Connection;
 import com.badlogic.gdx.ai.pfa.indexed.IndexedGraph;
 import com.badlogic.gdx.utils.Array;
 import dev.codewizz.main.Main;
-import dev.codewizz.world.objects.Prop;
 
 public class NavGraph implements IndexedGraph<NavCell> {
 

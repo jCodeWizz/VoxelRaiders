@@ -26,6 +26,12 @@ public class Main extends ApplicationAdapter {
         world = new World();
         world.addObject(new Terrain());
         world.addObject(new Cow());
+        world.addObject(new Cow());
+        world.addObject(new Cow());
+        world.addObject(new Cow());
+        world.addObject(new Cow());
+        world.addObject(new Cow());
+        world.addObject(new Cow());
     }
 
     @Override

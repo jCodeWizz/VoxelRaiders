@@ -2,6 +2,7 @@ package dev.codewizz.world;
 
 import com.badlogic.gdx.ai.btree.BehaviorTree;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavAgent;
 
@@ -27,6 +28,15 @@ public abstract class Entity extends GameObject {
         behaviour.step();
         agent.update(dt);
         getPosition().mulAdd(velocity, dt);
+        updateRotationFromVelocity();
+    }
+
+    public void updateRotationFromVelocity() {
+        if (velocity.isZero(0.0001f)) return;
+
+        Vector3 dir = new Vector3(velocity.x, 0f, velocity.z).nor();
+        float yaw = MathUtils.atan2(dir.x, dir.z) * MathUtils.radiansToDegrees - 180;
+        getRotation().set(Vector3.Y, yaw);
     }
 
     public Vector3 getVelocity() {
