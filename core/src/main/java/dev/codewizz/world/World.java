@@ -6,6 +6,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class World {
 
+    public static final int SIZE = 1000;
+
     private final List<GameObject> objects = new CopyOnWriteArrayList<>();
 
     public void addObject(GameObject object) {

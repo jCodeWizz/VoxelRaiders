@@ -4,6 +4,7 @@ import com.badlogic.gdx.ai.pfa.Connection;
 import com.badlogic.gdx.ai.pfa.indexed.IndexedGraph;
 import com.badlogic.gdx.utils.Array;
 import dev.codewizz.main.Main;
+import dev.codewizz.world.World;
 
 public class NavGraph implements IndexedGraph<NavCell> {
 
@@ -11,14 +12,14 @@ public class NavGraph implements IndexedGraph<NavCell> {
 
     public NavGraph() {
 
-        grid = new NavCell[10][10];
+        grid = new NavCell[World.SIZE][World.SIZE];
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < World.SIZE * World.SIZE; i++) {
 
-            int indexX = i % 10;
-            int indexZ = i / 10;
+            int indexX = i % World.SIZE;
+            int indexZ = i / World.SIZE;
 
-            grid[indexX][indexZ] = new NavCell(indexX - 4.5f, indexZ - 4.5f, i, 0, 1f, true);
+            grid[indexX][indexZ] = new NavCell(indexX - (World.SIZE/2f) + 0.5f, indexZ - (World.SIZE/2f) + 0.5f, i, 0, 1f, true);
 
             if (indexX > 0) { grid[indexX][indexZ].addConnection(grid[indexX-1][indexZ]); }
             if (indexZ > 0) { grid[indexX][indexZ].addConnection(grid[indexX][indexZ-1]); }
@@ -32,7 +33,7 @@ public class NavGraph implements IndexedGraph<NavCell> {
 
     @Override
     public int getNodeCount() {
-        return 100;
+        return World.SIZE * World.SIZE;
     }
 
     @Override
