@@ -26,12 +26,11 @@ public class Main extends ApplicationAdapter {
         world = new World();
         world.addObject(new Terrain());
         world.addObject(new Cow());
-        world.addObject(new Cow());
-        world.addObject(new Cow());
-        world.addObject(new Cow());
-        world.addObject(new Cow());
-        world.addObject(new Cow());
-        world.addObject(new Cow());
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        renderer.resize(width, height);
     }
 
     @Override
