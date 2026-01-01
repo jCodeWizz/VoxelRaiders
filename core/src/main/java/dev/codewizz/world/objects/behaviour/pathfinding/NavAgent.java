@@ -66,14 +66,23 @@ public class NavAgent {
         path.removeFirst();
 
         if (path.size == 0) {
-            e.getVelocity().setZero();
-            path.clear();
+            finishPath();
         } else {
             setSpeedToNextGoal();
         }
     }
 
+    private void finishPath() {
+        e.getVelocity().setZero();
+        path.clear();
+    }
+
     private void setSpeedToNextGoal() {
+        if (path.isEmpty()) {
+            finishPath();
+            return;
+        }
+
         NavCell next = path.first();
         float angle = MathUtils.atan2(next.z - e.getPosition().z, next.x - e.getPosition().x);
         e.getVelocity().set(MathUtils.cos(angle) * e.getSpeed(), 0f, MathUtils.sin(angle) *  e.getSpeed());
