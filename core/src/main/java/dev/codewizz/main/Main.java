@@ -22,15 +22,7 @@ public class Main extends ApplicationAdapter {
 
 
         renderer = new Renderer();
-
         world = new World();
-        world.addObject(new Terrain());
-        world.addObject(new Cow());
-        world.addObject(new Cow());
-        world.addObject(new Cow());
-        world.addObject(new Cow());
-        world.addObject(new Cow());
-        world.addObject(new Cow());
         world.addObject(new Cow());
     }
 
@@ -38,7 +30,7 @@ public class Main extends ApplicationAdapter {
     public void render () {
         GdxAI.getTimepiece().update(Gdx.graphics.getDeltaTime());
         world.update(Gdx.graphics.getDeltaTime());
-        renderer.render(world.getObjectsToRender());
+        renderer.render(world.getObjectsToRender(), world.getChunksToRender());
     }
 
     @Override
