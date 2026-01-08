@@ -6,6 +6,7 @@ public class VoxelData {
 
     public final static VoxelData GRASS = new VoxelData("vxr:grass", Color.GREEN);
     public final static VoxelData DIRT = new VoxelData("vxr:dirt", Color.BROWN);
+    public final static VoxelData AIR = new VoxelData("vxr:dirt", null);
 
     private final String id;
     private final Color colour;

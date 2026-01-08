@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.ShortArray;
 
 public class Chunk {
 
-    private final static int SIZE = 2;
+    private final static int SIZE = 16;
     private final static Material MATERIAL = new Material(ColorAttribute.createDiffuse(Color.WHITE));
 
 
@@ -41,7 +41,9 @@ public class Chunk {
             for (int y = 0; y < SIZE; y++) {
                 for (int z = 0; z < SIZE; z++) {
                     VoxelData data = voxelData[x][y][z];
-                    addCube(b, x, y, z, data.getColour());
+                    if (!data.getId().equals(VoxelData.AIR.getId())) {
+                        addCube(b, x, y, z, data.getColour());
+                    }
                 }
             }
         }
@@ -54,7 +56,6 @@ public class Chunk {
     }
 
     private void addCube(MeshBuilder b, int x, int y, int z, Color color) {
-
         Vector3 v000 = new Vector3(x,     y,     z);
         Vector3 v100 = new Vector3(x + 1, y,     z);
         Vector3 v010 = new Vector3(x,     y + 1, z);
@@ -116,14 +117,17 @@ public class Chunk {
 
 
     private void fillChunk() {
-        voxelData[0][0][0] = VoxelData.GRASS;
-        voxelData[1][0][0] = VoxelData.DIRT;
-        voxelData[0][0][1] = VoxelData.DIRT;
-        voxelData[1][0][1] = VoxelData.GRASS;
-        voxelData[0][1][0] = VoxelData.GRASS;
-        voxelData[1][1][0] = VoxelData.DIRT;
-        voxelData[0][1][1] = VoxelData.DIRT;
-        voxelData[1][1][1] = VoxelData.GRASS;
+        for (int xx = 0; xx < SIZE; xx++)  {
+            for (int yy = 0; yy < SIZE; yy++)  {
+                for (int zz = 0; zz < SIZE; zz++)  {
+                    if (yy == 4) {
+                        voxelData[xx][yy][zz] =  VoxelData.GRASS;
+                    } else {
+                        voxelData[xx][yy][zz] = VoxelData.AIR;
+                    }
+                }
+            }
+        }
     }
 
     public boolean isDirty() {
