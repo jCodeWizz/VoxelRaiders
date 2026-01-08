@@ -24,6 +24,7 @@ public class Main extends ApplicationAdapter {
         renderer = new Renderer();
         world = new World();
         world.addObject(new Cow());
+        world.addObject(new Terrain());
 
         Gdx.input.setInputProcessor(new InputMultiplexer(renderer.getUiStage(), renderer.getCamera().getInputController()));
     }

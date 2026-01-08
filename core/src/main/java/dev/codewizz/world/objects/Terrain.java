@@ -17,7 +17,7 @@ public class Terrain extends GameObject {
         super("terrain");
 
         instance = new ModelInstance(new ModelBuilder().createBox(
-            10f, 0.1f, 10f, new Material(ColorAttribute.createDiffuse(Color.WHITE)),
+            10f, 0.1f, 10f, new Material(ColorAttribute.createDiffuse(new Color(0.235f, 0.702f, 0.443f, 1.0f))),
             VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal)
         );
     }

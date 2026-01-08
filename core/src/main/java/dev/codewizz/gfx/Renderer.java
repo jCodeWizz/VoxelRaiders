@@ -47,8 +47,7 @@ public class Renderer {
 
     public void render(List<GameObject> objects, List<Chunk> chunks) {
         camera.update(Gdx.graphics.getDeltaTime());
-
-        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f, true);
+        ScreenUtils.clear(0.533f, 0.768f, 0.925f, 1f, true);
 
         modelBatch.begin(camera.getPerspectiveCamera());
 
