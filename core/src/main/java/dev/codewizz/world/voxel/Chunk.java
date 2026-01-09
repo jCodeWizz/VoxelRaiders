@@ -43,6 +43,7 @@ public class Chunk {
             for (int y = 0; y < SIZE; y++) {
                 for (int z = 0; z < SIZE; z++) {
                     VoxelData data = voxelData[x][y][z];
+
                     if (!data.getId().equals(VoxelData.AIR.getId())) {
                         buildVoxel(b, x, y, z, data.getColour());
                     }
@@ -118,10 +119,16 @@ public class Chunk {
         for (int xx = 0; xx < SIZE; xx++) {
             for (int yy = 0; yy < SIZE; yy++) {
                 for (int zz = 0; zz < SIZE; zz++) {
-                    voxelData[xx][yy][zz] = VoxelData.GRASS;
+                    voxelData[xx][yy][zz] = VoxelData.AIR;
                 }
             }
         }
+
+        voxelData[1][1][1] = VoxelData.GRASS;
+        voxelData[0][0][0] = VoxelData.DIRT;
+        voxelData[0][0][1] = VoxelData.DIRT;
+        voxelData[1][0][0] = VoxelData.DIRT;
+        voxelData[1][0][1] = VoxelData.DIRT;
     }
 
 public boolean isDirty() {
