@@ -14,6 +14,7 @@ public class World {
     private final List<Chunk> chunks = new CopyOnWriteArrayList<>();
 
     public World() {
+        chunks.add(new Chunk(-4, -4));
     }
 
     public void addObject(GameObject object) {
