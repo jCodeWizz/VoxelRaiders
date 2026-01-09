@@ -15,6 +15,9 @@ public class World {
 
     public World() {
         chunks.add(new Chunk(-4, -4));
+        chunks.add(new Chunk(0, -4));
+        chunks.add(new Chunk(-4, 0));
+        chunks.add(new Chunk(0, 0));
     }
 
     public void addObject(GameObject object) {
