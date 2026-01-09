@@ -58,9 +58,6 @@ public class Chunk {
     }
 
     private void buildVoxel(MeshBuilder b, int x, int y, int z, Color color) {
-
-        color = Color.RED;
-
         if (y == SIZE - 1 || voxelData[x][y+1][z].getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v010 = new VertexInfo().set(new Vector3(x, y+1f, z), new Vector3(0f, 1f,  0f), color, null);
             VertexInfo v110 = new VertexInfo().set(new Vector3(x+1f, y+1f, z), new Vector3(0f, 1f,  0f), color, null);
@@ -69,8 +66,6 @@ public class Chunk {
 
             b.rect(v010, v011, v111, v110);
         }
-
-        color = Color.GREEN;
 
         if (y == 0 || voxelData[x][y-1][z].getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v000 = new VertexInfo().set(new Vector3(x, y, z), new Vector3(0f, -1f,  0f), color, null);
@@ -81,8 +76,6 @@ public class Chunk {
             b.rect(v000, v100, v101, v001);
         }
 
-        color = Color.YELLOW;
-
         if (z == 0 || voxelData[x][y][z-1].getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v000 = new VertexInfo().set(new Vector3(x, y, z), new Vector3(0f, 0f,  -1f), color, null);
             VertexInfo v010 = new VertexInfo().set(new Vector3(x, y+1f, z), new Vector3(0f, 0f,  -1f), color, null);
@@ -91,8 +84,6 @@ public class Chunk {
 
             b.rect(v000, v010, v110, v100);
         }
-
-        color = Color.BLUE;
 
         if (z == SIZE - 1 || voxelData[x][y][z+1].getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v001 = new VertexInfo().set(new Vector3(x, y, z+1f), new Vector3(0f, 0f,  1f), color, null);
@@ -103,8 +94,6 @@ public class Chunk {
             b.rect(v001, v101, v111, v011);
         }
 
-        color = Color.ORANGE;
-
         if (x == SIZE - 1 || voxelData[x+1][y][z].getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v100 = new VertexInfo().set(new Vector3(x+1f, y, z), new Vector3(1f, 0f,  0f), color, null);
             VertexInfo v110 = new VertexInfo().set(new Vector3(x+1f, y+1f, z), new Vector3(1f, 0f,  0f), color, null);
@@ -113,8 +102,6 @@ public class Chunk {
 
             b.rect(v100, v110, v111, v101);
         }
-
-        color = Color.PURPLE;
 
         if (x == 0 || voxelData[x-1][y][z].getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v000 = new VertexInfo().set(new Vector3(x, y, z), new Vector3(-1f, 0f,  0f), color, null);
