@@ -83,7 +83,7 @@ public class Chunk {
 
         color = Color.YELLOW;
 
-        if (x == 0 || voxelData[x-1][y][z].getId().equals(VoxelData.AIR.getId())) {
+        if (z == 0 || voxelData[x][y][z-1].getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v000 = new VertexInfo().set(new Vector3(x, y, z), new Vector3(0f, 0f,  -1f), color, null);
             VertexInfo v010 = new VertexInfo().set(new Vector3(x, y+1f, z), new Vector3(0f, 0f,  -1f), color, null);
             VertexInfo v110 = new VertexInfo().set(new Vector3(x+1f, y+1f, z), new Vector3(0f, 0f,  -1f), color, null);
@@ -94,7 +94,7 @@ public class Chunk {
 
         color = Color.BLUE;
 
-        if (x == SIZE - 1 || voxelData[x+1][y][z].getId().equals(VoxelData.AIR.getId())) {
+        if (z == SIZE - 1 || voxelData[x][y][z+1].getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v001 = new VertexInfo().set(new Vector3(x, y, z+1f), new Vector3(0f, 0f,  1f), color, null);
             VertexInfo v011 = new VertexInfo().set(new Vector3(x, y+1f, z+1f), new Vector3(0f, 0f,  1f), color, null);
             VertexInfo v111 = new VertexInfo().set(new Vector3(x+1f, y+1f, z+1f), new Vector3(0f, 0f,  1f), color, null);
@@ -105,7 +105,7 @@ public class Chunk {
 
         color = Color.ORANGE;
 
-        if (z == 0 || voxelData[x][y][z-1].getId().equals(VoxelData.AIR.getId())) {
+        if (x == SIZE - 1 || voxelData[x+1][y][z].getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v100 = new VertexInfo().set(new Vector3(x+1f, y, z), new Vector3(1f, 0f,  0f), color, null);
             VertexInfo v110 = new VertexInfo().set(new Vector3(x+1f, y+1f, z), new Vector3(1f, 0f,  0f), color, null);
             VertexInfo v111 = new VertexInfo().set(new Vector3(x+1f, y+1f, z+1f), new Vector3(1f, 0f,  0f), color, null);
@@ -116,7 +116,7 @@ public class Chunk {
 
         color = Color.PURPLE;
 
-        if (z == SIZE - 1 || voxelData[x][y][z+1].getId().equals(VoxelData.AIR.getId())) {
+        if (x == 0 || voxelData[x-1][y][z].getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v000 = new VertexInfo().set(new Vector3(x, y, z), new Vector3(-1f, 0f,  0f), color, null);
             VertexInfo v010 = new VertexInfo().set(new Vector3(x, y+1f, z), new Vector3(-1f, 0f,  0f), color, null);
             VertexInfo v011 = new VertexInfo().set(new Vector3(x, y+1f, z+1f), new Vector3(-1f, 0f,  0f), color, null);
