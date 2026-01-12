@@ -9,28 +9,31 @@ import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.MeshBuilder;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.math.Vector3;
+import dev.codewizz.world.World;
 
 import static com.badlogic.gdx.graphics.g3d.utils.MeshPartBuilder.VertexInfo;
 
 
 public class Chunk {
 
-    private final static int SIZE = 4;
+    public final static int SIZE = 32;
+    public final static int HEIGHT = 256;
     private final static Material MATERIAL = new Material(ColorAttribute.createDiffuse(Color.WHITE));
+    private final World world;
 
-
-    private final int x, z;
-    private final VoxelData[][][] voxelData = new VoxelData[SIZE][SIZE][SIZE];
+    private final int x, z, indexX, indexZ;
+    public final VoxelData[][][] voxelData = new VoxelData[SIZE][HEIGHT][SIZE];
 
     private ModelInstance instance;
     private boolean dirty;
 
-    public Chunk(int x, int z) {
+    public Chunk(int x, int z, int indexX, int indexZ, World world) {
         fillChunk();
         this.x = x;
         this.z = z;
-
-        buildMesh();
+        this.indexX = indexX;
+        this.indexZ = indexZ;
+        this.world = world;
     }
 
     public void buildMesh() {
@@ -39,7 +42,7 @@ public class Chunk {
         b.begin(VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.ColorUnpacked, GL20.GL_TRIANGLES);
 
         for (int x = 0; x < SIZE; x++) {
-            for (int y = 0; y < SIZE; y++) {
+            for (int y = 0; y < HEIGHT; y++) {
                 for (int z = 0; z < SIZE; z++) {
                     VoxelData data = voxelData[x][y][z];
 
@@ -76,7 +79,7 @@ public class Chunk {
             b.rect(v000, v100, v101, v001);
         }
 
-        if (z == 0 || voxelData[x][y][z-1].getId().equals(VoxelData.AIR.getId())) {
+        if (z + (this.indexZ*SIZE) == 0 || world.getVoxel(x + (this.indexX * SIZE), y, z - 1 + (this.indexZ*SIZE)).getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v000 = new VertexInfo().set(new Vector3(x + this.x, y, z + this.z), new Vector3(0f, 0f,  -1f), color, null);
             VertexInfo v010 = new VertexInfo().set(new Vector3(x + this.x, y+1f, z + this.z), new Vector3(0f, 0f,  -1f), color, null);
             VertexInfo v110 = new VertexInfo().set(new Vector3(x+1f + this.x, y+1f, z + this.z), new Vector3(0f, 0f,  -1f), color, null);
@@ -85,7 +88,7 @@ public class Chunk {
             b.rect(v000, v010, v110, v100);
         }
 
-        if (z == SIZE - 1 || voxelData[x][y][z+1].getId().equals(VoxelData.AIR.getId())) {
+        if (z + (this.indexZ*SIZE) == World.SIZE - 1 || world.getVoxel(x + (this.indexX * SIZE), y, z + 1 + (this.indexZ*SIZE)).getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v001 = new VertexInfo().set(new Vector3(x + this.x, y, z+1f + this.z), new Vector3(0f, 0f,  1f), color, null);
             VertexInfo v011 = new VertexInfo().set(new Vector3(x + this.x, y+1f, z+1f + this.z), new Vector3(0f, 0f,  1f), color, null);
             VertexInfo v111 = new VertexInfo().set(new Vector3(x+1f + this.x, y+1f, z+1f + this.z), new Vector3(0f, 0f,  1f), color, null);
@@ -94,7 +97,7 @@ public class Chunk {
             b.rect(v001, v101, v111, v011);
         }
 
-        if (x == SIZE - 1 || voxelData[x+1][y][z].getId().equals(VoxelData.AIR.getId())) {
+        if (x + (this.indexX * SIZE) == World.SIZE - 1 || world.getVoxel(x + 1 + (this.indexX * SIZE), y, z + (this.indexZ*SIZE)).getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v100 = new VertexInfo().set(new Vector3(x+1f + this.x, y, z + this.z), new Vector3(1f, 0f,  0f), color, null);
             VertexInfo v110 = new VertexInfo().set(new Vector3(x+1f + this.x, y+1f, z + this.z), new Vector3(1f, 0f,  0f), color, null);
             VertexInfo v111 = new VertexInfo().set(new Vector3(x+1f + this.x, y+1f, z+1f + this.z), new Vector3(1f, 0f,  0f), color, null);
@@ -103,7 +106,7 @@ public class Chunk {
             b.rect(v100, v110, v111, v101);
         }
 
-        if (x == 0 || voxelData[x-1][y][z].getId().equals(VoxelData.AIR.getId())) {
+        if (x + (this.indexX * SIZE) == 0 || world.getVoxel(x - 1 + (this.indexX * SIZE), y, z + (this.indexZ*SIZE)).getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v000 = new VertexInfo().set(new Vector3(x + this.x, y, z + this.z), new Vector3(-1f, 0f,  0f), color, null);
             VertexInfo v010 = new VertexInfo().set(new Vector3(x + this.x, y+1f, z + this.z), new Vector3(-1f, 0f,  0f), color, null);
             VertexInfo v011 = new VertexInfo().set(new Vector3(x + this.x, y+1f, z+1f + this.z), new Vector3(-1f, 0f,  0f), color, null);
@@ -116,9 +119,14 @@ public class Chunk {
 
     private void fillChunk() {
         for (int xx = 0; xx < SIZE; xx++) {
-            for (int yy = 0; yy < SIZE; yy++) {
+            for (int yy = 0; yy < HEIGHT; yy++) {
                 for (int zz = 0; zz < SIZE; zz++) {
-                    voxelData[xx][yy][zz] = VoxelData.AIR;
+
+                    if (yy == 4) {
+                        voxelData[xx][yy][zz] = VoxelData.GRASS;
+                    } else {
+                        voxelData[xx][yy][zz] = VoxelData.AIR;
+                    }
                 }
             }
         }

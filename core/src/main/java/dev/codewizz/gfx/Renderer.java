@@ -45,16 +45,18 @@ public class Renderer {
         camera.getPerspectiveCamera().update();
     }
 
-    public void render(List<GameObject> objects, List<Chunk> chunks) {
+    public void render(List<GameObject> objects, Chunk[][] chunks) {
         camera.update(Gdx.graphics.getDeltaTime());
         ScreenUtils.clear(0.533f, 0.768f, 0.925f, 1f, true);
 
         modelBatch.begin(camera.getPerspectiveCamera());
 
-        for (Chunk chunk : chunks) {
-            if (chunk.isDirty()) chunk.buildMesh();
+        for (int i = 0; i < chunks.length; i++) {
+            for (int j = 0; j < chunks[i].length; j++) {
+                if (chunks[i][j].isDirty()) chunks[i][j].buildMesh();
 
-            modelBatch.render(chunk.getModelInstance(), environment);
+                modelBatch.render(chunks[i][j].getModelInstance(), environment);
+            }
         }
 
         for (GameObject object : objects) {
