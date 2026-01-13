@@ -17,7 +17,7 @@ public class World {
     public World() {
         for (int xx = 0; xx < chunks.length; xx++ ) {
             for (int zz = 0; zz < chunks.length; zz++ ) {
-                chunks[xx][zz] = new Chunk(xx * Chunk.SIZE - chunks.length/2*Chunk.SIZE, zz * Chunk.SIZE - chunks.length/2*Chunk.SIZE, xx, zz, this);
+                chunks[xx][zz] = new Chunk((xx * Chunk.SIZE - chunks.length/2*Chunk.SIZE)/4, (zz * Chunk.SIZE - chunks.length/2*Chunk.SIZE)/4, xx, zz, this);
             }
         }
 
@@ -30,10 +30,6 @@ public class World {
     }
 
     public VoxelData getVoxel(int x, int  y, int z) {
-
-        System.out.println("Voxel: " + x + " " + y + " " + z);
-        System.out.println("Size: " + Chunk.SIZE);
-
         return chunks[x / Chunk.SIZE][z / Chunk.SIZE].voxelData[x % Chunk.SIZE][y][z % Chunk.SIZE];
     }
 
