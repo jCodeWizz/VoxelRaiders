@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.MeshBuilder;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.math.Vector3;
+import dev.codewizz.utils.SimplexNoise;
 import dev.codewizz.world.World;
 
 import static com.badlogic.gdx.graphics.g3d.utils.MeshPartBuilder.VertexInfo;
@@ -28,12 +29,13 @@ public class Chunk {
     private boolean dirty;
 
     public Chunk(int x, int z, int indexX, int indexZ, World world) {
-        fillChunk();
         this.x = x;
         this.z = z;
         this.indexX = indexX;
         this.indexZ = indexZ;
         this.world = world;
+
+        fillChunk();
     }
 
     public void buildMesh() {
@@ -116,33 +118,34 @@ public class Chunk {
         }
     }
 
-
     private void fillChunk() {
         for (int xx = 0; xx < SIZE; xx++) {
             for (int yy = 0; yy < HEIGHT; yy++) {
                 for (int zz = 0; zz < SIZE; zz++) {
-
-                    if (yy == 4) {
-                        voxelData[xx][yy][zz] = VoxelData.GRASS;
-                    } else {
-                        voxelData[xx][yy][zz] = VoxelData.AIR;
-                    }
+                    voxelData[xx][yy][zz] = VoxelData.AIR;
                 }
             }
         }
 
-        voxelData[1][1][1] = VoxelData.GRASS;
-        voxelData[0][0][0] = VoxelData.DIRT;
-        voxelData[0][0][1] = VoxelData.DIRT;
-        voxelData[1][0][0] = VoxelData.DIRT;
-        voxelData[1][0][1] = VoxelData.DIRT;
+        for (int xx = 0; xx < SIZE; xx++) {
+            for (int zz = 0; zz < SIZE; zz++) {
+                int y = 25 + (int) (((SimplexNoise.noise((this.indexX*SIZE + xx)/50.0, (this.indexZ*SIZE + zz)/50.0) + 1) / 2.0) * 16.0);
+                voxelData[xx][y][zz] = VoxelData.GRASS;
+                for (int yy = y - 5; yy < y; yy++) {
+                    voxelData[xx][yy][zz] = VoxelData.DIRT;
+                }
+                for (int  yy = 0; yy < y - 5; yy++) {
+                    voxelData[xx][yy][zz] = VoxelData.STONE;
+                }
+            }
+        }
     }
 
-public boolean isDirty() {
-    return dirty;
-}
+    public boolean isDirty() {
+        return dirty;
+    }
 
-public ModelInstance getModelInstance() {
-    return instance;
-}
+    public ModelInstance getModelInstance() {
+        return instance;
+    }
 }
