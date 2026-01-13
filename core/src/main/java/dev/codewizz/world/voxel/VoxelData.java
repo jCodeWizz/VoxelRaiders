@@ -4,10 +4,15 @@ import com.badlogic.gdx.graphics.Color;
 
 public class VoxelData {
 
-    public final static VoxelData GRASS = new VoxelData("vxr:grass", Color.GREEN);
-    public final static VoxelData DIRT = new VoxelData("vxr:dirt", Color.BROWN);
-    public final static VoxelData STONE = new VoxelData("vxr:stone", Color.LIGHT_GRAY);
-    public final static VoxelData AIR = new VoxelData("vxr:air", Color.CLEAR_WHITE);
+    public static final int SIZE = 2;
+
+    public final static VoxelData GRASS = new VoxelData("vxr:grass", new Color(1f, 1f, 1f, 1f));
+    public final static VoxelData DIRT = new VoxelData("vxr:dirt", new Color(1f, 1f, 1f, 1f));
+    public final static VoxelData STONE = new VoxelData("vxr:stone", new Color(1f, 1f, 1f, 1f));
+    public final static VoxelData SAND = new VoxelData("vxr:sand", new Color(1f, 1f, 1f, 1f));
+    public final static VoxelData WATER = new VoxelData("vxr:water", new Color(0, 0, 1f, 0.5f));
+    public final static VoxelData CLAY = new VoxelData("vxr:clay", new Color(1f, 1f, 1f, 1f));
+    public final static VoxelData AIR = new VoxelData("vxr:air", new Color(1f, 1f, 1f, 1f));
 
     private final String id;
     private final Color colour;

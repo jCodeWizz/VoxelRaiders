@@ -12,7 +12,7 @@ public class Camera {
     public Camera() {
         cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.near = 1f;
-        cam.far = 300f;
+        cam.far = 1000f;
         cam.update();
 
         inputController = new CameraInputController(cam);

@@ -7,7 +7,6 @@ import com.badlogic.gdx.ai.GdxAI;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.world.World;
 import dev.codewizz.world.objects.Cow;
-import dev.codewizz.world.objects.Terrain;
 
 public class Main extends ApplicationAdapter {
 
@@ -23,7 +22,9 @@ public class Main extends ApplicationAdapter {
 
         renderer = new Renderer();
         world = new World();
-
+        Cow cow = new Cow();
+        cow.getPosition().y = 20;
+        world.addObject(cow);
         Gdx.input.setInputProcessor(new InputMultiplexer(renderer.getUiStage(), renderer.getCamera().getInputController()));
     }
 

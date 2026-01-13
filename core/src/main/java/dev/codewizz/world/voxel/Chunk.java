@@ -49,7 +49,7 @@ public class Chunk {
                     VoxelData data = voxelData[x][y][z];
 
                     if (!data.getId().equals(VoxelData.AIR.getId())) {
-                        buildVoxel(b, x/4f, y/4f, z/4f, x, y, z, data.getColour());
+                        buildVoxel(b, (float) x /VoxelData.SIZE, (float) y /VoxelData.SIZE, (float) z /VoxelData.SIZE, x, y, z, data.getColour());
                     }
                 }
             }
@@ -63,56 +63,59 @@ public class Chunk {
     }
 
     private void buildVoxel(MeshBuilder b, float x, float y, float z, int indexX, int indexY, int indexZ, Color color) {
+
+        float d = (float) 1 /VoxelData.SIZE;
+
         if (indexY == HEIGHT - 1 || voxelData[indexX][indexY+1][indexZ].getId().equals(VoxelData.AIR.getId())) {
-            VertexInfo v010 = new VertexInfo().set(new Vector3(x + this.x, y+0.25f, z + this.z), new Vector3(0f, 1f,  0f), color, null);
-            VertexInfo v110 = new VertexInfo().set(new Vector3(x+0.25f + this.x, y+0.25f, z + this.z), new Vector3(0f, 1f,  0f), color, null);
-            VertexInfo v111 = new VertexInfo().set(new Vector3(x+0.25f + this.x, y+0.25f, z+0.25f + this.z), new Vector3(0f, 1f,  0f), color, null);
-            VertexInfo v011 = new VertexInfo().set(new Vector3(x + this.x, y+0.25f, z+0.25f + this.z), new Vector3(0f, 1f,  0f), color, null);
+            VertexInfo v010 = new VertexInfo().set(new Vector3(x + this.x, y+d, z + this.z), new Vector3(0f, 1f,  0f), color, null);
+            VertexInfo v110 = new VertexInfo().set(new Vector3(x+d + this.x, y+d, z + this.z), new Vector3(0f, 1f,  0f), color, null);
+            VertexInfo v111 = new VertexInfo().set(new Vector3(x+d + this.x, y+d, z+d + this.z), new Vector3(0f, 1f,  0f), color, null);
+            VertexInfo v011 = new VertexInfo().set(new Vector3(x + this.x, y+d, z+d + this.z), new Vector3(0f, 1f,  0f), color, null);
 
             b.rect(v010, v011, v111, v110);
         }
 
         if (indexY == 0 || voxelData[indexX][indexY-1][indexZ].getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v000 = new VertexInfo().set(new Vector3(x + this.x, y, z + this.z), new Vector3(0f, -1f,  0f), color, null);
-            VertexInfo v100 = new VertexInfo().set(new Vector3(x+0.25f + this.x, y, z + this.z), new Vector3(0f, -1f,  0f), color, null);
-            VertexInfo v101 = new VertexInfo().set(new Vector3(x+0.25f + this.x, y, z+0.25f + this.z), new Vector3(0f, -1f,  0f), color, null);
-            VertexInfo v001 = new VertexInfo().set(new Vector3(x + this.x, y, z+0.25f + this.z), new Vector3(0f, -1f,  0f), color, null);
+            VertexInfo v100 = new VertexInfo().set(new Vector3(x+d + this.x, y, z + this.z), new Vector3(0f, -1f,  0f), color, null);
+            VertexInfo v101 = new VertexInfo().set(new Vector3(x+d + this.x, y, z+d + this.z), new Vector3(0f, -1f,  0f), color, null);
+            VertexInfo v001 = new VertexInfo().set(new Vector3(x + this.x, y, z+d + this.z), new Vector3(0f, -1f,  0f), color, null);
 
             b.rect(v000, v100, v101, v001);
         }
 
         if (indexZ + (this.indexZ*SIZE) == 0 || world.getVoxel(indexX + (this.indexX * SIZE), indexY, indexZ - 1 + (this.indexZ*SIZE)).getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v000 = new VertexInfo().set(new Vector3(x + this.x, y, z + this.z), new Vector3(0f, 0f,  -1f), color, null);
-            VertexInfo v010 = new VertexInfo().set(new Vector3(x + this.x, y+0.25f, z + this.z), new Vector3(0f, 0f,  -1f), color, null);
-            VertexInfo v110 = new VertexInfo().set(new Vector3(x+0.25f + this.x, y+0.25f, z + this.z), new Vector3(0f, 0f,  -1f), color, null);
-            VertexInfo v100 = new VertexInfo().set(new Vector3(x+0.25f + this.x, y, z + this.z), new Vector3(0f, 0f,  -1f), color, null);
+            VertexInfo v010 = new VertexInfo().set(new Vector3(x + this.x, y+d, z + this.z), new Vector3(0f, 0f,  -1f), color, null);
+            VertexInfo v110 = new VertexInfo().set(new Vector3(x+d + this.x, y+d, z + this.z), new Vector3(0f, 0f,  -1f), color, null);
+            VertexInfo v100 = new VertexInfo().set(new Vector3(x+d + this.x, y, z + this.z), new Vector3(0f, 0f,  -1f), color, null);
 
             b.rect(v000, v010, v110, v100);
         }
 
         if (indexZ + (this.indexZ*SIZE) == World.SIZE - 1 || world.getVoxel(indexX + (this.indexX * SIZE), indexY, indexZ + 1 + (this.indexZ*SIZE)).getId().equals(VoxelData.AIR.getId())) {
-            VertexInfo v001 = new VertexInfo().set(new Vector3(x + this.x, y, z+0.25f + this.z), new Vector3(0f, 0f,  1f), color, null);
-            VertexInfo v011 = new VertexInfo().set(new Vector3(x + this.x, y+0.25f, z+0.25f + this.z), new Vector3(0f, 0f,  1f), color, null);
-            VertexInfo v111 = new VertexInfo().set(new Vector3(x+0.25f + this.x, y+0.25f, z+0.25f + this.z), new Vector3(0f, 0f,  1f), color, null);
-            VertexInfo v101 = new VertexInfo().set(new Vector3(x+0.25f + this.x, y, z+0.25f + this.z), new Vector3(0f, 0f,  1f), color, null);
+            VertexInfo v001 = new VertexInfo().set(new Vector3(x + this.x, y, z+d + this.z), new Vector3(0f, 0f,  1f), color, null);
+            VertexInfo v011 = new VertexInfo().set(new Vector3(x + this.x, y+d, z+d + this.z), new Vector3(0f, 0f,  1f), color, null);
+            VertexInfo v111 = new VertexInfo().set(new Vector3(x+d + this.x, y+d, z+d + this.z), new Vector3(0f, 0f,  1f), color, null);
+            VertexInfo v101 = new VertexInfo().set(new Vector3(x+d + this.x, y, z+d + this.z), new Vector3(0f, 0f,  1f), color, null);
 
             b.rect(v001, v101, v111, v011);
         }
 
         if (indexX + (this.indexX * SIZE) == World.SIZE - 1 || world.getVoxel(indexX + 1 + (this.indexX * SIZE), indexY, indexZ + (this.indexZ*SIZE)).getId().equals(VoxelData.AIR.getId())) {
-            VertexInfo v100 = new VertexInfo().set(new Vector3(x+0.25f + this.x, y, z + this.z), new Vector3(1f, 0f,  0f), color, null);
-            VertexInfo v110 = new VertexInfo().set(new Vector3(x+0.25f + this.x, y+0.25f, z + this.z), new Vector3(1f, 0f,  0f), color, null);
-            VertexInfo v111 = new VertexInfo().set(new Vector3(x+0.25f + this.x, y+0.25f, z+0.25f + this.z), new Vector3(1f, 0f,  0f), color, null);
-            VertexInfo v101 = new VertexInfo().set(new Vector3(x+0.25f + this.x, y, z+0.25f + this.z), new Vector3(1f, 0f,  0f), color, null);
+            VertexInfo v100 = new VertexInfo().set(new Vector3(x+d + this.x, y, z + this.z), new Vector3(1f, 0f,  0f), color, null);
+            VertexInfo v110 = new VertexInfo().set(new Vector3(x+d + this.x, y+d, z + this.z), new Vector3(1f, 0f,  0f), color, null);
+            VertexInfo v111 = new VertexInfo().set(new Vector3(x+d + this.x, y+d, z+d + this.z), new Vector3(1f, 0f,  0f), color, null);
+            VertexInfo v101 = new VertexInfo().set(new Vector3(x+d + this.x, y, z+d + this.z), new Vector3(1f, 0f,  0f), color, null);
 
             b.rect(v100, v110, v111, v101);
         }
 
         if (indexX + (this.indexX * SIZE) == 0 || world.getVoxel(indexX - 1 + (this.indexX * SIZE), indexY, indexZ + (this.indexZ*SIZE)).getId().equals(VoxelData.AIR.getId())) {
             VertexInfo v000 = new VertexInfo().set(new Vector3(x + this.x, y, z + this.z), new Vector3(-1f, 0f,  0f), color, null);
-            VertexInfo v010 = new VertexInfo().set(new Vector3(x + this.x, y+0.25f, z + this.z), new Vector3(-1f, 0f,  0f), color, null);
-            VertexInfo v011 = new VertexInfo().set(new Vector3(x + this.x, y+0.25f, z+0.25f + this.z), new Vector3(-1f, 0f,  0f), color, null);
-            VertexInfo v001 = new VertexInfo().set(new Vector3(x + this.x, y, z+0.25f + this.z), new Vector3(-1f, 0f,  0f), color, null);
+            VertexInfo v010 = new VertexInfo().set(new Vector3(x + this.x, y+d, z + this.z), new Vector3(-1f, 0f,  0f), color, null);
+            VertexInfo v011 = new VertexInfo().set(new Vector3(x + this.x, y+d, z+d + this.z), new Vector3(-1f, 0f,  0f), color, null);
+            VertexInfo v001 = new VertexInfo().set(new Vector3(x + this.x, y, z+d + this.z), new Vector3(-1f, 0f,  0f), color, null);
 
             b.rect(v000, v001, v011, v010);
         }
@@ -129,7 +132,11 @@ public class Chunk {
 
         for (int xx = 0; xx < SIZE; xx++) {
             for (int zz = 0; zz < SIZE; zz++) {
-                int y = 25 + (int) (((SimplexNoise.noise((this.indexX*SIZE + xx)/50.0, (this.indexZ*SIZE + zz)/50.0) + 1) / 2.0) * 16.0);
+                double v = ((SimplexNoise.noise((this.indexX*SIZE + xx)/550.0, (this.indexZ*SIZE + zz)/550.0) + 1) / 2.0) * 32.0  / 6;
+                int vv = (int) v;
+
+                int y = 25 + vv * 6// +  (int)  (((SimplexNoise.noise((this.indexX*SIZE + xx)/150.0, (this.indexZ*SIZE + zz)/150.0) + 1) / 2.0) * 32.0);
+                ;
                 voxelData[xx][y][zz] = VoxelData.GRASS;
                 for (int yy = y - 5; yy < y; yy++) {
                     voxelData[xx][yy][zz] = VoxelData.DIRT;

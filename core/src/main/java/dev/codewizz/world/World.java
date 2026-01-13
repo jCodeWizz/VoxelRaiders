@@ -9,7 +9,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class World {
 
-    public static final int SIZE = 256;
+    public static final int SIZE = 1024;
 
     private final List<GameObject> objects = new CopyOnWriteArrayList<>();
     private final Chunk[][] chunks = new Chunk[SIZE / Chunk.SIZE][SIZE / Chunk.SIZE];
@@ -17,7 +17,7 @@ public class World {
     public World() {
         for (int xx = 0; xx < chunks.length; xx++ ) {
             for (int zz = 0; zz < chunks.length; zz++ ) {
-                chunks[xx][zz] = new Chunk((xx * Chunk.SIZE - chunks.length/2*Chunk.SIZE)/4, (zz * Chunk.SIZE - chunks.length/2*Chunk.SIZE)/4, xx, zz, this);
+                chunks[xx][zz] = new Chunk((xx * Chunk.SIZE - chunks.length/2*Chunk.SIZE)/VoxelData.SIZE, (zz * Chunk.SIZE - chunks.length/2*Chunk.SIZE)/VoxelData.SIZE, xx, zz, this);
             }
         }
 
@@ -27,6 +27,17 @@ public class World {
                 chunks[xx][zz].buildMesh();
             }
         }
+    }
+
+    public void setVoxel(int x, int y, int z, VoxelData data) {
+        int chunkX = x / Chunk.SIZE;
+        int chunkZ = z / Chunk.SIZE;
+        int indexX = x  % Chunk.SIZE;
+        int indexZ = z  % Chunk.SIZE;
+        chunks[chunkX][chunkZ].voxelData[indexX][y][indexZ] = data;
+        chunks[chunkX][chunkZ].buildMesh();
+
+
     }
 
     public VoxelData getVoxel(int x, int  y, int z) {
