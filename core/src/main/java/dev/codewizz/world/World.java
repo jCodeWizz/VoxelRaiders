@@ -34,10 +34,14 @@ public class World {
         int chunkZ = z / Chunk.SIZE;
         int indexX = x  % Chunk.SIZE;
         int indexZ = z  % Chunk.SIZE;
+
         chunks[chunkX][chunkZ].voxelData[indexX][y][indexZ] = data;
         chunks[chunkX][chunkZ].buildMesh();
 
-
+        if (indexX == 0 && chunkX > 0) { chunks[chunkX - 1][chunkZ].buildMesh(); }
+        if (indexZ == 0 && chunkZ > 0) { chunks[chunkX][chunkZ - 1].buildMesh(); }
+        if (indexX == Chunk.SIZE - 1 && chunkX < chunks.length - 1) { chunks[chunkX + 1][chunkZ].buildMesh(); }
+        if (indexZ == Chunk.SIZE - 1 && chunkZ < chunks.length - 1) { chunks[chunkX][chunkZ + 1].buildMesh(); }
     }
 
     public VoxelData getVoxel(int x, int  y, int z) {

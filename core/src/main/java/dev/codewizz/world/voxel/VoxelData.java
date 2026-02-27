@@ -6,7 +6,7 @@ public class VoxelData {
 
     public static final int SIZE = 2;
 
-    public final static VoxelData GRASS = new VoxelData("vxr:grass", new Color(1f, 1f, 1f, 1f));
+    public final static VoxelData GRASS = new VoxelData("vxr:grass", new Color(0f, 1f, 0f, 1f));
     public final static VoxelData DIRT = new VoxelData("vxr:dirt", new Color(1f, 1f, 1f, 1f));
     public final static VoxelData STONE = new VoxelData("vxr:stone", new Color(1f, 1f, 1f, 1f));
     public final static VoxelData SAND = new VoxelData("vxr:sand", new Color(1f, 1f, 1f, 1f));
