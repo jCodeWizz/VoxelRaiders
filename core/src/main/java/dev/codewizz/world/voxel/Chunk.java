@@ -132,7 +132,8 @@ public class Chunk {
 
         for (int xx = 0; xx < SIZE; xx++) {
             for (int zz = 0; zz < SIZE; zz++) {
-                double v = ((SimplexNoise.noise((this.indexX*SIZE + xx)/550.0, (this.indexZ*SIZE + zz)/550.0) + 1) / 2.0) * 32.0  / 6;
+                //double v = ((SimplexNoise.noise((this.indexX*SIZE + xx)/550.0, (this.indexZ*SIZE + zz)/550.0) + 1) / 2.0) * 32.0  / 6;
+                double v = 3;
                 int vv = (int) v;
 
                 int y = 25 + vv * 6// +  (int)  (((SimplexNoise.noise((this.indexX*SIZE + xx)/150.0, (this.indexZ*SIZE + zz)/150.0) + 1) / 2.0) * 32.0);
