@@ -24,9 +24,11 @@ public class Main extends ApplicationAdapter {
 
         renderer = new Renderer();
         world = new World();
-        Cow cow = new Cow();
-        cow.getPosition().y = 10.5f;
-        world.addObject(cow);
+        for (int i = 0; i < 5; i++) {
+            Cow cow = new Cow();
+            cow.getPosition().y = 10.5f;
+            world.addObject(cow);
+        }
         Gdx.input.setInputProcessor(new InputMultiplexer(renderer.getUiStage(), renderer.getCamera().getInputController()));
     }
 

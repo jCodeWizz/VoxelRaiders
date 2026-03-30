@@ -26,6 +26,8 @@ public class NavAgent {
     }
 
     public void update(float dt) {
+        setSpeedToNextGoal();
+
         if (path.size > 0) {
             NavCell target = path.first();
             if (Vector3.dst2(e.getPosition().x, e.getPosition().y, e.getPosition().z, target.x, e.getPosition().y, target.z) < 0.0004f) {
