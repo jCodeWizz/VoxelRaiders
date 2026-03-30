@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.Array;
 import dev.codewizz.world.Entity;
 import dev.codewizz.world.World;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavCell;
+import dev.codewizz.world.objects.behaviour.pathfinding.NavGraph;
 
 public class SetPathLeaf extends LeafTask<Entity> {
 
@@ -17,8 +18,8 @@ public class SetPathLeaf extends LeafTask<Entity> {
     public Status execute() {
         Entity e = getObject();
 
-        int navX = MathUtils.floor(e.getPosition().x + (World.SIZE/2f));
-        int navY = MathUtils.floor(e.getPosition().z + (World.SIZE/2f));
+        int navX = MathUtils.floor(e.getPosition().x + (NavGraph.SIZE/2f));
+        int navY = MathUtils.floor(e.getPosition().z + (NavGraph.SIZE/2f));
 
 
         boolean success =  e.getAgent().navigate(e.getAgent().getGraph().getCell(navX, navY));

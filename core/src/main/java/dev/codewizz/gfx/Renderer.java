@@ -1,6 +1,9 @@
 package dev.codewizz.gfx;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.graphics.g3d.Environment;
 import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
@@ -8,12 +11,18 @@ import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
+import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
+import com.badlogic.gdx.graphics.glutils.ImmediateModeRenderer20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import dev.codewizz.main.Main;
 import dev.codewizz.world.GameObject;
+import dev.codewizz.world.World;
+import dev.codewizz.world.objects.behaviour.pathfinding.NavGraph;
 import dev.codewizz.world.voxel.Chunk;
+import dev.codewizz.world.voxel.VoxelData;
 
 import java.util.List;
 
@@ -63,10 +72,26 @@ public class Renderer {
             object.render(this);
         }
 
+        renderDebug();
+
         modelBatch.end();
 
         uiStage.act(Gdx.graphics.getDeltaTime());
         uiStage.draw();
+    }
+
+    ModelInstance instance = new ModelInstance(new ModelBuilder().createLineGrid(
+        NavGraph.SIZE,
+        NavGraph.SIZE,
+        1,
+        1,
+        new Material(ColorAttribute.createDiffuse(new Color(0.7f, 0.7f, 0.7f, 0.1f))),
+        VertexAttributes.Usage.Position
+    ));
+
+    public void renderDebug() {
+        instance.transform.setTranslation(0, 10.52f, 0);
+        //modelBatch.render(instance, environment);
     }
 
     public void renderObjectInstance(GameObject object, ModelInstance instance) {

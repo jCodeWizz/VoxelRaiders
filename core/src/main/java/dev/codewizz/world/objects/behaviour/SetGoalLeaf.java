@@ -6,6 +6,8 @@ import com.badlogic.gdx.math.MathUtils;
 import dev.codewizz.world.Entity;
 
 import dev.codewizz.world.World;
+import dev.codewizz.world.objects.behaviour.pathfinding.NavGraph;
+
 import java.util.Random;
 
 public class SetGoalLeaf extends LeafTask<Entity> {
@@ -16,8 +18,8 @@ public class SetGoalLeaf extends LeafTask<Entity> {
     public Status execute() {
         Entity e = getObject();
 
-        int navX = MathUtils.clamp(MathUtils.floor(e.getPosition().x + (World.SIZE/2f)) + random.nextInt(8) - 4, 0, World.SIZE-1);
-        int navY = MathUtils.clamp(MathUtils.floor(e.getPosition().z + (World.SIZE/2f)) + random.nextInt(8) - 4, 0, World.SIZE-1);
+        int navX = MathUtils.clamp(MathUtils.floor(e.getPosition().x + (NavGraph.SIZE/2f)) + random.nextInt(8) - 4, 0, NavGraph.SIZE-1);
+        int navY = MathUtils.clamp(MathUtils.floor(e.getPosition().z + (NavGraph.SIZE/2f)) + random.nextInt(8) - 4, 0, NavGraph.SIZE-1);
 
         e.getAgent().setGoal(e.getAgent().getGraph().getCell(navX, navY));
         return Status.SUCCEEDED;

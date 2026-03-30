@@ -5,21 +5,24 @@ import com.badlogic.gdx.ai.pfa.indexed.IndexedGraph;
 import com.badlogic.gdx.utils.Array;
 import dev.codewizz.main.Main;
 import dev.codewizz.world.World;
+import dev.codewizz.world.voxel.VoxelData;
 
 public class NavGraph implements IndexedGraph<NavCell> {
 
-    private NavCell[][] grid;
+    public static final int SIZE = World.SIZE / VoxelData.SIZE;
+
+    private final NavCell[][] grid;
 
     public NavGraph() {
 
-        grid = new NavCell[World.SIZE][World.SIZE];
+        grid = new NavCell[SIZE][SIZE];
 
-        for (int i = 0; i < World.SIZE * World.SIZE; i++) {
+        for (int i = 0; i < SIZE * SIZE; i++) {
 
-            int indexX = i % World.SIZE;
-            int indexZ = i / World.SIZE;
+            int indexX = i % SIZE;
+            int indexZ = i / SIZE;
 
-            grid[indexX][indexZ] = new NavCell(indexX - (World.SIZE/2f) + 0.5f, indexZ - (World.SIZE/2f) + 0.5f, i, 0, 1f, true);
+            grid[indexX][indexZ] = new NavCell(indexX - (SIZE/2f) + 0.5f, indexZ - (SIZE/2f) + 0.5f, i, 0, 1f, true);
 
             if (indexX > 0) { grid[indexX][indexZ].addConnection(grid[indexX-1][indexZ]); }
             if (indexZ > 0) { grid[indexX][indexZ].addConnection(grid[indexX][indexZ-1]); }
@@ -33,7 +36,7 @@ public class NavGraph implements IndexedGraph<NavCell> {
 
     @Override
     public int getNodeCount() {
-        return World.SIZE * World.SIZE;
+        return SIZE * SIZE;
     }
 
     @Override

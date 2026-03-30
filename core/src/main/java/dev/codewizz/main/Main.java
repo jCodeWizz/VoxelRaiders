@@ -7,6 +7,8 @@ import com.badlogic.gdx.ai.GdxAI;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.world.World;
 import dev.codewizz.world.objects.Cow;
+import dev.codewizz.world.objects.behaviour.pathfinding.NavAgent;
+import dev.codewizz.world.objects.behaviour.pathfinding.NavCell;
 
 public class Main extends ApplicationAdapter {
 
