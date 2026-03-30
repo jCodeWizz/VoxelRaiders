@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.MeshBuilder;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.math.Vector3;
+import dev.codewizz.utils.MathUtils;
 import dev.codewizz.utils.SimplexNoise;
 import dev.codewizz.world.World;
 
@@ -24,6 +25,7 @@ public class Chunk {
 
     private final int x, z, indexX, indexZ;
     public final VoxelData[][][] voxelData = new VoxelData[SIZE][HEIGHT][SIZE];
+    public final int[][][] metaData = new int[SIZE][HEIGHT][SIZE];
 
     private ModelInstance instance;
     private boolean dirty;
@@ -47,9 +49,10 @@ public class Chunk {
             for (int y = 0; y < HEIGHT; y++) {
                 for (int z = 0; z < SIZE; z++) {
                     VoxelData data = voxelData[x][y][z];
+                    int meta = metaData[x][y][z];
 
                     if (!data.getId().equals(VoxelData.AIR.getId())) {
-                        buildVoxel(b, (float) x /VoxelData.SIZE, (float) y /VoxelData.SIZE, (float) z /VoxelData.SIZE, x, y, z, data.getColour());
+                        buildVoxel(b, (float) x /VoxelData.SIZE, (float) y /VoxelData.SIZE, (float) z /VoxelData.SIZE, x, y, z, data.getColour(meta));
                     }
                 }
             }
@@ -126,24 +129,30 @@ public class Chunk {
             for (int yy = 0; yy < HEIGHT; yy++) {
                 for (int zz = 0; zz < SIZE; zz++) {
                     voxelData[xx][yy][zz] = VoxelData.AIR;
+                    metaData[xx][yy][zz] = 0;
                 }
             }
         }
 
         for (int xx = 0; xx < SIZE; xx++) {
             for (int zz = 0; zz < SIZE; zz++) {
-                //double v = ((SimplexNoise.noise((this.indexX*SIZE + xx)/550.0, (this.indexZ*SIZE + zz)/550.0) + 1) / 2.0) * 32.0  / 6;
-                double v = 3;
-                int vv = (int) v;
-
-                int y = 25 + vv * 6// +  (int)  (((SimplexNoise.noise((this.indexX*SIZE + xx)/150.0, (this.indexZ*SIZE + zz)/150.0) + 1) / 2.0) * 32.0);
-                ;
+                int y = 20;
                 voxelData[xx][y][zz] = VoxelData.GRASS;
                 for (int yy = y - 5; yy < y; yy++) {
                     voxelData[xx][yy][zz] = VoxelData.DIRT;
                 }
                 for (int  yy = 0; yy < y - 5; yy++) {
                     voxelData[xx][yy][zz] = VoxelData.STONE;
+                }
+            }
+        }
+
+        for (int xx = 0; xx < SIZE; xx++) {
+            for (int yy = 0; yy < HEIGHT; yy++) {
+                for (int zz = 0; zz < SIZE; zz++) {
+                    double v = ((SimplexNoise.noise((this.indexX*SIZE + xx)/600.0, yy/50.0, (this.indexZ*SIZE + zz)/40.0) + 1) / 2.0);
+
+                    metaData[xx][yy][zz] = (int) (v * 5.0);
                 }
             }
         }
