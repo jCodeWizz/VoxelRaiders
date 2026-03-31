@@ -2,9 +2,9 @@ package dev.codewizz.utils;
 
 import java.util.Random;
 
-public class MathUtils {
+public class WUtils {
 
-    private static final Random RANDOM = new Random();
+    public static final Random RANDOM = new Random();
 
     public static int getRandom(int min, int max) {
         if (min == max) { return min; }

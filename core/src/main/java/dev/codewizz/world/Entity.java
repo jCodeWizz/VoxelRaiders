@@ -1,11 +1,11 @@
 package dev.codewizz.world;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.ai.btree.BehaviorTree;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import dev.codewizz.main.Main;
+import dev.codewizz.utils.WUtils;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavAgent;
 
 public abstract class Entity extends GameObject {
@@ -50,8 +50,8 @@ public abstract class Entity extends GameObject {
                 diff.y = 0;
 
                 float overlap = minDistance - distance;
-                getPosition().add(diff.scl(overlap * 0.5f));
-                other.getPosition().sub(diff.scl(overlap * 0.5f));
+                getPosition().add(diff.scl(overlap * 0.5f + WUtils.RANDOM.nextFloat()/100f));
+                other.getPosition().sub(diff.scl(overlap * 0.5f + WUtils.RANDOM.nextFloat()/100f));
             }
         }
     }
