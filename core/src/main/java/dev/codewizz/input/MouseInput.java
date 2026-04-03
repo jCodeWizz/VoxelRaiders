@@ -3,11 +3,14 @@ package dev.codewizz.input;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.math.collision.Ray;
 import dev.codewizz.gfx.Camera;
 import dev.codewizz.input.result.PickChunkResult;
+import dev.codewizz.input.result.PickObjectResult;
+import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
 import dev.codewizz.world.voxel.Chunk;
 
@@ -34,6 +37,31 @@ public class MouseInput implements InputProcessor {
     @Override
     public boolean touchCancelled(int screenX, int screenY, int pointer, int button) {
         return false;
+    }
+
+    public static PickObjectResult pickObject(Camera camera, World world, int screenX, int screenY) {
+        Ray ray = camera.getPerspectiveCamera().getPickRay(Gdx.input.getX(), Gdx.input.getY());
+        PickObjectResult result = new PickObjectResult();
+        Vector3 intersection = new Vector3();
+
+        for (GameObject object : world.getObjectsToRender()) {
+            BoundingBox bb = new BoundingBox();
+
+            Vector3 center = object.getPosition();
+            bb.set(new Vector3(center).sub(1, 1, 1), new Vector3(center).add(1, 1, 1));
+
+            if (Intersector.intersectRayBounds(ray, bb, intersection)) {
+                float distance = ray.origin.dst2(intersection);
+
+                if (distance < result.getDistance()) {
+                    result.setDistance(distance);
+                    result.setObject(object);
+                    result.getIntersection().set(intersection);
+                }
+            }
+        }
+
+        return result;
     }
 
     public static PickChunkResult pickChunk(Camera camera, World world, int screenX, int screenY) {
