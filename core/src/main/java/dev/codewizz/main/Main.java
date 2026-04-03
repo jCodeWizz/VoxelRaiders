@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.ai.GdxAI;
 import dev.codewizz.gfx.Renderer;
+import dev.codewizz.input.MouseInput;
 import dev.codewizz.world.World;
 import dev.codewizz.world.objects.Cow;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavAgent;
@@ -29,7 +30,7 @@ public class Main extends ApplicationAdapter {
             cow.getPosition().y = 10.5f;
             world.addObject(cow);
         }
-        Gdx.input.setInputProcessor(new InputMultiplexer(renderer.getUiStage(), renderer.getCamera().getInputController()));
+        Gdx.input.setInputProcessor(new InputMultiplexer(renderer.getUiStage(), new MouseInput(renderer.getCamera(), world), renderer.getCamera().getInputController()));
     }
 
     @Override

@@ -164,4 +164,20 @@ public class Chunk {
     public ModelInstance getModelInstance() {
         return instance;
     }
+
+    public int getIndexZ() {
+        return indexZ;
+    }
+
+    public int getIndexX() {
+        return indexX;
+    }
+
+    public int getZ() {
+        return z;
+    }
+
+    public int getX() {
+        return x;
+    }
 }
