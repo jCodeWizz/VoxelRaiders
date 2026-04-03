@@ -27,7 +27,7 @@ public class NavCell {
     }
 
     public void addConnection(NavCell navCell) {
-        connections.add(new DefaultConnection<>(this, navCell));
-        navCell.connections.add(new DefaultConnection<>(navCell, this));
+        connections.add(new NavConnection<>(this, navCell, (cost + navCell.cost)/2f));
+        navCell.connections.add(new NavConnection<>(navCell, this, (cost + navCell.cost)/2f));
     }
 }
