@@ -1,5 +1,6 @@
 package dev.codewizz.world;
 
+import dev.codewizz.world.settlement.Settlement;
 import dev.codewizz.world.voxel.Chunk;
 import dev.codewizz.world.voxel.VoxelData;
 
@@ -13,6 +14,8 @@ public class World {
 
     private final List<GameObject> objects = new CopyOnWriteArrayList<>();
     private final Chunk[][] chunks = new Chunk[SIZE / Chunk.SIZE][SIZE / Chunk.SIZE];
+
+    private Settlement settlement;
 
     public World() {
         for (int xx = 0; xx < chunks.length; xx++ ) {
@@ -67,5 +70,13 @@ public class World {
 
     public Chunk[][] getChunksToRender() {
         return chunks;
+    }
+
+    public void setSettlement(Settlement settlement) {
+        this.settlement = settlement;
+    }
+
+    public Settlement getSettlement() {
+        return settlement;
     }
 }

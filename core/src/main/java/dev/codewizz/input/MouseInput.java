@@ -12,6 +12,8 @@ import dev.codewizz.input.result.PickChunkResult;
 import dev.codewizz.input.result.PickObjectResult;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
+import dev.codewizz.world.objects.Beacon;
+import dev.codewizz.world.settlement.Settlement;
 import dev.codewizz.world.voxel.Chunk;
 
 public class MouseInput implements InputProcessor {
@@ -26,6 +28,21 @@ public class MouseInput implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+
+        if (world.getSettlement() == null) {
+            PickChunkResult result = pickChunk(camera, world, screenX, screenY);
+            if (result.getChunk() != null) {
+                GameObject beacon = new Beacon();
+                beacon.getPosition().set(result.getIntersection());
+                world.addObject(beacon);
+
+                world.setSettlement(new Settlement(result.getIntersection()));
+
+                return true;
+            }
+        }
+
+
         return false;
     }
 
