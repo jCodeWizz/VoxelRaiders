@@ -4,6 +4,7 @@ import com.badlogic.gdx.ai.btree.BehaviorTree;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
+import dev.codewizz.gfx.Renderer;
 import dev.codewizz.main.Main;
 import dev.codewizz.utils.WUtils;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavAgent;
@@ -32,6 +33,11 @@ public abstract class Entity extends GameObject {
         agent.update(dt);
         getPosition().mulAdd(velocity, dt);
         updateRotationFromVelocity();
+    }
+
+    @Override
+    public void render(Renderer renderer) {
+        renderer.renderObjectInstance(this, instance);
     }
 
     private void separate() {

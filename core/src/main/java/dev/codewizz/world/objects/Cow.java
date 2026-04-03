@@ -64,9 +64,4 @@ public class Cow extends Entity {
             this
         );
     }
-
-    @Override
-    public void render(Renderer renderer) {
-        renderer.renderObjectInstance(this, instance);
-    }
 }
