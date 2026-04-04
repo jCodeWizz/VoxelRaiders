@@ -20,7 +20,7 @@ public class Settlement {
 
         for (int i = 0; i < 5; i++) {
             Hermit hermit = new Hermit();
-            hermit.getPosition().set(position.x, position.y + 0.9f, position.z);
+            hermit.getPosition().set(position.x, position.y + hermit.getSize().y / 2f, position.z);
             addMember(hermit);
         }
     }

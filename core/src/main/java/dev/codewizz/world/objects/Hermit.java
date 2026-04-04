@@ -22,8 +22,8 @@ public class Hermit extends Entity {
     public Hermit() {
         super("vxr:hermit");
 
-        //instance = new ModelInstance(Assets.findModel(getId())); //TODO: based on job
         instance = new ModelInstance(MODEL);
+        getSize().set(0.8f, 1.5f, 0.8f);
 
         behaviour = new BehaviorTree<>(
             new Repeat<>(

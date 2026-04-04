@@ -57,7 +57,7 @@ public class MouseInput implements InputProcessor {
     }
 
     public static PickObjectResult pickObject(Camera camera, World world, int screenX, int screenY) {
-        Ray ray = camera.getPerspectiveCamera().getPickRay(Gdx.input.getX(), Gdx.input.getY());
+        Ray ray = camera.getPerspectiveCamera().getPickRay(screenX, screenY);
         PickObjectResult result = new PickObjectResult();
         Vector3 intersection = new Vector3();
 
@@ -65,7 +65,8 @@ public class MouseInput implements InputProcessor {
             BoundingBox bb = new BoundingBox();
 
             Vector3 center = object.getPosition();
-            bb.set(new Vector3(center).sub(1, 1, 1), new Vector3(center).add(1, 1, 1));
+            Vector3 offset = new Vector3(object.getSize()).scl(0.5f);
+            bb.set(new Vector3(center).sub(offset), new Vector3(center).add(offset));
 
             if (Intersector.intersectRayBounds(ray, bb, intersection)) {
                 float distance = ray.origin.dst2(intersection);
@@ -82,7 +83,7 @@ public class MouseInput implements InputProcessor {
     }
 
     public static PickChunkResult pickChunk(Camera camera, World world, int screenX, int screenY) {
-        Ray ray = camera.getPerspectiveCamera().getPickRay(Gdx.input.getX(), Gdx.input.getY());
+        Ray ray = camera.getPerspectiveCamera().getPickRay(screenX, screenY);
         PickChunkResult result = new PickChunkResult();
         Vector3 intersection = new Vector3();
 
