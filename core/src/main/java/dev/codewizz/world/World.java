@@ -1,5 +1,6 @@
 package dev.codewizz.world;
 
+import dev.codewizz.input.MouseInput;
 import dev.codewizz.world.settlement.Settlement;
 import dev.codewizz.world.voxel.Chunk;
 import dev.codewizz.world.voxel.VoxelData;
