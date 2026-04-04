@@ -123,6 +123,10 @@ public class Chunk {
         }
     }
 
+    public void markDirty() {
+        dirty = true;
+    }
+
     private void fillChunk() {
         for (int xx = 0; xx < SIZE; xx++) {
             for (int yy = 0; yy < HEIGHT; yy++) {

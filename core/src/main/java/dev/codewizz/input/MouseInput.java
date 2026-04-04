@@ -15,6 +15,7 @@ import dev.codewizz.world.World;
 import dev.codewizz.world.objects.Beacon;
 import dev.codewizz.world.settlement.Settlement;
 import dev.codewizz.world.voxel.Chunk;
+import dev.codewizz.world.voxel.VoxelData;
 
 public class MouseInput implements InputProcessor {
 
@@ -36,12 +37,11 @@ public class MouseInput implements InputProcessor {
                 beacon.getPosition().set(result.getIntersection());
                 world.addObject(beacon);
 
-                world.setSettlement(new Settlement(result.getIntersection()));
+                world.setSettlement(new Settlement(world, result.getIntersection()));
 
                 return true;
             }
         }
-
 
         return false;
     }

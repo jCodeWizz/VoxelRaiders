@@ -42,21 +42,17 @@ public class Cow extends Entity {
                     new Wait<>(new UniformFloatDistribution(2f, 5f)),
                     new RandomSelector<>(
                         new Sequence<>( // eating
-                            //new ChangeColourLeaf(Color.BLUE),
+                            //TODO: eat animation + ground particles ???healing???
                             new Wait<>(new UniformFloatDistribution(2f, 5f))
-                            //new ChangeColourLeaf(Color.GREEN)
                         ),
                         new Sequence<>( // idle
-                            //new ChangeColourLeaf(Color.RED),
+                            //TODO: Idle Animation
                             new Wait<>(new UniformFloatDistribution(2f, 5f))
-                            //new ChangeColourLeaf(Color.GREEN)
                         ),
                         new Sequence<>( // wander
-                            //new ChangeColourLeaf(Color.YELLOW),
                             new SetGoalLeaf(),
                             new SetPathLeaf(),
                             new FollowPathTask()
-                            //new ChangeColourLeaf(Color.GREEN)
                         )
                     )
                 )

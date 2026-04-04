@@ -18,8 +18,8 @@ public class SetGoalLeaf extends LeafTask<Entity> {
     public Status execute() {
         Entity e = getObject();
 
-        int navX = MathUtils.clamp(MathUtils.floor(e.getPosition().x + (NavGraph.SIZE/2f)) + random.nextInt(8) - 4, 0, NavGraph.SIZE-1);
-        int navY = MathUtils.clamp(MathUtils.floor(e.getPosition().z + (NavGraph.SIZE/2f)) + random.nextInt(8) - 4, 0, NavGraph.SIZE-1);
+        int navX = MathUtils.clamp(MathUtils.floor(e.getPosition().x + (NavGraph.SIZE/2f)) + (random.nextInt(8) - 4) * 2, 0, NavGraph.SIZE-1);
+        int navY = MathUtils.clamp(MathUtils.floor(e.getPosition().z + (NavGraph.SIZE/2f)) + (random.nextInt(8) - 4) * 2, 0, NavGraph.SIZE-1);
 
         e.getAgent().setGoal(e.getAgent().getGraph().getCell(navX, navY));
         return Status.SUCCEEDED;

@@ -11,9 +11,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class World {
 
     public static final int SIZE = 64;
+    public static final int CHUNK_COUNT = SIZE / Chunk.SIZE;
 
     private final List<GameObject> objects = new CopyOnWriteArrayList<>();
-    private final Chunk[][] chunks = new Chunk[SIZE / Chunk.SIZE][SIZE / Chunk.SIZE];
+    private final Chunk[][] chunks = new Chunk[CHUNK_COUNT][CHUNK_COUNT];
 
     private Settlement settlement;
 
@@ -31,19 +32,28 @@ public class World {
         }
     }
 
-    public void setVoxel(int x, int y, int z, VoxelData data) {
-        int chunkX = x / Chunk.SIZE;
-        int chunkZ = z / Chunk.SIZE;
-        int indexX = x  % Chunk.SIZE;
-        int indexZ = z  % Chunk.SIZE;
+    public void setVoxel(float x, float y, float z, VoxelData data) {
+        x += (float) SIZE / VoxelData.SIZE / 2;
+        z += (float) SIZE / VoxelData.SIZE / 2;
 
-        chunks[chunkX][chunkZ].voxelData[indexX][y][indexZ] = data;
-        chunks[chunkX][chunkZ].buildMesh();
+        int vx = (int) (x * VoxelData.SIZE);
+        int vy = (int) (y * VoxelData.SIZE);
+        int vz = (int) (z * VoxelData.SIZE);
 
-        if (indexX == 0 && chunkX > 0) { chunks[chunkX - 1][chunkZ].buildMesh(); }
-        if (indexZ == 0 && chunkZ > 0) { chunks[chunkX][chunkZ - 1].buildMesh(); }
-        if (indexX == Chunk.SIZE - 1 && chunkX < chunks.length - 1) { chunks[chunkX + 1][chunkZ].buildMesh(); }
-        if (indexZ == Chunk.SIZE - 1 && chunkZ < chunks.length - 1) { chunks[chunkX][chunkZ + 1].buildMesh(); }
+        int chunkX = vx / Chunk.SIZE;
+        int chunkZ = vz / Chunk.SIZE;
+
+        int indexX = vx % Chunk.SIZE;
+        int indexY = vy - 1;
+        int indexZ = vz % Chunk.SIZE;
+
+        chunks[chunkX][chunkZ].voxelData[indexX][indexY][indexZ] = data;
+        chunks[chunkX][chunkZ].markDirty();
+
+        if (indexX == 0 && chunkX > 0) { chunks[chunkX - 1][chunkZ].markDirty(); }
+        if (indexZ == 0 && chunkZ > 0) { chunks[chunkX][chunkZ - 1].markDirty(); }
+        if (indexX == Chunk.SIZE - 1 && chunkX < chunks.length - 1) { chunks[chunkX + 1][chunkZ].markDirty(); }
+        if (indexZ == Chunk.SIZE - 1 && chunkZ < chunks.length - 1) { chunks[chunkX][chunkZ + 1].markDirty(); }
     }
 
     public VoxelData getVoxel(int x, int  y, int z) {
