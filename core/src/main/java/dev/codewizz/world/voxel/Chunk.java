@@ -17,6 +17,8 @@ import static com.badlogic.gdx.graphics.g3d.utils.MeshPartBuilder.VertexInfo;
 
 public class Chunk {
 
+    private static final SimplexNoise NOISE = new SimplexNoise(0);
+
     public final static int SIZE = 32;
     public final static int HEIGHT = 256;
     private final static Material MATERIAL = new Material(ColorAttribute.createDiffuse(Color.WHITE));
@@ -153,7 +155,7 @@ public class Chunk {
         for (int xx = 0; xx < SIZE; xx++) {
             for (int yy = 0; yy < HEIGHT; yy++) {
                 for (int zz = 0; zz < SIZE; zz++) {
-                    double v = ((SimplexNoise.noise((this.indexX*SIZE + xx)/600.0, yy/50.0, (this.indexZ*SIZE + zz)/40.0) + 1) / 2.0);
+                    double v = ((NOISE.noise((this.indexX*SIZE + xx)/600.0, yy/50.0, (this.indexZ*SIZE + zz)/40.0) + 1) / 2.0);
 
                     metaData[xx][yy][zz] = (int) (v * 5.0);
                 }
