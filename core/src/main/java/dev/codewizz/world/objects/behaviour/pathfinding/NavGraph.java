@@ -22,7 +22,7 @@ public class NavGraph implements IndexedGraph<NavCell> {
             int indexX = i % SIZE;
             int indexZ = i / SIZE;
 
-            grid[indexX][indexZ] = new NavCell(indexX - (SIZE/2f) + 0.5f, indexZ - (SIZE/2f) + 0.5f, i, 0, 1f, true);
+            grid[indexX][indexZ] = new NavCell(indexX - (SIZE/2f) + 0.5f, 10.5f, indexZ - (SIZE/2f) + 0.5f, i, 0, 1f, true);
 
             if (indexX > 0) { grid[indexX][indexZ].addConnection(grid[indexX-1][indexZ]); }
             if (indexZ > 0) { grid[indexX][indexZ].addConnection(grid[indexX][indexZ-1]); }

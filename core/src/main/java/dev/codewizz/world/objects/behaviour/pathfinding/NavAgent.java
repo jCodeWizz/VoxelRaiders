@@ -62,7 +62,7 @@ public class NavAgent {
 
     private void reach() {
         NavCell next = path.first();
-        this.e.getPosition().set(next.x, this.e.getPosition().y, next.z);
+        this.e.getPosition().set(next.x, next.y, next.z);
 
         this.previous = next;
         path.removeFirst();
