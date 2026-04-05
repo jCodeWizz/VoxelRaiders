@@ -11,12 +11,16 @@ import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
+import com.badlogic.gdx.graphics.g3d.environment.DirectionalShadowLight;
+import com.badlogic.gdx.graphics.g3d.utils.DepthShaderProvider;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.graphics.glutils.ImmediateModeRenderer20;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import dev.codewizz.gfx.shaders.ObjectShaderProvider;
 import dev.codewizz.main.Main;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
@@ -32,11 +36,15 @@ public class Renderer {
     private final Camera camera;
     private final Environment environment;
 
+    private final DirectionalShadowLight shadowLight;
+    private final ModelBatch shadowBatch;
+    private boolean shadow = false;
+
     private final Stage uiStage;
     private final Table root;
 
     public Renderer() {
-        modelBatch = new ModelBatch();
+        modelBatch = new ModelBatch(new ObjectShaderProvider());
         camera = new Camera();
         environment = new Environment();
 
@@ -45,9 +53,14 @@ public class Renderer {
         root.setFillParent(true);
         uiStage.addActor(root);
 
+        //environment.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
+        environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
+        shadowLight = new DirectionalShadowLight(2048, 2048, 30f, 30f, 20f, 80f);
+        shadowLight.set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f);
+        environment.add(shadowLight);
+        environment.shadowMap = shadowLight;
 
-            environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
-        environment.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
+        shadowBatch = new ModelBatch(new DepthShaderProvider());
 
         camera.getPerspectiveCamera().position.set(10f, 10f, 10f);
         camera.getPerspectiveCamera().lookAt(0,0,0);
@@ -57,6 +70,24 @@ public class Renderer {
     public void render(List<GameObject> objects, Chunk[][] chunks) {
         camera.update(Gdx.graphics.getDeltaTime());
         ScreenUtils.clear(0.533f, 0.768f, 0.925f, 1f, true);
+
+        shadowLight.begin(new Vector3(0f, 11f, 0f), shadowLight.direction);
+        shadowBatch.begin(shadowLight.getCamera());
+
+        for (int i = 0; i < chunks.length; i++) {
+            for (int j = 0; j < chunks[i].length; j++) {
+                if (chunks[i][j].isDirty()) chunks[i][j].buildMesh();
+
+                shadowBatch.render(chunks[i][j].getModelInstance());
+            }
+        }
+        shadow = true;
+        for (GameObject object : objects) {
+            object.render(this);
+        }
+        shadow = false;
+        shadowBatch.end();
+        shadowLight.end();
 
         modelBatch.begin(camera.getPerspectiveCamera());
 
@@ -91,12 +122,16 @@ public class Renderer {
 
     public void renderDebug() {
         instance.transform.setTranslation(0, 10.52f, 0);
-        modelBatch.render(instance, environment);
+        //modelBatch.render(instance, environment);
     }
 
     public void renderObjectInstance(GameObject object, ModelInstance instance) {
         instance.transform.set(object.getPosition(), object.getRotation(), object.getScale());
-        modelBatch.render(instance, environment);
+        if (shadow) {
+            shadowBatch.render(instance);
+        } else {
+            modelBatch.render(instance, environment);
+        }
     }
 
     public void resize(int width, int height) {
