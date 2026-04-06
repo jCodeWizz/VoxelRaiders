@@ -26,4 +26,9 @@ public class MoveToTemplate implements TaskTemplate {
             entity
         );
     }
+
+    @Override
+    public boolean canTake(Entity entity) {
+        return true;
+    }
 }

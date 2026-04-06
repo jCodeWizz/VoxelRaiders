@@ -1,12 +1,11 @@
 package dev.codewizz.world.settlement;
 
-import com.badlogic.gdx.ai.btree.BehaviorTree;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Queue;
-import dev.codewizz.world.Entity;
 import dev.codewizz.world.World;
 import dev.codewizz.world.objects.Hermit;
-import java.util.ArrayDeque;
+import dev.codewizz.world.objects.behaviour.TaskTemplate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ public class Settlement {
     private final Vector3 position;
     private final World world;
 
-    private final Queue<BehaviorTree<Entity>> tasks;
+    private final Queue<TaskTemplate> tasks;
     private final List<Hermit> members;
 
     public Settlement(World world, Vector3 position) {
@@ -31,11 +30,11 @@ public class Settlement {
         }
     }
 
-    public Queue<BehaviorTree<Entity>> getTasks() {
+    public Queue<TaskTemplate> getTasks() {
         return tasks;
     }
 
-    public void addTask(BehaviorTree<Entity> task) {
+    public void addTask(TaskTemplate task) {
         tasks.addLast(task);
     }
 

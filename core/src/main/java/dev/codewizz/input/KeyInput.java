@@ -30,8 +30,8 @@ public class KeyInput implements InputProcessor {
                 if (result.getChunk() != null) {
 
                     NavCell cell = NavAgent.graph.getCell(result.getIntersection());
+                    world.getSettlement().addTask(new MoveToTemplate(cell));
 
-                    world.getSettlement().getMembers().get(0).addTask(new MoveToTemplate(cell).create(world.getSettlement().getMembers().get(0)));
                     return true;
                 }
             }

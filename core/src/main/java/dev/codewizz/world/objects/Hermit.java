@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.utils.Queue;
 import dev.codewizz.gfx.Renderer;
+import dev.codewizz.main.Main;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.Logger;
 import dev.codewizz.world.Entity;
@@ -26,7 +27,7 @@ import dev.codewizz.world.objects.behaviour.templates.MoveToTemplate;
 
 public class Hermit extends Entity {
 
-    private static final IdleWaitTemplate WAIT = new IdleWaitTemplate(2f);
+    private static final IdleWaitTemplate WAIT = new IdleWaitTemplate(2f, 5f);
 
     private static final Material MATERIAL = new Material(ColorAttribute.createDiffuse(new Color(0.1f, 0.93f, 0.95f, 1.0f)));
     private static final Model MODEL = new ModelBuilder().createBox(0.8f, 1.5f, 0.8f, MATERIAL,VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
@@ -41,11 +42,24 @@ public class Hermit extends Entity {
     @Override
     public void update(float dt) {
         super.update(dt);
-
     }
 
     @Override
     public TaskTemplate findNewTask() {
+
+        TaskTemplate next = null;
+        for (TaskTemplate t : Main.instance.world.getSettlement().getTasks()) {
+            if (t.canTake(this)) {
+                next = t;
+                break;
+            }
+        }
+
+        if (next != null) {
+            Main.instance.world.getSettlement().getTasks().removeValue(next, false);
+            return next;
+        }
+
         return WAIT;
     }
 }

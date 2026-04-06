@@ -13,6 +13,7 @@ import dev.codewizz.world.objects.behaviour.pathfinding.NavCell;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavGraph;
 
 public class WanderTemplate implements TaskTemplate {
+
     @Override
     public BehaviorTree<Entity> create(Entity entity) {
         NavCell current = NavAgent.graph.getCell(entity.getPosition());
@@ -27,5 +28,10 @@ public class WanderTemplate implements TaskTemplate {
             ),
             entity
         );
+    }
+
+    @Override
+    public boolean canTake(Entity entity) {
+        return true;
     }
 }

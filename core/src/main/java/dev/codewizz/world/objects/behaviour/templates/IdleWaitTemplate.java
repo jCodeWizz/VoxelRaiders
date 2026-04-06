@@ -35,4 +35,9 @@ public class IdleWaitTemplate implements TaskTemplate {
             );
         }
     }
+
+    @Override
+    public boolean canTake(Entity entity) {
+        return true;
+    }
 }
