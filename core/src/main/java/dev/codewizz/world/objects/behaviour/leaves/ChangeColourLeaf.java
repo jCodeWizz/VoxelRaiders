@@ -1,4 +1,4 @@
-package dev.codewizz.world.objects.behaviour;
+package dev.codewizz.world.objects.behaviour.leaves;
 
 import com.badlogic.gdx.ai.btree.LeafTask;
 import com.badlogic.gdx.ai.btree.Task;

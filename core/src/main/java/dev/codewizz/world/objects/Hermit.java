@@ -1,6 +1,7 @@
 package dev.codewizz.world.objects;
 
 import com.badlogic.gdx.ai.btree.BehaviorTree;
+import com.badlogic.gdx.ai.btree.branch.Sequence;
 import com.badlogic.gdx.ai.btree.decorator.Repeat;
 import com.badlogic.gdx.ai.btree.leaf.Wait;
 import com.badlogic.gdx.graphics.Color;
@@ -10,11 +11,21 @@ import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
+import com.badlogic.gdx.utils.Queue;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.world.Entity;
+import dev.codewizz.world.objects.behaviour.TaskTemplate;
+import dev.codewizz.world.objects.behaviour.leaves.ExecuteTaskLeaf;
+import dev.codewizz.world.objects.behaviour.leaves.GetTaskLeaf;
+import dev.codewizz.world.objects.behaviour.leaves.HasTaskLeaf;
+import dev.codewizz.world.objects.behaviour.pathfinding.NavAgent;
+import dev.codewizz.world.objects.behaviour.templates.IdleWaitTemplate;
+import dev.codewizz.world.objects.behaviour.templates.MoveToTemplate;
 
 public class Hermit extends Entity {
+
+    private static final IdleWaitTemplate WAIT = new IdleWaitTemplate(2f);
 
     private static final Material MATERIAL = new Material(ColorAttribute.createDiffuse(new Color(0.1f, 0.93f, 0.95f, 1.0f)));
     private static final Model MODEL = new ModelBuilder().createBox(0.8f, 1.5f, 0.8f, MATERIAL,VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
@@ -24,12 +35,10 @@ public class Hermit extends Entity {
 
         instance = new ModelInstance(MODEL);
         getSize().set(0.8f, 1.5f, 0.8f);
+    }
 
-        behaviour = new BehaviorTree<>(
-            new Repeat<>(
-                new Wait<>(5f)
-            ),
-            this
-        );
+    @Override
+    public TaskTemplate findNewTask() {
+        return WAIT;
     }
 }

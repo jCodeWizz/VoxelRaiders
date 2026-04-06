@@ -11,7 +11,7 @@ import dev.codewizz.world.Entity;
 public class NavAgent {
 
     private final static NavHeuristic heuristic = new NavHeuristic();
-    private final static NavGraph graph = new NavGraph();
+    public final static NavGraph graph = new NavGraph();
     private final static IndexedAStarPathFinder<NavCell> pathFinder = new IndexedAStarPathFinder<>(graph);
 
     private final Queue<NavCell> path;
@@ -92,10 +92,6 @@ public class NavAgent {
 
     public Queue<NavCell> getPath() {
         return path;
-    }
-
-    public NavGraph getGraph() {
-        return graph;
     }
 
     public NavCell getGoal() {

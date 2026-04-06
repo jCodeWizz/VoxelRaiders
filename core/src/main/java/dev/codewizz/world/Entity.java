@@ -1,29 +1,54 @@
 package dev.codewizz.world;
 
 import com.badlogic.gdx.ai.btree.BehaviorTree;
+import com.badlogic.gdx.ai.btree.branch.Sequence;
+import com.badlogic.gdx.ai.btree.decorator.Repeat;
+import com.badlogic.gdx.ai.btree.leaf.Wait;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Queue;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.main.Main;
+import dev.codewizz.world.objects.behaviour.TaskTemplate;
+import dev.codewizz.world.objects.behaviour.leaves.ExecuteTaskLeaf;
+import dev.codewizz.world.objects.behaviour.leaves.GetTaskLeaf;
+import dev.codewizz.world.objects.behaviour.leaves.HasTaskLeaf;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavAgent;
 
 public abstract class Entity extends GameObject {
 
     protected final NavAgent agent;
     protected final Vector3 velocity;
+    protected float speed = 2f;
 
     protected BehaviorTree<Entity> behaviour;
-    protected ModelInstance instance;
+    private final Queue<BehaviorTree<Entity>> tasks = new Queue<>();
+    private BehaviorTree<Entity> currentTask;
 
-    protected float speed = 2f;
+    protected ModelInstance instance;
 
     public Entity(String id) {
         super(id);
 
         velocity = new Vector3();
         agent = new NavAgent(this);
+
+        behaviour = new BehaviorTree<>(
+            new Repeat<>(
+                new Sequence<>(
+                    new Sequence<>(
+                        new HasTaskLeaf(),
+                        new ExecuteTaskLeaf()
+                    ),
+                    new Wait<>(2f)
+                )
+            ),
+            this
+        );
     }
+
+    public abstract TaskTemplate findNewTask();
 
     @Override
     public void update(float dt) {
@@ -74,7 +99,7 @@ public abstract class Entity extends GameObject {
     }
 
     public boolean isMoving() {
-        return agent.getPath().size != 0;
+        return agent.getPath().isEmpty();
     }
 
     public BehaviorTree<Entity> getBehaviorTree() {
@@ -91,5 +116,29 @@ public abstract class Entity extends GameObject {
 
     public float getSpeed() {
         return speed;
+    }
+
+    public boolean hasTask() {
+        return currentTask != null;
+    }
+
+    public Queue<BehaviorTree<Entity>> getTasks() {
+        return tasks;
+    }
+
+    public BehaviorTree<Entity> getCurrentTask() {
+        return currentTask;
+    }
+
+    public void finishCurrentTask() {
+        this.currentTask = null;
+    }
+
+    public void addTask(BehaviorTree<Entity> task) {
+        this.tasks.addFirst(task);
+    }
+
+    public void setCurrentTask() {
+        this.currentTask = tasks.removeFirst();
     }
 }

@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Array;
 public class NavCell {
 
     public float x, y, z;
-    public int index;
+    public int index, indexX, indexZ;
 
     public int height;
     public float cost;
@@ -15,11 +15,13 @@ public class NavCell {
 
     public Array<Connection<NavCell>> connections;
 
-    public NavCell(float x, float y, float z, int index, int height, float cost, boolean walkable) {
+    public NavCell(float x, float y, float z, int index, int indexX, int indexZ, int height, float cost, boolean walkable) {
         this.x = x;
         this.y = y;
         this.z = z;
         this.index = index;
+        this.indexX = indexX;
+        this.indexZ = indexZ;
         this.height = height;
         this.cost = cost;
         this.walkable = walkable;

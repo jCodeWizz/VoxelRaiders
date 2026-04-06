@@ -1,22 +1,19 @@
-package dev.codewizz.world.objects.behaviour;
+package dev.codewizz.world.objects.behaviour.leaves;
 
 import com.badlogic.gdx.ai.btree.LeafTask;
 import com.badlogic.gdx.ai.btree.Task;
 import dev.codewizz.world.Entity;
 
-public class FollowPathTask extends LeafTask<Entity> {
+public class WaitArriveLeaf extends LeafTask<Entity> {
 
     @Override
     public Status execute() {
         Entity e = getObject();
 
-        if (!e.isMoving()) {
-            e.getVelocity().setZero();
-            e.getAgent().getPath().clear();
-            return Status.SUCCEEDED;
+        if (e.isMoving()) {
+            return Status.RUNNING;
         }
-
-        return Status.RUNNING;
+        return Status.SUCCEEDED;
     }
 
     @Override

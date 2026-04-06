@@ -11,7 +11,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class World {
 
-    public static final int SIZE = 64;
+    public static final int SIZE = 64*8;
     public static final int CHUNK_COUNT = SIZE / Chunk.SIZE;
 
     private final List<GameObject> objects = new CopyOnWriteArrayList<>();
