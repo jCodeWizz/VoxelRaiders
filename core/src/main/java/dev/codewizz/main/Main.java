@@ -34,13 +34,11 @@ public class Main extends ApplicationAdapter {
         world = new World();
         Logger.log("World created");
 
-        Logger.log("Adding cows...");
         for (int i = 0; i < 5; i++) {
             Cow cow = new Cow();
             cow.getPosition().y = 10.5f;
             world.addObject(cow);
         }
-        Logger.log("Cows added");
 
         Gdx.input.setInputProcessor(new InputMultiplexer(renderer.getUiStage(), new MouseInput(renderer.getCamera(), world), new KeyInput(renderer.getCamera(), world), renderer.getCamera().getInputController()));
         Logger.log("Game started");

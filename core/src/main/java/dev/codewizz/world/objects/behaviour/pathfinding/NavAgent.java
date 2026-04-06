@@ -6,6 +6,7 @@ import com.badlogic.gdx.ai.pfa.indexed.IndexedAStarPathFinder;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Queue;
+import dev.codewizz.utils.Logger;
 import dev.codewizz.world.Entity;
 
 public class NavAgent {
@@ -15,7 +16,6 @@ public class NavAgent {
     private final static IndexedAStarPathFinder<NavCell> pathFinder = new IndexedAStarPathFinder<>(graph);
 
     private final Queue<NavCell> path;
-    private NavCell goal;
     private NavCell previous;
 
     private final Entity e;
@@ -36,16 +36,11 @@ public class NavAgent {
         }
     }
 
-    public void setGoal(NavCell goal) {
-        this.goal = goal;
-    }
-
-    public boolean navigate(NavCell start) {
-        previous = start;
+    public boolean navigate(NavCell goal) {
         path.clear();
 
         GraphPath<NavCell> path = new DefaultGraphPath<>();
-        boolean success = pathFinder.searchNodePath(start, goal, heuristic, path);
+        boolean success = pathFinder.searchNodePath(graph.getCell(e.getPosition()), goal, heuristic, path);
 
         if (success) {
             for (NavCell navCell : path) {
@@ -92,9 +87,5 @@ public class NavAgent {
 
     public Queue<NavCell> getPath() {
         return path;
-    }
-
-    public NavCell getGoal() {
-        return goal;
     }
 }

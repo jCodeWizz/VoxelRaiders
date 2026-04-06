@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.utils.Queue;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.utils.Assets;
+import dev.codewizz.utils.Logger;
 import dev.codewizz.world.Entity;
 import dev.codewizz.world.objects.behaviour.TaskTemplate;
 import dev.codewizz.world.objects.behaviour.leaves.ExecuteTaskLeaf;
@@ -35,6 +36,12 @@ public class Hermit extends Entity {
 
         instance = new ModelInstance(MODEL);
         getSize().set(0.8f, 1.5f, 0.8f);
+    }
+
+    @Override
+    public void update(float dt) {
+        super.update(dt);
+
     }
 
     @Override

@@ -2,6 +2,7 @@ package dev.codewizz.world.objects.behaviour.leaves;
 
 import com.badlogic.gdx.ai.btree.LeafTask;
 import com.badlogic.gdx.ai.btree.Task;
+import dev.codewizz.utils.Logger;
 import dev.codewizz.world.Entity;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavAgent;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavCell;
@@ -18,8 +19,7 @@ public class MoveToLeaf extends LeafTask<Entity> {
     public Status execute() {
         Entity e = getObject();
 
-        e.getAgent().setGoal(cell);
-        boolean success = e.getAgent().navigate(NavAgent.graph.getCell(e.getPosition()));
+        boolean success = e.getAgent().navigate(cell);
 
         if (success) {
             return Status.SUCCEEDED;

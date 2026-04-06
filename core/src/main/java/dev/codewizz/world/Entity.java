@@ -40,8 +40,7 @@ public abstract class Entity extends GameObject {
                     new Sequence<>(
                         new HasTaskLeaf(),
                         new ExecuteTaskLeaf()
-                    ),
-                    new Wait<>(2f)
+                    )
                 )
             ),
             this
@@ -99,7 +98,7 @@ public abstract class Entity extends GameObject {
     }
 
     public boolean isMoving() {
-        return agent.getPath().isEmpty();
+        return !agent.getPath().isEmpty();
     }
 
     public BehaviorTree<Entity> getBehaviorTree() {
@@ -135,7 +134,7 @@ public abstract class Entity extends GameObject {
     }
 
     public void addTask(BehaviorTree<Entity> task) {
-        this.tasks.addFirst(task);
+        this.tasks.addLast(task);
     }
 
     public void setCurrentTask() {

@@ -2,9 +2,7 @@ package dev.codewizz.world.objects.behaviour.leaves;
 
 import com.badlogic.gdx.ai.btree.LeafTask;
 import com.badlogic.gdx.ai.btree.Task;
-import dev.codewizz.utils.Logger;
 import dev.codewizz.world.Entity;
-import dev.codewizz.world.objects.Hermit;
 import dev.codewizz.world.objects.behaviour.TaskTemplate;
 
 public class HasTaskLeaf extends LeafTask<Entity> {
