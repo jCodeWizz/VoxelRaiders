@@ -48,7 +48,13 @@ public class MouseInput implements InputProcessor {
 
                 if (result.getObject() instanceof Gatherable) {
                     Gatherable gatherable = (Gatherable) result.getObject();
+
+                    if (gatherable.isTasked()) return false;
+
                     Main.instance.world.getSettlement().addTask(new GatherTemplate(gatherable));
+                    gatherable.setTasked(true);
+
+                    return true;
                 }
             }
         }
