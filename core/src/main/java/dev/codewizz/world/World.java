@@ -1,6 +1,9 @@
 package dev.codewizz.world;
 
 import dev.codewizz.input.MouseInput;
+import dev.codewizz.utils.SimplexNoise;
+import dev.codewizz.world.objects.Bush;
+import dev.codewizz.world.objects.Tree;
 import dev.codewizz.world.settlement.Settlement;
 import dev.codewizz.world.voxel.Chunk;
 import dev.codewizz.world.voxel.VoxelData;
@@ -17,6 +20,8 @@ public class World {
     private final List<GameObject> objects = new CopyOnWriteArrayList<>();
     private final Chunk[][] chunks = new Chunk[CHUNK_COUNT][CHUNK_COUNT];
 
+    private static SimplexNoise NOISE = new SimplexNoise(0);
+
     private Settlement settlement;
 
     public World() {
@@ -29,6 +34,32 @@ public class World {
         for (int xx = 0; xx < chunks.length; xx++ ) {
             for (int zz = 0; zz < chunks.length; zz++ ) {
                 chunks[xx][zz].buildMesh();
+            }
+        }
+
+        generateFeatures();
+    }
+
+    public void generateFeatures() {
+        NOISE = new SimplexNoise(0);
+        int half = SIZE / VoxelData.SIZE / 2;
+
+        for (int xx = 1; xx < SIZE / VoxelData.SIZE; xx++ ) {
+            for (int zz = 1; zz < SIZE / VoxelData.SIZE; zz++ ) {
+                float noise = (float) (NOISE.noise((xx)*50, zz*50)+1.0) * 2f;
+
+                if (noise < 0.175f) {
+                    GameObject object = new Tree();
+                    object.getPosition().set(xx - half, 10.75f, zz - half);
+                    addObject(object);
+                } else {
+                    noise = (float) (NOISE.noise((xx/10f), zz/10f)+1.0) * 2f;
+                    if (noise < 0.5f) {
+                        GameObject object = new Bush();
+                        object.getPosition().set(xx - half + 0.25f, 10.75f, zz - half + 0.25f);
+                        addObject(object);
+                    }
+                }
             }
         }
     }

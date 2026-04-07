@@ -112,10 +112,10 @@ public class Renderer {
     }
 
     ModelInstance instance = new ModelInstance(new ModelBuilder().createLineGrid(
-        NavGraph.SIZE,
-        NavGraph.SIZE,
-        1,
-        1,
+        NavGraph.SIZE*2,
+        NavGraph.SIZE*2,
+        1/2f,
+        1/2f,
         new Material(ColorAttribute.createDiffuse(new Color(0.7f, 0.7f, 0.7f, 0.1f))),
         VertexAttributes.Usage.Position
     ));

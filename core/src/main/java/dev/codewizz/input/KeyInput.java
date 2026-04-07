@@ -37,6 +37,11 @@ public class KeyInput implements InputProcessor {
             }
         }
 
+        if (keycode == Input.Keys.G) {
+            world.getObjectsToRender().clear();
+            world.generateFeatures();
+        }
+
         return false;
     }
 
