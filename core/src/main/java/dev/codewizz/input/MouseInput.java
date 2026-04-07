@@ -8,9 +8,12 @@ import com.badlogic.gdx.math.collision.Ray;
 import dev.codewizz.gfx.Camera;
 import dev.codewizz.input.result.PickChunkResult;
 import dev.codewizz.input.result.PickObjectResult;
+import dev.codewizz.main.Main;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
 import dev.codewizz.world.objects.Beacon;
+import dev.codewizz.world.objects.Gatherable;
+import dev.codewizz.world.objects.behaviour.templates.GatherTemplate;
 import dev.codewizz.world.settlement.Settlement;
 import dev.codewizz.world.voxel.Chunk;
 import dev.codewizz.world.voxel.VoxelData;
@@ -38,6 +41,15 @@ public class MouseInput implements InputProcessor {
                 world.setSettlement(new Settlement(world, result.getIntersection()));
 
                 return true;
+            }
+        } else  {
+            PickObjectResult result = pickObject(camera, world, screenX, screenY);
+            if (result.getObject() != null) {
+
+                if (result.getObject() instanceof Gatherable) {
+                    Gatherable gatherable = (Gatherable) result.getObject();
+                    Main.instance.world.getSettlement().addTask(new GatherTemplate(gatherable));
+                }
             }
         }
 

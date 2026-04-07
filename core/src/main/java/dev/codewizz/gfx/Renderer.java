@@ -114,15 +114,15 @@ public class Renderer {
     ModelInstance instance = new ModelInstance(new ModelBuilder().createLineGrid(
         NavGraph.SIZE,
         NavGraph.SIZE,
-        16,
-        16,
+        1,
+        1,
         new Material(ColorAttribute.createDiffuse(new Color(0.7f, 0.7f, 0.7f, 0.1f))),
         VertexAttributes.Usage.Position
     ));
 
     public void renderDebug() {
         instance.transform.setTranslation(0, 10.52f, 0);
-        //modelBatch.render(instance, environment);
+        modelBatch.render(instance, environment);
     }
 
     public void renderObjectInstance(GameObject object, ModelInstance instance) {

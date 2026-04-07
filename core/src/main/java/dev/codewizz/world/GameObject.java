@@ -3,6 +3,7 @@ package dev.codewizz.world;
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import dev.codewizz.gfx.Renderer;
+import dev.codewizz.main.Main;
 
 public abstract class GameObject {
 
@@ -24,6 +25,10 @@ public abstract class GameObject {
 
     public abstract void update(float dt);
     public abstract void render(Renderer renderer);
+
+    public void destroy() {
+        Main.instance.world.removeObject(this);
+    }
 
     public Vector3 getPosition() {
         return position;

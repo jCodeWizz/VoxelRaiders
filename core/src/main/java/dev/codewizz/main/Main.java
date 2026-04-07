@@ -8,8 +8,10 @@ import dev.codewizz.gfx.Renderer;
 import dev.codewizz.input.KeyInput;
 import dev.codewizz.input.MouseInput;
 import dev.codewizz.utils.Logger;
+import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
 import dev.codewizz.world.objects.Cow;
+import dev.codewizz.world.objects.Tree;
 
 public class Main extends ApplicationAdapter {
 
@@ -39,6 +41,10 @@ public class Main extends ApplicationAdapter {
             cow.getPosition().y = 10.5f;
             world.addObject(cow);
         }
+
+        GameObject tree = new Tree();
+        tree.getPosition().set(0.5f, 10.75f, 0.5f);
+        world.addObject(tree);
 
         Gdx.input.setInputProcessor(new InputMultiplexer(renderer.getUiStage(), new MouseInput(renderer.getCamera(), world), new KeyInput(renderer.getCamera(), world), renderer.getCamera().getInputController()));
         Logger.log("Game started");

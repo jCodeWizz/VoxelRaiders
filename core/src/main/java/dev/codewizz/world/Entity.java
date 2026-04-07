@@ -140,4 +140,5 @@ public abstract class Entity extends GameObject {
     public void setCurrentTask() {
         this.currentTask = tasks.removeFirst();
     }
+
 }
