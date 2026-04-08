@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.Model;
+import com.badlogic.gdx.graphics.g3d.attributes.BlendingAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalShadowLight;
@@ -21,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import dev.codewizz.gfx.shaders.ObjectShaderProvider;
+import dev.codewizz.input.MouseInput;
 import dev.codewizz.main.Main;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
@@ -102,6 +104,9 @@ public class Renderer {
         for (GameObject object : objects) {
             object.render(this);
         }
+
+        MouseInput.update();
+        MouseInput.renderSelectArea(modelBatch);
 
         renderDebug();
 

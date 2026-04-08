@@ -17,7 +17,7 @@ public class Main extends ApplicationAdapter {
 
     public static Main instance;
 
-    private Renderer renderer;
+    public Renderer renderer;
 
     public World world;
 
