@@ -208,7 +208,9 @@ public class MouseInput implements InputProcessor {
     }
 
     public static void renderSelectArea(ModelBatch batch) {
-        batch.render(selectModelInstance);
+        if (dragPosition != null) {
+            batch.render(selectModelInstance);
+        }
     }
 
     @Override
