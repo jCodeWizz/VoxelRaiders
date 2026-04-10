@@ -1,6 +1,8 @@
 package dev.codewizz.world;
 
+import com.badlogic.gdx.math.Vector3;
 import dev.codewizz.input.MouseInput;
+import dev.codewizz.utils.Logger;
 import dev.codewizz.utils.SimplexNoise;
 import dev.codewizz.world.objects.Bush;
 import dev.codewizz.world.objects.Tree;
@@ -86,6 +88,21 @@ public class World {
         if (indexZ == 0 && chunkZ > 0) { chunks[chunkX][chunkZ - 1].markDirty(); }
         if (indexX == Chunk.SIZE - 1 && chunkX < chunks.length - 1) { chunks[chunkX + 1][chunkZ].markDirty(); }
         if (indexZ == Chunk.SIZE - 1 && chunkZ < chunks.length - 1) { chunks[chunkX][chunkZ + 1].markDirty(); }
+    }
+
+    public List<GameObject> getObjectsWithinBounds(Vector3 min, Vector3 max) {
+        ArrayList<GameObject> objectsWithinBounds = new ArrayList<>();
+
+        for (GameObject obj : objects) {
+            Vector3 p = obj.getPosition();
+
+            if (p.x >= min.x && p.x <= max.x &&
+                p.z >= min.z && p.z <= max.z) {
+                objectsWithinBounds.add(obj);
+            }
+        }
+
+        return objectsWithinBounds;
     }
 
     public VoxelData getVoxel(int x, int  y, int z) {

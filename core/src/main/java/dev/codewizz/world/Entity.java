@@ -51,7 +51,7 @@ public abstract class Entity extends GameObject {
 
     @Override
     public void update(float dt) {
-        separate();
+        //separate();
         behaviour.step();
         agent.update(dt);
         getPosition().mulAdd(velocity, dt);

@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.math.collision.Ray;
 import dev.codewizz.gfx.Camera;
+import dev.codewizz.input.result.PickAreaListener;
 import dev.codewizz.input.result.PickChunkResult;
 import dev.codewizz.input.result.PickObjectResult;
 import dev.codewizz.main.Main;
@@ -36,6 +37,7 @@ public class MouseInput implements InputProcessor {
     private final World world;
 
     private static Vector3 dragPosition = null;
+    private static Vector3 dragPosition2 = null;
     private static final Material selectMaterial = new Material(ColorAttribute.createDiffuse(new Color(0, 1, 0, 1f)), new IntAttribute(IntAttribute.CullFace, 0));
     private static final ModelBuilder modelBuilder = new ModelBuilder();
     private static final Model selectModel = modelBuilder.createRect(
@@ -48,6 +50,7 @@ public class MouseInput implements InputProcessor {
         VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal
     );
     private static final ModelInstance selectModelInstance = new ModelInstance(selectModel);
+    public static PickAreaListener pickAreaListener;
 
     public MouseInput(Camera camera, World world) {
         this.camera = camera;
@@ -108,7 +111,28 @@ public class MouseInput implements InputProcessor {
         if (button == Input.Buttons.RIGHT) {
             if (world.getSettlement() != null) {
                 if (dragPosition != null) {
+
+                    if (pickAreaListener != null) {
+                        Vector3 min = new Vector3(
+                            Math.min(dragPosition.x, dragPosition2.x),
+                            Math.min(dragPosition.y, dragPosition2.y),
+                            Math.min(dragPosition.z, dragPosition2.z)
+                        );
+
+                        Vector3 max = new Vector3(
+                            Math.max(dragPosition.x, dragPosition2.x),
+                            Math.max(dragPosition.y, dragPosition2.y),
+                            Math.max(dragPosition.z, dragPosition2.z)
+                        );
+                        pickAreaListener.handle(min, max);
+                        pickAreaListener = null;
+                    }
+
+
+
+
                     dragPosition = null;
+                    dragPosition2 = null;
                     selectModelInstance.transform
                         .setToTranslation(0, 10.52f, 0)
                         .scale(0, 1f, 0);
@@ -125,11 +149,13 @@ public class MouseInput implements InputProcessor {
         if (chunkResult.getChunk() != null) {
             float cellSize = 0.5f;
 
-            float minX = Math.min(dragPosition.x, chunkResult.getIntersection().x);
-            float maxX = Math.max(dragPosition.x, chunkResult.getIntersection().x);
+            dragPosition2 = chunkResult.getIntersection();
 
-            float minZ = Math.min(dragPosition.z, chunkResult.getIntersection().z);
-            float maxZ = Math.max(dragPosition.z, chunkResult.getIntersection().z);
+            float minX = Math.min(dragPosition.x, dragPosition2.x);
+            float maxX = Math.max(dragPosition.x, dragPosition2.x);
+
+            float minZ = Math.min(dragPosition.z, dragPosition2.z);
+            float maxZ = Math.max(dragPosition.z, dragPosition2.z);
 
             minX = (float)Math.floor(minX / cellSize) * cellSize;
             maxX = (float)Math.ceil (maxX / cellSize) * cellSize;

@@ -3,13 +3,20 @@ package dev.codewizz.input;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Vector3;
 import dev.codewizz.gfx.Camera;
+import dev.codewizz.input.result.PickAreaListener;
 import dev.codewizz.input.result.PickChunkResult;
 import dev.codewizz.utils.Logger;
+import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
+import dev.codewizz.world.objects.Gatherable;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavAgent;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavCell;
+import dev.codewizz.world.objects.behaviour.templates.GatherTemplate;
 import dev.codewizz.world.objects.behaviour.templates.MoveToTemplate;
+
+import java.util.List;
 
 public class KeyInput implements InputProcessor {
 
@@ -34,6 +41,23 @@ public class KeyInput implements InputProcessor {
 
                     return true;
                 }
+            }
+        }
+
+        if (keycode == Input.Keys.H) {
+            if (world.getSettlement() != null) {
+                MouseInput.pickAreaListener = (min, max) -> {
+
+                    List<GameObject> objects = world.getObjectsWithinBounds(min, max);
+                    Logger.log("Size: " + objects.size());
+
+                    for (GameObject object : objects) {
+                        Logger.log("looping");
+                        if (object instanceof Gatherable)  {
+                            world.getSettlement().addTask(new GatherTemplate((Gatherable) object));
+                        }
+                    }
+                };
             }
         }
 
