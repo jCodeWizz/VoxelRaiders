@@ -108,7 +108,7 @@ public class Renderer {
         MouseInput.update();
         MouseInput.renderSelectArea(modelBatch);
 
-        renderDebug();
+        //renderDebug();
 
         modelBatch.end();
 

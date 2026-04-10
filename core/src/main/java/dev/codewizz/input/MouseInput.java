@@ -1,6 +1,7 @@
 package dev.codewizz.input;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.VertexAttributes;
@@ -68,28 +69,32 @@ public class MouseInput implements InputProcessor {
                 return true;
             }
         } else {
-            PickObjectResult objectResult = pickObject(camera, world, screenX, screenY);
-            if (objectResult.getObject() != null) {
+            if (button == Input.Buttons.LEFT) {
+                PickObjectResult objectResult = pickObject(camera, world, screenX, screenY);
+                if (objectResult.getObject() != null) {
 
-                if (objectResult.getObject() instanceof Gatherable) {
-                    Gatherable gatherable = (Gatherable) objectResult.getObject();
+                    if (objectResult.getObject() instanceof Gatherable) {
+                        Gatherable gatherable = (Gatherable) objectResult.getObject();
 
-                    if (gatherable.isTasked()) return false;
+                        if (gatherable.isTasked()) return false;
 
-                    Main.instance.world.getSettlement().addTask(new GatherTemplate(gatherable));
-                    gatherable.setTasked(true);
+                        Main.instance.world.getSettlement().addTask(new GatherTemplate(gatherable));
+                        gatherable.setTasked(true);
 
-                    return true;
+                        return true;
+                    }
                 }
             }
 
-            PickChunkResult chunkResult = pickChunk(camera, world, screenX, screenY);
-            if (chunkResult.getChunk() != null) {
-                dragPosition = new Vector3(chunkResult.getIntersection());
-                return true;
-            } else {
-                dragPosition = null;
-                Logger.log("Reset");
+            if (button == Input.Buttons.RIGHT) {
+                PickChunkResult chunkResult = pickChunk(camera, world, screenX, screenY);
+                if (chunkResult.getChunk() != null) {
+                    dragPosition = new Vector3(chunkResult.getIntersection());
+                    return true;
+                } else {
+                    dragPosition = null;
+                    Logger.log("Reset");
+                }
             }
         }
 
@@ -100,12 +105,14 @@ public class MouseInput implements InputProcessor {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 
 
-        if (world.getSettlement() != null) {
-            if (dragPosition != null) {
-                dragPosition = null;
-                selectModelInstance.transform
-                    .setToTranslation(0, 10.52f, 0)
-                    .scale(0, 1f, 0);
+        if (button == Input.Buttons.RIGHT) {
+            if (world.getSettlement() != null) {
+                if (dragPosition != null) {
+                    dragPosition = null;
+                    selectModelInstance.transform
+                        .setToTranslation(0, 10.52f, 0)
+                        .scale(0, 1f, 0);
+                }
             }
         }
 
