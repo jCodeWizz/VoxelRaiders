@@ -49,10 +49,8 @@ public class KeyInput implements InputProcessor {
                 MouseInput.pickAreaListener = (min, max) -> {
 
                     List<GameObject> objects = world.getObjectsWithinBounds(min, max);
-                    Logger.log("Size: " + objects.size());
 
                     for (GameObject object : objects) {
-                        Logger.log("looping");
                         if (object instanceof Gatherable)  {
                             world.getSettlement().addTask(new GatherTemplate((Gatherable) object));
                         }

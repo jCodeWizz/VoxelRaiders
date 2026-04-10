@@ -96,7 +96,6 @@ public class MouseInput implements InputProcessor {
                     return true;
                 } else {
                     dragPosition = null;
-                    Logger.log("Reset");
                 }
             }
         }
