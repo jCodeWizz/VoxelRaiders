@@ -2,33 +2,24 @@ package dev.codewizz.gfx;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.graphics.g3d.Environment;
 import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
-import com.badlogic.gdx.graphics.g3d.Model;
-import com.badlogic.gdx.graphics.g3d.attributes.BlendingAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
-import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalShadowLight;
 import com.badlogic.gdx.graphics.g3d.utils.DepthShaderProvider;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
-import com.badlogic.gdx.graphics.glutils.ImmediateModeRenderer20;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import dev.codewizz.gfx.shaders.ObjectShaderProvider;
+import dev.codewizz.gfx.ui.UIHandler;
 import dev.codewizz.input.MouseInput;
-import dev.codewizz.main.Main;
 import dev.codewizz.world.GameObject;
-import dev.codewizz.world.World;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavGraph;
 import dev.codewizz.world.voxel.Chunk;
-import dev.codewizz.world.voxel.VoxelData;
 
 import java.util.List;
 
@@ -42,18 +33,14 @@ public class Renderer {
     private final ModelBatch shadowBatch;
     private boolean shadow = false;
 
-    private final Stage uiStage;
-    private final Table root;
+    private final UIHandler uiHandler;
 
     public Renderer() {
         modelBatch = new ModelBatch(new ObjectShaderProvider());
         camera = new Camera();
         environment = new Environment();
 
-        uiStage = new Stage(new ScreenViewport());
-        root = new Table();
-        root.setFillParent(true);
-        uiStage.addActor(root);
+        uiHandler = new UIHandler();
 
         //environment.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
         environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
@@ -112,8 +99,8 @@ public class Renderer {
 
         modelBatch.end();
 
-        uiStage.act(Gdx.graphics.getDeltaTime());
-        uiStage.draw();
+        uiHandler.getStage().act(Gdx.graphics.getDeltaTime());
+        uiHandler.getStage().draw();
     }
 
     ModelInstance instance = new ModelInstance(new ModelBuilder().createLineGrid(
@@ -140,16 +127,16 @@ public class Renderer {
     }
 
     public void resize(int width, int height) {
-        uiStage.getViewport().update(width, height, true);
+        uiHandler.getStage().getViewport().update(width, height, true);
     }
 
     public void dispose() {
         modelBatch.dispose();
-        uiStage.dispose();
+        uiHandler.getStage().dispose();
     }
 
     public Stage getUiStage() {
-        return uiStage;
+        return uiHandler.getStage();
     }
 
     public Camera getCamera() {
