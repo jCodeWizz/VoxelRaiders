@@ -1,10 +1,9 @@
 package dev.codewizz.gfx.ui;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Stack;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Scaling;
 import dev.codewizz.utils.Assets;
 
 public class HUD extends Table {
@@ -48,12 +47,26 @@ public class HUD extends Table {
 
     private Table centerTable() {
         Table center = new Table();
-        center.add(new TextButton("Icon1", UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
-        center.add(new TextButton("Icon2", UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE).padLeft(6 * UI.SCALE).padRight(6 * UI.SCALE);
-        center.add(new TextButton("Icon3", UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
-        center.add(new TextButton("Icon4", UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE).padLeft(6 * UI.SCALE).padRight(6 * UI.SCALE);
-        center.add(new TextButton("Icon5", UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
+
+        center.add(new ImageButton(UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
+        center.add(new ImageButton(UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE).padLeft(6 * UI.SCALE).padRight(6 * UI.SCALE);
+        center.add(icon("build-icon")).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
+        center.add(new ImageButton(UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE).padLeft(6 * UI.SCALE).padRight(6 * UI.SCALE);
+        center.add(new ImageButton(UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
 
         return center;
+    }
+
+    private ImageButton icon(String iconName) {
+
+        ImageButton.ImageButtonStyle style =
+            new ImageButton.ImageButtonStyle(UI.skin.get(ImageButton.ImageButtonStyle.class));
+
+        style.imageUp = new SpriteDrawable(Assets.findSprite(iconName));
+
+        ImageButton button = new ImageButton(style);
+        button.getImageCell().expand().fill();
+
+        return button;
     }
 }

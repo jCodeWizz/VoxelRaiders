@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 public class UI {
 
     public static final int SCALE = 2;
-    public static final Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
+    public static final Skin skin = new Skin(Gdx.files.internal("ui/vxrskin.json"));
 
     private final Stage stage;
     private final Table root;

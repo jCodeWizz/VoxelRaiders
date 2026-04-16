@@ -21,6 +21,7 @@ public class Assets {
     public static void load() {
         sprites.put("icon-board-extension", new Sprite(new Texture(Gdx.files.internal("ui/drawables/icon-board-extension.png"))));
         sprites.put("icon-board", new Sprite(new Texture(Gdx.files.internal("ui/drawables/icon-board.png"))));
+        sprites.put("build-icon", new Sprite(new Texture(Gdx.files.internal("ui/drawables/build-icon.png"))));
     }
 
     public static Model findModel(String id) {
