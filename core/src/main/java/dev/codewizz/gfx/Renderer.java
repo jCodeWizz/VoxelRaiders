@@ -15,7 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import dev.codewizz.gfx.shaders.ObjectShaderProvider;
-import dev.codewizz.gfx.ui.UIHandler;
+import dev.codewizz.gfx.ui.UI;
 import dev.codewizz.input.MouseInput;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavGraph;
@@ -33,16 +33,15 @@ public class Renderer {
     private final ModelBatch shadowBatch;
     private boolean shadow = false;
 
-    private final UIHandler uiHandler;
+    private final UI uiHandler;
 
     public Renderer() {
         modelBatch = new ModelBatch(new ObjectShaderProvider());
         camera = new Camera();
         environment = new Environment();
 
-        uiHandler = new UIHandler();
+        uiHandler = new UI();
 
-        //environment.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
         environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
         shadowLight = new DirectionalShadowLight(2048, 2048, 30f, 30f, 20f, 80f);
         shadowLight.set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f);

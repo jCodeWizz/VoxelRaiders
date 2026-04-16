@@ -2,6 +2,8 @@ package dev.codewizz.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g3d.Model;
 import net.mgsx.gltf.loaders.gltf.GLTFLoader;
 import net.mgsx.gltf.scene3d.scene.SceneAsset;
@@ -14,6 +16,12 @@ public class Assets {
 
     private static final GLTFLoader loader = new GLTFLoader();
     private static final HashMap<String, Model> models = new HashMap<>();
+    private static final HashMap<String, Sprite> sprites = new HashMap<>();
+
+    public static void load() {
+        sprites.put("icon-board-extension", new Sprite(new Texture(Gdx.files.internal("ui/drawables/icon-board-extension.png"))));
+        sprites.put("icon-board", new Sprite(new Texture(Gdx.files.internal("ui/drawables/icon-board.png"))));
+    }
 
     public static Model findModel(String id) {
         if (models.containsKey(id)) {
@@ -32,6 +40,15 @@ public class Assets {
         } else {
             //TODO: find root of modules somehow as FileHandle
             return models.get(id);
+        }
+    }
+
+    public static Sprite findSprite(String id) {
+        if (sprites.containsKey(id)) {
+            return sprites.get(id);
+        } else  {
+            Logger.error("Sprite not found: " + id);
+            return null;
         }
     }
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.ai.GdxAI;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.input.KeyInput;
 import dev.codewizz.input.MouseInput;
+import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.Logger;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
@@ -27,6 +28,10 @@ public class Main extends ApplicationAdapter {
     public void create () {
         Logger.log("Starting game...");
         instance = this;
+
+        Logger.log("Loading assets...");
+        Assets.load();
+        Logger.log("Loaded assets");
 
         Logger.log("Creating renderer...");
         renderer = new Renderer();

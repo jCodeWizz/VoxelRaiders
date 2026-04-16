@@ -4,22 +4,22 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
-public class UIHandler {
+public class UI {
+
+    public static final int SCALE = 2;
+    public static final Skin skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 
     private final Stage stage;
     private final Table root;
-    private final Skin skin;
 
-    public UIHandler() {
-        stage = new Stage(new ScreenViewport());
+    public UI() {
+        stage = new Stage(new ExtendViewport(1920, 1080));
         root = new Table();
         root.setFillParent(true);
         stage.addActor(root);
-
-        skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
+        root.add(new HUD()).expand().fillX().bottom();
     }
 
     public Stage getStage() {
