@@ -62,8 +62,10 @@ atlasData: {
 			type: NINE_PATCH
 			hidden: false
 		}
+	]
+	fontDrawables: [
 		{
-			file: C:/Users/zoeys/Desktop/Java/Age-of-Progress/assets/textures/ui/icons/new-build-icon.png
+			file: C:/Users/zoeys/Desktop/Java/VoxelRaiders/assets/ui/default.png
 			bgColor: {
 				r: 1
 				g: 1
@@ -72,21 +74,40 @@ atlasData: {
 			}
 			tint: null
 			tintName: null
-			name: new-build-icon
+			name: default
 			tiled: false
 			minWidth: -1
 			minHeight: -1
 			customized: false
 			tenPatchData: null
 			tvgData: null
-			type: TEXTURE
+			type: FONT
 			hidden: false
 		}
 	]
-	fontDrawables: []
 }
 jsonData: {
 	colors: [
+		{
+			class: com.ray3k.skincomposer.data.ColorData
+			color: {
+				r: 0.6
+				g: 0.6
+				b: 0.6
+				a: 1
+			}
+			name: DISABLED_FONT
+		}
+		{
+			class: com.ray3k.skincomposer.data.ColorData
+			color: {
+				r: 0.8
+				g: 0.8
+				b: 0.8
+				a: 1
+			}
+			name: HOVER_FONT
+		}
 		{
 			class: com.ray3k.skincomposer.data.ColorData
 			color: {
@@ -98,7 +119,16 @@ jsonData: {
 			name: WHITE
 		}
 	]
-	fonts: []
+	fonts: [
+		{
+			class: com.ray3k.skincomposer.data.FontData
+			name: default
+			flip: false
+			markupEnabled: false
+			scaling: -1
+			file: C:/Users/zoeys/Desktop/Java/VoxelRaiders/assets/ui/default.fnt
+		}
+	]
 	freeTypeFonts: []
 	classStyleMap: {
 		com.badlogic.gdx.scenes.scene2d.ui.Button: [
@@ -552,13 +582,13 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: imageUp
 						optional: true
-						value: icon
+						value: null
 					}
 					imageDown: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: imageDown
 						optional: true
-						value: icon-pressed
+						value: null
 					}
 					imageOver: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
@@ -570,7 +600,7 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: imageDisabled
 						optional: true
-						value: icon-unavailable
+						value: null
 					}
 					imageChecked: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
@@ -755,13 +785,13 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: null
+						value: default
 					}
 					fontColor: {
 						type: com.badlogic.gdx.graphics.Color
 						name: fontColor
 						optional: true
-						value: null
+						value: WHITE
 					}
 					background: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
@@ -1315,37 +1345,37 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: null
+						value: default
 					}
 					fontColor: {
 						type: com.badlogic.gdx.graphics.Color
 						name: fontColor
 						optional: true
-						value: null
+						value: WHITE
 					}
 					downFontColor: {
 						type: com.badlogic.gdx.graphics.Color
 						name: downFontColor
 						optional: true
-						value: null
+						value: DISABLED_FONT
 					}
 					overFontColor: {
 						type: com.badlogic.gdx.graphics.Color
 						name: overFontColor
 						optional: true
-						value: null
+						value: HOVER_FONT
 					}
 					focusedFontColor: {
 						type: com.badlogic.gdx.graphics.Color
 						name: focusedFontColor
 						optional: true
-						value: null
+						value: HOVER_FONT
 					}
 					disabledFontColor: {
 						type: com.badlogic.gdx.graphics.Color
 						name: disabledFontColor
 						optional: true
-						value: null
+						value: DISABLED_FONT
 					}
 					checkedFontColor: {
 						type: com.badlogic.gdx.graphics.Color
@@ -1375,13 +1405,13 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: up
 						optional: true
-						value: null
+						value: icon
 					}
 					down: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: down
 						optional: true
-						value: null
+						value: icon-pressed
 					}
 					over: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
@@ -1399,7 +1429,7 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: disabled
 						optional: true
-						value: null
+						value: icon-unavailable
 					}
 					checked: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
@@ -1435,7 +1465,7 @@ jsonData: {
 						type: float
 						name: pressedOffsetY
 						optional: true
-						value: 0
+						value: -2
 					}
 					unpressedOffsetX: {
 						type: float
@@ -1690,6 +1720,10 @@ preferences: {
 	id: {
 		class: java.lang.Integer
 		value: 478179344
+	}
+	last-import-export-path: {
+		class: java.lang.String
+		value: C:/Users/zoeys/Desktop/Java/VoxelRaiders/assets/ui/vxrskin.json
 	}
 	resources-relative: {
 		class: java.lang.Boolean
