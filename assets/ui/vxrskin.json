@@ -41,6 +41,12 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 		disabled: icon-unavailable
 		pressedOffsetY: -2
 	}
+	stretch: {
+		up: raw-icon
+		down: raw-icon-pressed
+		disabled: raw-icon-unavailable
+		pressedOffsetY: -2
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: {

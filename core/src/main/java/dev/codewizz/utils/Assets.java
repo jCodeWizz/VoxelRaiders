@@ -22,6 +22,8 @@ public class Assets {
         sprites.put("icon-board-extension", new Sprite(new Texture(Gdx.files.internal("ui/drawables/icon-board-extension.png"))));
         sprites.put("icon-board", new Sprite(new Texture(Gdx.files.internal("ui/drawables/icon-board.png"))));
         sprites.put("build-icon", new Sprite(new Texture(Gdx.files.internal("ui/drawables/build-icon.png"))));
+        sprites.put("close-icon", new Sprite(new Texture(Gdx.files.internal("ui/drawables/close-icon.png"))));
+        sprites.put("path-menu", new Sprite(new Texture(Gdx.files.internal("ui/drawables/path-menu.png"))));
     }
 
     public static Model findModel(String id) {

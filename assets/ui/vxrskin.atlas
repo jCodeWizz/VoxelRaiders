@@ -20,6 +20,13 @@ icon
   orig: 22, 24
   offset: 0, 0
   index: -1
+raw-icon
+  rotate: false
+  xy: 1, 125
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
 icon-pressed
   rotate: false
   xy: 259, 255
@@ -29,12 +36,26 @@ icon-pressed
   orig: 22, 24
   offset: 0, 0
   index: -1
+raw-icon-pressed
+  rotate: false
+  xy: 259, 255
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
 icon-unavailable
   rotate: false
   xy: 1, 99
   size: 22, 24
   split: 6, 6, 6, 8
   pad: 0, 0, 0, 0
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+raw-icon-unavailable
+  rotate: false
+  xy: 1, 99
+  size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1

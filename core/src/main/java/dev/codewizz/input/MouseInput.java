@@ -81,7 +81,7 @@ public class MouseInput implements InputProcessor {
 
                         if (gatherable.isTasked()) return false;
 
-                        Main.instance.world.getSettlement().addTask(new GatherTemplate(gatherable));
+                        Main.instance.getWorld().getSettlement().addTask(new GatherTemplate(gatherable));
                         gatherable.setTasked(true);
 
                         return true;
@@ -176,7 +176,7 @@ public class MouseInput implements InputProcessor {
 
     public static void update() {
         if (dragPosition != null) {
-            updateSelectInstance(Main.instance.renderer.getCamera(), Main.instance.world);
+            updateSelectInstance(Main.instance.getRenderer().getCamera(), Main.instance.getWorld());
         }
     }
 

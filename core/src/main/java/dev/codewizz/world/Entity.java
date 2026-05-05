@@ -64,7 +64,7 @@ public abstract class Entity extends GameObject {
     }
 
     private void separate() {
-        for (GameObject other : Main.instance.world.getObjectsToRender()) {
+        for (GameObject other : Main.instance.getWorld().getObjectsToRender()) {
             if (other == this || !(other instanceof Entity)) continue;
 
             Vector3 otherPos = other.getPosition();

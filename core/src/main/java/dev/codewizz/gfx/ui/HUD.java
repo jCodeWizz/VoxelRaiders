@@ -1,10 +1,15 @@
 package dev.codewizz.gfx.ui;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
+import dev.codewizz.gfx.ui.panels.ObjectPanel;
+import dev.codewizz.main.Main;
 import dev.codewizz.utils.Assets;
+import dev.codewizz.utils.Logger;
 
 public class HUD extends Table {
 
@@ -13,9 +18,6 @@ public class HUD extends Table {
     }
 
     private void setup() {
-
-
-
         Table content = new Table();
         Table left = new Table();
         Table right = new Table();
@@ -50,7 +52,17 @@ public class HUD extends Table {
 
         center.add(new ImageButton(UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
         center.add(new ImageButton(UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE).padLeft(6 * UI.SCALE).padRight(6 * UI.SCALE);
-        center.add(icon("build-icon")).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
+
+        ImageButton buildButton = icon("build-icon");
+        center.add(buildButton).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
+        buildButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent changeEvent, Actor actor) {
+                Main.instance.getRenderer().getUI().open(new ObjectPanel());
+            }
+        });
+
+
         center.add(new ImageButton(UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE).padLeft(6 * UI.SCALE).padRight(6 * UI.SCALE);
         center.add(new ImageButton(UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
 
@@ -60,7 +72,7 @@ public class HUD extends Table {
     private ImageButton icon(String iconName) {
 
         ImageButton.ImageButtonStyle style =
-            new ImageButton.ImageButtonStyle(UI.skin.get(ImageButton.ImageButtonStyle.class));
+            new ImageButton.ImageButtonStyle(UI.skin.get("stretch", ImageButton.ImageButtonStyle.class));
 
         style.imageUp = new SpriteDrawable(Assets.findSprite(iconName));
 

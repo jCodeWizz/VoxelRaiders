@@ -18,9 +18,9 @@ public class Main extends ApplicationAdapter {
 
     public static Main instance;
 
-    public Renderer renderer;
+    private Renderer renderer;
 
-    public World world;
+    private World world;
 
     public static int gameSpeed = 1;
 
@@ -66,5 +66,13 @@ public class Main extends ApplicationAdapter {
     @Override
     public void dispose () {
         renderer.dispose();
+    }
+
+    public World getWorld() {
+        return world;
+    }
+
+    public Renderer getRenderer() {
+        return renderer;
     }
 }

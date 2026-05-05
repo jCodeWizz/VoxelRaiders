@@ -27,7 +27,7 @@ public abstract class GameObject {
     public abstract void render(Renderer renderer);
 
     public void destroy() {
-        Main.instance.world.removeObject(this);
+        Main.instance.getWorld().removeObject(this);
     }
 
     public Vector3 getPosition() {

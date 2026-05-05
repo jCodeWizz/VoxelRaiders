@@ -48,7 +48,7 @@ public class Hermit extends Entity {
     public TaskTemplate findNewTask() {
 
         TaskTemplate next = null;
-        for (TaskTemplate t : Main.instance.world.getSettlement().getTasks()) {
+        for (TaskTemplate t : Main.instance.getWorld().getSettlement().getTasks()) {
             if (t.canTake(this)) {
                 next = t;
                 break;
@@ -56,7 +56,7 @@ public class Hermit extends Entity {
         }
 
         if (next != null) {
-            Main.instance.world.getSettlement().getTasks().removeValue(next, false);
+            Main.instance.getWorld().getSettlement().getTasks().removeValue(next, false);
             return next;
         }
 

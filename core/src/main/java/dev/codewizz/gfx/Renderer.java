@@ -141,4 +141,8 @@ public class Renderer {
     public Camera getCamera() {
         return camera;
     }
+
+    public UI getUI() {
+        return uiHandler;
+    }
 }
