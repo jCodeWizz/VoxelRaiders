@@ -1,8 +1,6 @@
 package dev.codewizz.world;
 
 import com.badlogic.gdx.math.Vector3;
-import dev.codewizz.input.MouseInput;
-import dev.codewizz.utils.Logger;
 import dev.codewizz.utils.SimplexNoise;
 import dev.codewizz.world.objects.Bush;
 import dev.codewizz.world.objects.Tree;
@@ -52,13 +50,13 @@ public class World {
 
                 if (noise < 0.175f) {
                     GameObject object = new Tree();
-                    object.getPosition().set(xx - half, 10.75f, zz - half);
+                    object.getPosition().set(xx - half, 10.5f, zz - half);
                     addObject(object);
                 } else {
                     noise = (float) (NOISE.noise((xx/10f), zz/10f)+1.0) * 2f;
                     if (noise < 0.5f) {
                         GameObject object = new Bush();
-                        object.getPosition().set(xx - half + 0.25f, 10.75f, zz - half + 0.25f);
+                        object.getPosition().set(xx - half + 0.25f, 10.5f, zz - half + 0.25f);
                         addObject(object);
                     }
                 }

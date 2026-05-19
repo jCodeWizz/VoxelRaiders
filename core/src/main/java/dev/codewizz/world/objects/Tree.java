@@ -1,25 +1,20 @@
 package dev.codewizz.world.objects;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.VertexAttributes;
-import com.badlogic.gdx.graphics.g3d.Material;
-import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
-import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
-import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
+import com.badlogic.gdx.math.Vector3;
 import dev.codewizz.gfx.Renderer;
+import dev.codewizz.utils.Assets;
+import dev.codewizz.utils.WUtils;
 
 public class Tree extends Gatherable {
-
-    private final static Material MATERIAL = new Material(ColorAttribute.createDiffuse(Color.BROWN));
-    private final static Model MODEL = new ModelBuilder().createBox(1f, 0.5f, 1f, MATERIAL, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
 
     private final ModelInstance instance;
 
     public Tree() {
         super("vxr:tree");
 
-        this.instance = new ModelInstance(MODEL);
+        this.instance = new ModelInstance(Assets.findModel(getId()));
+        this.getRotation().setFromAxis(Vector3.Y, WUtils.getRandom(0, 360));
     }
 
     @Override

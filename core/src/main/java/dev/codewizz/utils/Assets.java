@@ -14,7 +14,6 @@ public class Assets {
 
     public static final String ID = "vxr";
 
-    private static final GLTFLoader loader = new GLTFLoader();
     private static final HashMap<String, Model> models = new HashMap<>();
     private static final HashMap<String, Sprite> sprites = new HashMap<>();
 
@@ -36,7 +35,7 @@ public class Assets {
 
         if (moduleIdentifier.equals(ID)) {
             FileHandle handle = Gdx.files.internal("models/" + modelIdentifier + ".gltf");
-            SceneAsset asset = loader.load(handle);
+            SceneAsset asset = new GLTFLoader().load(handle);
 
             models.put(id, asset.scene.model);
             return models.get(id);
