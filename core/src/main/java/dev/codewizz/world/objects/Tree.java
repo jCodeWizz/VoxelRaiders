@@ -15,6 +15,8 @@ public class Tree extends Gatherable {
 
         this.instance = new ModelInstance(Assets.findModel(getId()));
         this.getRotation().setFromAxis(Vector3.Y, WUtils.getRandom(0, 360));
+        float scale = WUtils.RANDOM.nextFloat() * 0.3f + 0.8f;
+        this.getScale().set(scale, scale, scale);
     }
 
     @Override

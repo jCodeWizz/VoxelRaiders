@@ -98,15 +98,15 @@ float getShadowness(vec2 offset)
     vec3 normal = normalize(v_normal);
     vec3 lightDir = normalize(vec3(-1.0, -0.8, -0.2));
 
-    //float bias = max(0.002 * (1.0 - dot(normal, lightDir)), 0.0005);
-    float bias = 0.002;
+    float bias = max(0.002 * (1.0 - dot(normal, lightDir)), 0.0005);
+    //float bias = 0.002;
 
     return step(v_shadowMapUv.z - bias, shadowDepth);
 }
 
 float getShadow()
 {
-	return (//getShadowness(vec2(0,0)) +
+	return (getShadowness(vec2(0,0)) +
 			getShadowness(vec2(u_shadowPCFOffset, u_shadowPCFOffset)) +
 			getShadowness(vec2(-u_shadowPCFOffset, u_shadowPCFOffset)) +
 			getShadowness(vec2(u_shadowPCFOffset, -u_shadowPCFOffset)) +
