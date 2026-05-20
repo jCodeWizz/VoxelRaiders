@@ -28,6 +28,7 @@ public class Renderer {
     private final ModelBatch modelBatch;
     private final Camera camera;
     private final Environment environment;
+    private final Particles particles;
 
     private final DirectionalShadowLight shadowLight;
     private final ModelBatch shadowBatch;
@@ -39,12 +40,14 @@ public class Renderer {
         modelBatch = new ModelBatch(new ObjectShaderProvider());
         camera = new Camera();
         environment = new Environment();
+        particles = new Particles(camera);
+        particles.load();
 
         uiHandler = new UI();
 
         environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
         shadowLight = new DirectionalShadowLight(2048, 2048, 30f, 30f, 20f, 80f);
-        shadowLight.set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f);
+        shadowLight.set(0.8f, 0.8f, 0.8f, -0.6f, -0.8f, -0.2f);
         environment.add(shadowLight);
         environment.shadowMap = shadowLight;
 
@@ -93,6 +96,8 @@ public class Renderer {
 
         MouseInput.update();
         MouseInput.renderSelectArea(modelBatch);
+
+        particles.render(modelBatch);
 
         //renderDebug();
 
@@ -144,5 +149,9 @@ public class Renderer {
 
     public UI getUI() {
         return uiHandler;
+    }
+
+    public Particles getParticles() {
+        return particles;
     }
 }

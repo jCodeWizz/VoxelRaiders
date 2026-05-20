@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector3;
 import dev.codewizz.gfx.Camera;
 import dev.codewizz.input.result.PickAreaListener;
 import dev.codewizz.input.result.PickChunkResult;
+import dev.codewizz.main.Main;
 import dev.codewizz.utils.Logger;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;

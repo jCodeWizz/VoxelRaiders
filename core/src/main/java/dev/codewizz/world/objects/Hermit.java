@@ -11,11 +11,13 @@ import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Queue;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.main.Main;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.Logger;
+import dev.codewizz.utils.WUtils;
 import dev.codewizz.world.Entity;
 import dev.codewizz.world.objects.behaviour.TaskTemplate;
 import dev.codewizz.world.objects.behaviour.leaves.ExecuteTaskLeaf;
@@ -32,6 +34,8 @@ public class Hermit extends Entity {
     private static final Material MATERIAL = new Material(ColorAttribute.createDiffuse(new Color(0.1f, 0.93f, 0.95f, 1.0f)));
     private static final Model MODEL = new ModelBuilder().createBox(0.8f, 1.5f, 0.8f, MATERIAL,VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
 
+    private float dustTimer = 0.5f;
+
     public Hermit() {
         super("vxr:hermit");
 
@@ -42,6 +46,15 @@ public class Hermit extends Entity {
     @Override
     public void update(float dt) {
         super.update(dt);
+
+        if (isMoving()) {
+            if (dustTimer > 0)  {
+                dustTimer -= dt;
+            } else {
+                Main.instance.getRenderer().getParticles().spawn("particles/dust.pfx", getPosition());
+                dustTimer = WUtils.RANDOM.nextFloat();
+            }
+        }
     }
 
     @Override
