@@ -34,7 +34,7 @@ public class Bush extends Gatherable {
     @Override
     public void gather(Hermit hermit) {
         if (hasBerries) {
-            Node node = instance.getNode("berries", true);
+            Node node = instance.getNode("berries");
             for (Node child : node.getChildren()) {
                 for (NodePart childPart : child.parts) {
                     childPart.enabled = false;
