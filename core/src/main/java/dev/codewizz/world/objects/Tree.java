@@ -7,7 +7,7 @@ import dev.codewizz.main.Main;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.WUtils;
 import dev.codewizz.world.inventory.Item;
-import dev.codewizz.world.inventory.ItemType;
+import dev.codewizz.world.inventory.types.ItemType;
 
 public class Tree extends Gatherable {
 

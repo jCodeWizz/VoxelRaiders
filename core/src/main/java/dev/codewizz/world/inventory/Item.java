@@ -1,5 +1,7 @@
 package dev.codewizz.world.inventory;
 
+import dev.codewizz.world.inventory.types.ItemType;
+
 public class Item {
 
     private int size;
