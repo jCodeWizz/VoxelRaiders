@@ -3,6 +3,7 @@ package dev.codewizz.world.objects;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.math.Vector3;
 import dev.codewizz.gfx.Renderer;
+import dev.codewizz.main.Main;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.WUtils;
 
@@ -26,6 +27,7 @@ public class Tree extends Gatherable {
 
     @Override
     public void gather(Hermit hermit) {
+        Main.instance.getWorld().addObject(new TreeStump(getPosition()));
         destroy();
     }
 }

@@ -10,10 +10,11 @@ public class TreeStump extends Gatherable {
 
     private final ModelInstance instance;
 
-    public TreeStump() {
+    public TreeStump(Vector3 pos) {
         super("vxr:tree-stump");
 
         this.instance = new ModelInstance(Assets.findModel(getId()));
+        this.getPosition().set(pos);
     }
 
     @Override
