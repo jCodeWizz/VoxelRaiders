@@ -6,6 +6,8 @@ import dev.codewizz.gfx.Renderer;
 import dev.codewizz.main.Main;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.WUtils;
+import dev.codewizz.world.inventory.Item;
+import dev.codewizz.world.inventory.ItemType;
 
 public class Tree extends Gatherable {
 
@@ -28,6 +30,7 @@ public class Tree extends Gatherable {
     @Override
     public void gather(Hermit hermit) {
         Main.instance.getWorld().addObject(new TreeStump(getPosition()));
+        hermit.getInventory().addItem(new Item(ItemType.LOG, 4));
         destroy();
     }
 }
