@@ -35,8 +35,6 @@ public class Hermit extends Entity {
     private static final Material MATERIAL = new Material(ColorAttribute.createDiffuse(new Color(0.1f, 0.93f, 0.95f, 1.0f)));
     private static final Model MODEL = new ModelBuilder().createBox(0.8f, 1.5f, 0.8f, MATERIAL,VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
 
-    private float dustTimer = 0.5f;
-
     private Inventory inventory;
 
     public Hermit() {
@@ -45,20 +43,6 @@ public class Hermit extends Entity {
         instance = new ModelInstance(MODEL);
         getSize().set(0.8f, 1.5f, 0.8f);
         inventory = new Inventory(5);
-    }
-
-    @Override
-    public void update(float dt) {
-        super.update(dt);
-
-        if (isMoving()) {
-            if (dustTimer > 0)  {
-                dustTimer -= dt;
-            } else {
-                Main.instance.getRenderer().getParticles().spawn("particles/dust.pfx", getPosition());
-                dustTimer = WUtils.RANDOM.nextFloat();
-            }
-        }
     }
 
     @Override

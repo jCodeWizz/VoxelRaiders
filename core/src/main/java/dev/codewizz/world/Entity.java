@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Queue;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.main.Main;
+import dev.codewizz.utils.WUtils;
 import dev.codewizz.world.objects.behaviour.TaskTemplate;
 import dev.codewizz.world.objects.behaviour.leaves.ExecuteTaskLeaf;
 import dev.codewizz.world.objects.behaviour.leaves.GetTaskLeaf;
@@ -21,6 +22,8 @@ public abstract class Entity extends GameObject {
     protected final NavAgent agent;
     protected final Vector3 velocity;
     protected float speed = 2f;
+
+    private float dustTimer = 0.1f;
 
     protected BehaviorTree<Entity> behaviour;
     private final Queue<BehaviorTree<Entity>> tasks = new Queue<>();
@@ -56,6 +59,15 @@ public abstract class Entity extends GameObject {
         agent.update(dt);
         getPosition().mulAdd(velocity, dt);
         updateRotationFromVelocity();
+
+        if (isMoving()) {
+            if (dustTimer > 0)  {
+                dustTimer -= dt;
+            } else {
+                Main.instance.getRenderer().getParticles().spawn("particles/dust.pfx", getPosition());
+                dustTimer = WUtils.RANDOM.nextFloat() * 0.33f;
+            }
+        }
     }
 
     @Override

@@ -45,6 +45,8 @@ public class Particles {
         instance.init();
         instance.start();
         instance.translate(pos);
+        float scale = 0.33f;
+        instance.scale(scale, scale, scale);
 
         particleSystem.add(instance);
         activeEffects.add(instance);
