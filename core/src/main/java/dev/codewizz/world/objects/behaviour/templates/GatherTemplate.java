@@ -6,6 +6,7 @@ import com.badlogic.gdx.ai.btree.leaf.Wait;
 import com.badlogic.gdx.ai.utils.random.UniformFloatDistribution;
 import dev.codewizz.world.Entity;
 import dev.codewizz.world.objects.Gatherable;
+import dev.codewizz.world.objects.Hermit;
 import dev.codewizz.world.objects.behaviour.TaskTemplate;
 import dev.codewizz.world.objects.behaviour.leaves.ActionLeaf;
 import dev.codewizz.world.objects.behaviour.leaves.MoveToLeaf;
@@ -31,7 +32,8 @@ public class GatherTemplate implements TaskTemplate {
                 new ActionLeaf<Entity>() {
                     @Override
                     public boolean action() {
-                        gatherable.gather();
+                        gatherable.gather((Hermit) entity);
+                        gatherable.setTasked(false);
                         return true;
                     }
                 }

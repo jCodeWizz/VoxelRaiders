@@ -11,7 +11,7 @@ public abstract class Gatherable extends GameObject {
         super(id);
     }
 
-    public abstract void gather();
+    public abstract void gather(Hermit hermit);
 
     @Override
     public void update(float dt) {

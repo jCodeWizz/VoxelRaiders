@@ -1,14 +1,21 @@
 package dev.codewizz.world.objects;
 
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.badlogic.gdx.graphics.g3d.model.Node;
+import com.badlogic.gdx.graphics.g3d.model.NodePart;
 import com.badlogic.gdx.math.Vector3;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.utils.Assets;
+import dev.codewizz.utils.Logger;
 import dev.codewizz.utils.WUtils;
+import dev.codewizz.world.inventory.Item;
+import dev.codewizz.world.inventory.ItemType;
 
 public class Bush extends Gatherable {
 
     private final ModelInstance instance;
+
+    private boolean hasBerries = true;
 
     public Bush() {
         super("vxr:bush");
@@ -25,7 +32,19 @@ public class Bush extends Gatherable {
     }
 
     @Override
-    public void gather() {
-        destroy();
+    public void gather(Hermit hermit) {
+        if (hasBerries) {
+            Node node = instance.getNode("berries", true);
+            for (Node child : node.getChildren()) {
+                for (NodePart childPart : child.parts) {
+                    childPart.enabled = false;
+                }
+            }
+            hasBerries = false;
+            hermit.getInventory().addItem(new Item(ItemType.BERRIES, 4));
+            Logger.log(hermit.getInventory());
+        } else {
+            destroy();
+        }
     }
 }

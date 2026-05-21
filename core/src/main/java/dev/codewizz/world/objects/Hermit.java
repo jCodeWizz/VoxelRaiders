@@ -19,6 +19,7 @@ import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.Logger;
 import dev.codewizz.utils.WUtils;
 import dev.codewizz.world.Entity;
+import dev.codewizz.world.inventory.Inventory;
 import dev.codewizz.world.objects.behaviour.TaskTemplate;
 import dev.codewizz.world.objects.behaviour.leaves.ExecuteTaskLeaf;
 import dev.codewizz.world.objects.behaviour.leaves.GetTaskLeaf;
@@ -36,11 +37,14 @@ public class Hermit extends Entity {
 
     private float dustTimer = 0.5f;
 
+    private Inventory inventory;
+
     public Hermit() {
         super("vxr:hermit");
 
         instance = new ModelInstance(MODEL);
         getSize().set(0.8f, 1.5f, 0.8f);
+        inventory = new Inventory(5);
     }
 
     @Override
@@ -74,5 +78,9 @@ public class Hermit extends Entity {
         }
 
         return WAIT;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 }

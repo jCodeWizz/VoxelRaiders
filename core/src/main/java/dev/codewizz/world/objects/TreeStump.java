@@ -6,17 +6,14 @@ import dev.codewizz.gfx.Renderer;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.WUtils;
 
-public class Tree extends Gatherable {
+public class TreeStump extends Gatherable {
 
     private final ModelInstance instance;
 
-    public Tree() {
-        super("vxr:tree");
+    public TreeStump() {
+        super("vxr:tree-stump");
 
         this.instance = new ModelInstance(Assets.findModel(getId()));
-        this.getRotation().setFromAxis(Vector3.Y, WUtils.getRandom(0, 360));
-        float scale = WUtils.RANDOM.nextFloat() * 0.3f + 0.8f;
-        this.getScale().set(scale, scale, scale);
     }
 
     @Override
