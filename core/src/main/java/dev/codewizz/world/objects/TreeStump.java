@@ -5,8 +5,9 @@ import com.badlogic.gdx.math.Vector3;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.WUtils;
+import dev.codewizz.world.GameObject;
 
-public class TreeStump extends Gatherable {
+public class TreeStump extends GameObject {
 
     private final ModelInstance instance;
 
@@ -18,12 +19,12 @@ public class TreeStump extends Gatherable {
     }
 
     @Override
-    public void render(Renderer renderer) {
-        renderer.renderObjectInstance(this, instance);
+    public void update(float dt) {
+
     }
 
     @Override
-    public void gather(Hermit hermit) {
-        destroy();
+    public void render(Renderer renderer) {
+        renderer.renderObjectInstance(this, instance);
     }
 }
