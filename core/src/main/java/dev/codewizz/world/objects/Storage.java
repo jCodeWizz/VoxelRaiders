@@ -3,6 +3,7 @@ package dev.codewizz.world.objects;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.inventory.Inventory;
 import dev.codewizz.world.inventory.Item;
+import dev.codewizz.world.inventory.types.ItemType;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,13 +20,17 @@ public abstract class Storage extends GameObject {
         for (Item item : items) {
             if (inventory.getItems().containsKey(item.getType().getId())) { continue; }
             if (slotsOver > 0) {
-                slotsOver--;
+                if (checkType(item.getType())) {
+                    slotsOver--;
+                }
             } else {
                 return false;
             }
         }
         return true;
     }
+
+    public abstract boolean checkType(ItemType type);
 
     public Inventory getInventory() {
         return inventory;

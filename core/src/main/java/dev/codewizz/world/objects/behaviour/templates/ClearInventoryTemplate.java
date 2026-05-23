@@ -27,7 +27,7 @@ public class ClearInventoryTemplate implements TaskTemplate {
                     public boolean action() {
 
                         for (Item item : hermit.getInventory().getItems().values()) {
-                            if (!storage.getInventory().isFull(item)) {
+                            if (!storage.getInventory().isFull(item) && storage.checkType(item.getType())) {
                                 storage.getInventory().addItem(item);
                                 hermit.getInventory().removeItem(item);
                             }
