@@ -2,6 +2,7 @@ package dev.codewizz.world.inventory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Inventory {
 
@@ -14,6 +15,13 @@ public class Inventory {
 
     public Inventory(int maxSize) {
         this.maxSize = maxSize;
+    }
+
+    public boolean isFull(Item item) {
+        if (items.size() < maxSize) return false;
+        else {
+            return !items.containsKey(item.getType().getId());
+        }
     }
 
     public boolean containsItem(Item item) {
@@ -42,6 +50,22 @@ public class Inventory {
         if (items.size() == maxSize) { return false; }
         items.put(item.getType().getId(), item);
         return true;
+    }
+
+    public HashMap<String, Item> getItems() {
+        return items;
+    }
+
+    public int getMaxSize() {
+        return maxSize;
+    }
+
+    public void setMaxSize(int maxSize) {
+        this.maxSize = maxSize;
+    }
+
+    public int getSize() {
+        return items.size();
     }
 
     @Override
