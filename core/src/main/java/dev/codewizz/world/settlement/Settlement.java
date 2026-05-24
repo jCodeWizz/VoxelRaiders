@@ -84,4 +84,8 @@ public class Settlement {
     public List<Storage> getStorages() {
         return storages;
     }
+
+    public void removeStorage(Storage storage) {
+        storages.remove(storage);
+    }
 }

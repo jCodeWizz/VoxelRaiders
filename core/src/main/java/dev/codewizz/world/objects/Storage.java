@@ -1,5 +1,6 @@
 package dev.codewizz.world.objects;
 
+import dev.codewizz.main.Main;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.inventory.Inventory;
 import dev.codewizz.world.inventory.Item;
@@ -11,8 +12,11 @@ public abstract class Storage extends GameObject {
 
     protected Inventory inventory;
 
-    public Storage(String id) {
+    public Storage(String id, int size) {
         super(id);
+
+        inventory = new Inventory(size);
+        Main.instance.getWorld().getSettlement().addStorage(this);
     }
 
     public boolean accepts(Collection<Item> items) {
@@ -28,6 +32,11 @@ public abstract class Storage extends GameObject {
             }
         }
         return true;
+    }
+
+    @Override
+    public void onDestroy() {
+        Main.instance.getWorld().getSettlement().removeStorage(this);
     }
 
     public abstract boolean checkType(ItemType type);

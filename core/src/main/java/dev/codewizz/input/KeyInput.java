@@ -12,6 +12,7 @@ import dev.codewizz.utils.Logger;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
 import dev.codewizz.world.objects.Gatherable;
+import dev.codewizz.world.objects.SmallPile;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavAgent;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavCell;
 import dev.codewizz.world.objects.behaviour.templates.GatherTemplate;
@@ -63,6 +64,12 @@ public class KeyInput implements InputProcessor {
         if (keycode == Input.Keys.G) {
             world.getObjectsToRender().clear();
             world.generateFeatures();
+        }
+
+        if (keycode == Input.Keys.SPACE) {
+            SmallPile pile = new SmallPile();
+            pile.getPosition().set(new Vector3(world.getSettlement().getPosition()).add(2, 0, 2));
+            world.addObject(pile);
         }
 
         return false;

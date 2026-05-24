@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import dev.codewizz.main.Main;
+import dev.codewizz.utils.Logger;
 import dev.codewizz.world.Entity;
 import dev.codewizz.world.inventory.Inventory;
 import dev.codewizz.world.objects.behaviour.TaskTemplate;

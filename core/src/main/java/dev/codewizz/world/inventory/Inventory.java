@@ -36,9 +36,15 @@ public class Inventory {
     public boolean removeItem(Item item) {
         if (!containsItem(item)) { return false;}
 
-        items.get(item.getType().getId()).setSize(items.get(item.getType().getId()).getSize() - item.getSize());
-
-        return true;
+        if (items.get(item.getType().getId()).getSize() == item.getSize()) {
+            items.remove(item.getType().getId());
+            return true;
+        } else if (items.get(item.getType().getId()).getSize() > item.getSize()) {
+            items.get(item.getType().getId()).setSize(items.get(item.getType().getId()).getSize() - item.getSize());
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean addItem(Item item) {

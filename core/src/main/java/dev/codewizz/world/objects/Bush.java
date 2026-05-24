@@ -42,7 +42,6 @@ public class Bush extends Gatherable {
             }
             hasBerries = false;
             hermit.getInventory().addItem(new Item(ItemType.BERRIES, 4));
-            Logger.log(hermit.getInventory());
         } else {
             destroy();
         }
