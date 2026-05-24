@@ -19,7 +19,8 @@ public class ItemType {
     }
 
     public static ItemType register(ItemType type) {
-        return REGISTRY.put(type.id, type);
+        REGISTRY.put(type.id, type);
+        return type;
     }
 
     public static ItemType find(String id) {
