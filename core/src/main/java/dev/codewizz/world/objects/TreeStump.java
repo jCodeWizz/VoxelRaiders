@@ -8,7 +8,7 @@ import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.WUtils;
 import dev.codewizz.world.GameObject;
 
-public class TreeStump extends Gatherable {
+public class TreeStump extends GameObject {
 
     private final ModelInstance instance;
 
@@ -18,11 +18,6 @@ public class TreeStump extends Gatherable {
         this.instance = new ModelInstance(Assets.findModel(getId()));
         this.getPosition().set(pos);
         Main.instance.getWorld().getSettlement().addStation(this);
-    }
-
-    @Override
-    public void gather(Hermit hermit) {
-        destroy();
     }
 
     @Override

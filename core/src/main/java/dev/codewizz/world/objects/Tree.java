@@ -12,11 +12,16 @@ import dev.codewizz.world.inventory.types.ItemType;
 public class Tree extends Gatherable {
 
     private final ModelInstance instance;
+    private final ModelInstance choppedInstance;
+
+    private boolean chopped = false;
 
     public Tree() {
         super("vxr:tree");
 
         this.instance = new ModelInstance(Assets.findModel(getId()));
+        this.choppedInstance = new ModelInstance(Assets.findModel("vxr:tree-stump"));
+
         this.getRotation().setFromAxis(Vector3.Y, WUtils.getRandom(0, 360));
         float scale = WUtils.RANDOM.nextFloat() * 0.3f + 0.8f;
         this.getScale().set(scale, scale, scale);
@@ -24,13 +29,20 @@ public class Tree extends Gatherable {
 
     @Override
     public void render(Renderer renderer) {
-        renderer.renderObjectInstance(this, instance);
+        if (chopped) {
+            renderer.renderObjectInstance(this, choppedInstance);
+        } else {
+            renderer.renderObjectInstance(this, instance);
+        }
     }
 
     @Override
     public void gather(Hermit hermit) {
-        Main.instance.getWorld().addObject(new TreeStump(getPosition()));
-        hermit.getInventory().addItem(new Item(ItemType.LOG, 4));
-        destroy();
+        if (chopped) {
+            destroy();
+        } else {
+            hermit.getInventory().addItem(new Item(ItemType.LOG, WUtils.getRandom(3, 5)));
+            chopped = true;
+        }
     }
 }

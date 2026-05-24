@@ -9,6 +9,7 @@ public class ItemType {
 
     public static final ItemType BERRIES = register(new FoodType("vxr:berries", "Berries", 1));
     public static final ItemType LOG = register(new ItemType("vxr:log", "Log"));
+    public static final ItemType PLANK = register(new ItemType("vxr:plank", "Plank"));
 
     private final String id;
     private final String name;
