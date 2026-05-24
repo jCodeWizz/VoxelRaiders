@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g3d.Model;
+import com.badlogic.gdx.graphics.g3d.model.Animation;
 import net.mgsx.gltf.loaders.gltf.GLTFLoader;
 import net.mgsx.gltf.scene3d.scene.SceneAsset;
 
@@ -30,8 +31,9 @@ public class Assets {
             return models.get(id);
         }
 
-        String moduleIdentifier = id.split(":")[0];
-        String modelIdentifier = id.split(":")[1];
+        String[] split = id.split(":");
+        String moduleIdentifier = split[0];
+        String modelIdentifier = split[1];
 
         if (moduleIdentifier.equals(ID)) {
             FileHandle handle = Gdx.files.internal("models/" + modelIdentifier + ".gltf");

@@ -5,6 +5,7 @@ import com.badlogic.gdx.ai.btree.branch.Sequence;
 import com.badlogic.gdx.ai.btree.decorator.Repeat;
 import com.badlogic.gdx.ai.btree.leaf.Wait;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.badlogic.gdx.graphics.g3d.utils.AnimationController;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Queue;
@@ -30,6 +31,7 @@ public abstract class Entity extends GameObject {
     private BehaviorTree<Entity> currentTask;
 
     protected ModelInstance instance;
+    protected AnimationController animationController;
 
     public Entity(String id) {
         super(id);
@@ -103,6 +105,18 @@ public abstract class Entity extends GameObject {
         Vector3 dir = new Vector3(velocity.x, 0f, velocity.z).nor();
         float yaw = MathUtils.atan2(dir.x, dir.z) * MathUtils.radiansToDegrees - 180;
         getRotation().set(Vector3.Y, yaw);
+    }
+
+    public void playAnimation(String name, boolean loop) {
+        if (loop) {
+            animationController.setAnimation(name, -1);
+        } else {
+            animationController.setAnimation(name);
+        }
+    }
+
+    public void stopAnimation() {
+        animationController.setAnimation(null);
     }
 
     public Vector3 getVelocity() {

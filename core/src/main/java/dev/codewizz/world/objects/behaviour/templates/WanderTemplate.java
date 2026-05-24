@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.MathUtils;
 import dev.codewizz.utils.WUtils;
 import dev.codewizz.world.Entity;
 import dev.codewizz.world.objects.behaviour.TaskTemplate;
+import dev.codewizz.world.objects.behaviour.leaves.AnimationLeaf;
 import dev.codewizz.world.objects.behaviour.leaves.MoveToLeaf;
 import dev.codewizz.world.objects.behaviour.leaves.WaitArriveLeaf;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavAgent;
@@ -24,7 +25,9 @@ public class WanderTemplate implements TaskTemplate {
         return new BehaviorTree<>(
             new Sequence<>(
                 new MoveToLeaf(NavAgent.graph.getCell(indexX, indexZ)),
-                new WaitArriveLeaf()
+                new AnimationLeaf("walk"),
+                new WaitArriveLeaf(),
+                new AnimationLeaf(null)
             ),
             entity
         );
