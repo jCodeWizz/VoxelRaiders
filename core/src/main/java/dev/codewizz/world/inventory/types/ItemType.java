@@ -1,9 +1,14 @@
 package dev.codewizz.world.inventory.types;
 
+import dev.codewizz.world.inventory.Item;
+import java.util.HashMap;
+
 public class ItemType {
 
-    public static final FoodType BERRIES = new FoodType("vxr:berries", "Berries", 1);
-    public static final ItemType LOG = new ItemType("vxr:log", "Log");
+    private static final HashMap<String, ItemType> REGISTRY = new HashMap<>();
+
+    public static final ItemType BERRIES = register(new FoodType("vxr:berries", "Berries", 1));
+    public static final ItemType LOG = register(new ItemType("vxr:log", "Log"));
 
     private final String id;
     private final String name;
@@ -11,6 +16,14 @@ public class ItemType {
     public ItemType(String id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public static ItemType register(ItemType type) {
+        return REGISTRY.put(type.id, type);
+    }
+
+    public static ItemType find(String id) {
+        return REGISTRY.get(id);
     }
 
     public String getId() {

@@ -22,6 +22,7 @@ public class Settlement {
     private final Queue<TaskTemplate> tasks;
     private final List<Hermit> members;
     private final List<Storage> storages;
+    private final List<GameObject> stations;
 
     public Settlement(World world, Vector3 position) {
         this.world = world;
@@ -29,10 +30,11 @@ public class Settlement {
         this.tasks = new Queue<>();
         this.members = new ArrayList<>();
         this.storages = new ArrayList<>();
+        this.stations = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
             Hermit hermit = new Hermit();
-            hermit.getPosition().set(position.x, position.y + hermit.getSize().y / 2f, position.z);
+            hermit.getPosition().set(position.x, position.y, position.z);
             addMember(hermit);
         }
     }
@@ -87,5 +89,17 @@ public class Settlement {
 
     public void removeStorage(Storage storage) {
         storages.remove(storage);
+    }
+
+    public void addStation(GameObject station) {
+        stations.add(station);
+    }
+
+    public List<GameObject> getStations() {
+        return stations;
+    }
+
+    public void removeStation(GameObject station) {
+        stations.remove(station);
     }
 }
