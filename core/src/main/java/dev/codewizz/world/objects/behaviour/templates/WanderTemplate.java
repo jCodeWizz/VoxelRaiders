@@ -25,7 +25,7 @@ public class WanderTemplate implements TaskTemplate {
         return new BehaviorTree<>(
             new Sequence<>(
                 new MoveToLeaf(NavAgent.graph.getCell(indexX, indexZ)),
-                new AnimationLeaf("walk"),
+                new AnimationLeaf("walk", true),
                 new WaitArriveLeaf(),
                 new AnimationLeaf(null)
             ),
