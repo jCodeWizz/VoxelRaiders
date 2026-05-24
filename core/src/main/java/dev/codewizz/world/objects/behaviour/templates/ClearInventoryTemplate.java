@@ -2,6 +2,7 @@ package dev.codewizz.world.objects.behaviour.templates;
 
 import com.badlogic.gdx.ai.btree.BehaviorTree;
 import com.badlogic.gdx.ai.btree.branch.Sequence;
+import com.badlogic.gdx.ai.btree.leaf.Wait;
 import dev.codewizz.main.Main;
 import dev.codewizz.utils.Logger;
 import dev.codewizz.world.Entity;
@@ -20,6 +21,22 @@ public class ClearInventoryTemplate implements TaskTemplate {
     public BehaviorTree<Entity> create(Entity entity) {
         Hermit hermit = (Hermit) entity;
         Storage storage = Main.instance.getWorld().getSettlement().findStorage(hermit);
+
+        if (storage == null) {
+            return new BehaviorTree<>(
+                new Sequence<>(
+                      new Wait<>(2f),
+                      new ActionLeaf<>() {
+                          @Override
+                          public boolean action() {
+                              hermit.getInventory().getItems().clear(); //TODO: clearing items when no storage found
+                              return true;
+                          }
+                      }
+                ),
+                entity
+            );
+        }
 
         return new BehaviorTree<>(
             new Sequence<>(
