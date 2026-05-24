@@ -1,6 +1,7 @@
 package dev.codewizz.world.objects;
 
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.badlogic.gdx.graphics.g3d.utils.AnimationController;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.WUtils;
 import dev.codewizz.world.Entity;
@@ -19,6 +20,14 @@ public class Cow extends Entity {
         super("vxr:cow");
 
         instance = new ModelInstance(Assets.findModel(getId()));
+        animationController = new AnimationController(instance);
+    }
+
+    @Override
+    public void update(float dt) {
+        super.update(dt);
+
+        animationController.update(dt);
     }
 
     @Override

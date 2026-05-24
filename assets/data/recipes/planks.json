@@ -1,0 +1,16 @@
+{
+  "type": "chopping",
+  "duration": 2,
+  "input": [
+    {
+      "id": "vxr:wood",
+      "size": 2
+    }
+  ],
+  "output": [
+    {
+      "id": "vxr:plank",
+      "size": 3
+    }
+  ]
+}

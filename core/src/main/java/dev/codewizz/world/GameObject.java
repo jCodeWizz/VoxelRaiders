@@ -26,7 +26,10 @@ public abstract class GameObject {
     public abstract void update(float dt);
     public abstract void render(Renderer renderer);
 
+    public void onDestroy() {}
+
     public void destroy() {
+        onDestroy();
         Main.instance.getWorld().removeObject(this);
     }
 
