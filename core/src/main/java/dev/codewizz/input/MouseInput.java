@@ -132,7 +132,7 @@ public class MouseInput implements InputProcessor {
                     dragPosition = null;
                     dragPosition2 = null;
                     selectModelInstance.transform
-                        .setToTranslation(0, 10.52f, 0)
+                        .setToTranslation(0, 10.55f, 0)
                         .scale(0, 1f, 0);
                 }
             }
@@ -168,7 +168,7 @@ public class MouseInput implements InputProcessor {
             float centerZ = (minZ + maxZ) / 2f;
 
             selectModelInstance.transform
-                .setToTranslation(centerX, 10.52f, centerZ)
+                .setToTranslation(centerX, 10.55f, centerZ)
                 .scale(width, 1f, depth);
         }
     }
