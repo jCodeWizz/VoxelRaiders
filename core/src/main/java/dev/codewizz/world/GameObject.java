@@ -2,6 +2,7 @@ package dev.codewizz.world;
 
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.main.Main;
 
@@ -13,9 +14,13 @@ public abstract class GameObject {
     private final Vector3 size;
 
     private final String id;
+    protected String name;
+    protected String description;
 
     public GameObject(String id) {
         this.id = id;
+        this.name = "Unnamed Object";
+        this.description = "This is quite boring, it might be useful however!";
 
         position = new Vector3();
         rotation = new Quaternion();
@@ -31,6 +36,10 @@ public abstract class GameObject {
     public void destroy() {
         onDestroy();
         Main.instance.getWorld().removeObject(this);
+    }
+
+    public void addButtonsToSelectMenu(GameObject target, Table buttons)  {
+
     }
 
     public Vector3 getPosition() {
@@ -51,5 +60,21 @@ public abstract class GameObject {
 
     public Vector3 getSize() {
         return size;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

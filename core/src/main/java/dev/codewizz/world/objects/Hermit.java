@@ -28,6 +28,9 @@ public class Hermit extends Entity {
     public Hermit() {
         super("vxr:hermit");
 
+        this.name = "Hermit";
+        this.description = "Friends!";
+
         instance = new ModelInstance(MODEL);
         getSize().set(0.8f, 1.5f, 0.8f);
         inventory = new Inventory(5);

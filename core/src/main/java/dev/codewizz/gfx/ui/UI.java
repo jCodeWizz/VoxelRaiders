@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import dev.codewizz.gfx.ui.panels.Panel;
+import dev.codewizz.gfx.ui.panels.SelectPanel;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,8 @@ public class UI {
     private final Table root;
 
     private final ArrayList<Panel> panels = new ArrayList<>();
+
+    public SelectPanel selectPanel;
 
     public UI() {
         stage = new Stage(new ScreenViewport());

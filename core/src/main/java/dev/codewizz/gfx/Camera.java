@@ -35,7 +35,7 @@ public class Camera implements InputProcessor {
             Gdx.graphics.getHeight()
         );
 
-        cam.near = 0.1f;
+        cam.near = 1f;
         cam.far = 1000f;
 
         updateCamera();

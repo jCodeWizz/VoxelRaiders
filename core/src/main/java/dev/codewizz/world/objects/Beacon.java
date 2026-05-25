@@ -21,6 +21,9 @@ public class Beacon extends GameObject {
     public Beacon() {
         super("vxr:beacon");
 
+        this.name = "Beacon";
+        this.description = "Marker of your home base, a true treasure";
+
         instance = new ModelInstance(MODEL);
     }
 

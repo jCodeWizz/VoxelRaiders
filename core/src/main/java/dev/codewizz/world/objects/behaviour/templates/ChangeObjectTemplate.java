@@ -32,6 +32,7 @@ public class ChangeObjectTemplate implements TaskTemplate {
                     public boolean action() {
                         toReplace.destroy();
                         result.getPosition().set(toReplace.getPosition());
+                        result.getRotation().set(toReplace.getRotation());
                         Main.instance.getWorld().addObject(result);
                         return true;
                     }

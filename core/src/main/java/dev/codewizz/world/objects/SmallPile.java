@@ -14,6 +14,9 @@ public class SmallPile extends Storage {
     public SmallPile() {
         super("vxr:small-pile", 1);
 
+        this.name = "Small Pile";
+        this.description = "Can store infinte amounts of 1 type";
+
         this.instance = new ModelInstance(Assets.findModel(getId()));
     }
 

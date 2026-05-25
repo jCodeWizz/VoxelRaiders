@@ -19,6 +19,9 @@ public class Cow extends Entity {
     public Cow() {
         super("vxr:cow");
 
+        this.name = "Cow";
+        this.description = "Likes to Mooove it Mooove it";
+
         instance = new ModelInstance(Assets.findModel(getId()));
         animationController = new AnimationController(instance);
     }

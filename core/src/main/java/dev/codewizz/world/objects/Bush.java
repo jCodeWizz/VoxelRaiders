@@ -20,6 +20,9 @@ public class Bush extends Gatherable {
     public Bush() {
         super("vxr:bush");
 
+        this.name = "Berry Bush";
+        this.description = "Can be harvested for berries, tasty!";
+
         this.instance = new ModelInstance(Assets.findModel(getId()));
         this.getRotation().setFromAxis(Vector3.Y, WUtils.getRandom(0, 360));
         float scale = WUtils.RANDOM.nextFloat() * 0.5f + 1f;

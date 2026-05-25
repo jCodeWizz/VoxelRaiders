@@ -13,6 +13,9 @@ public class Pebbles extends GameObject {
     public Pebbles() {
         super("vxr:pebbles");
 
+        this.name = "Pebbles";
+        this.description = "Don't step on them with bare feet...";
+
         this.instance = new ModelInstance(Assets.findModel(getId()));
     }
 

@@ -74,9 +74,17 @@ public class MouseInput implements InputProcessor {
             }
         } else {
             if (button == Input.Buttons.LEFT) {
+
+                if (Main.instance.getRenderer().getUI().selectPanel != null) {
+                    Main.instance.getRenderer().getUI().selectPanel.close();
+                    Main.instance.getRenderer().getUI().selectPanel = null;
+                }
+
                 PickObjectResult objectResult = pickObject(camera, world, screenX, screenY);
                 if (objectResult.getObject() != null) {
-                    Main.instance.getRenderer().getUI().open(new SelectPanel(objectResult.getObject()));
+                    Main.instance.getRenderer().getUI().selectPanel = new SelectPanel(objectResult.getObject());
+                    Main.instance.getRenderer().getUI().open(Main.instance.getRenderer().getUI().selectPanel);
+                    return true;
                 }
             }
 
