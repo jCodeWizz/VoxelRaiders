@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.math.collision.Ray;
 import dev.codewizz.gfx.Camera;
+import dev.codewizz.gfx.ui.panels.SelectPanel;
 import dev.codewizz.input.result.PickAreaListener;
 import dev.codewizz.input.result.PickChunkResult;
 import dev.codewizz.input.result.PickObjectResult;
@@ -75,17 +76,7 @@ public class MouseInput implements InputProcessor {
             if (button == Input.Buttons.LEFT) {
                 PickObjectResult objectResult = pickObject(camera, world, screenX, screenY);
                 if (objectResult.getObject() != null) {
-
-                    if (objectResult.getObject() instanceof Gatherable) {
-                        Gatherable gatherable = (Gatherable) objectResult.getObject();
-
-                        if (gatherable.isTasked()) return false;
-
-                        Main.instance.getWorld().getSettlement().addTask(new GatherTemplate(gatherable));
-                        gatherable.setTasked(true);
-
-                        return true;
-                    }
+                    Main.instance.getRenderer().getUI().open(new SelectPanel(objectResult.getObject()));
                 }
             }
 

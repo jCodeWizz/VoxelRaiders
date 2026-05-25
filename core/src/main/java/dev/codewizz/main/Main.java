@@ -47,7 +47,7 @@ public class Main extends ApplicationAdapter {
             world.addObject(cow);
         }
 
-        Gdx.input.setInputProcessor(new InputMultiplexer(renderer.getUiStage(), new MouseInput(renderer.getCamera(), world), new KeyInput(renderer.getCamera(), world), renderer.getCamera().getInputController()));
+        Gdx.input.setInputProcessor(new InputMultiplexer(renderer.getUiStage(), new MouseInput(renderer.getCamera(), world), new KeyInput(renderer.getCamera(), world), renderer.getCamera()));
         Logger.log("Game started");
     }
 

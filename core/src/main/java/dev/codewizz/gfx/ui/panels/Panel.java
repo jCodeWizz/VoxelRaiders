@@ -33,6 +33,8 @@ public abstract class Panel extends Table {
         add(stack).size(width, height);
     }
 
+    public void update() {}
+
     abstract void setup();
 
     public void open() {

@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import dev.codewizz.gfx.ui.panels.Panel;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class UI {
     private final ArrayList<Panel> panels = new ArrayList<>();
 
     public UI() {
-        stage = new Stage(new ExtendViewport(1920, 1080));
+        stage = new Stage(new ScreenViewport());
         root = new Table();
         root.setFillParent(true);
         stage.addActor(root);
@@ -32,9 +33,15 @@ public class UI {
         });
     }
 
+    public void update() {
+        for (Panel panel : panels) {
+            panel.update();
+        }
+    }
+
     public void open(Panel panel) {
         panel.open();
-        panel.setFillParent(true);
+        panel.setFillParent(false);
         stage.addActor(panel);
         panels.add(panel);
     }

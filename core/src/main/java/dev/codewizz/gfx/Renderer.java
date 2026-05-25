@@ -104,6 +104,7 @@ public class Renderer {
         modelBatch.end();
 
         uiHandler.getStage().act(Gdx.graphics.getDeltaTime());
+        uiHandler.update();
         uiHandler.getStage().draw();
     }
 
