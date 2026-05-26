@@ -67,7 +67,9 @@ public class Tree extends Gatherable {
             button.getImageCell().expand().fill();
 
             buttons.add(button).size(22 * UI.SCALE, 24 * UI.SCALE).expand().top();
-            button.addListener(new TextTooltip("Convert to Chopping Block", UI.skin));
+            TextTooltip tooltip = new TextTooltip("Convert to Chopping Block", UI.skin);
+            button.addListener(tooltip);
+            tooltip.setInstant(true);
             button.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {

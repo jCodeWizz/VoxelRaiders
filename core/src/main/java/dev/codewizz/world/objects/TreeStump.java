@@ -1,7 +1,6 @@
 package dev.codewizz.world.objects;
 
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
-import com.badlogic.gdx.math.Vector3;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.main.Main;
 import dev.codewizz.utils.Assets;

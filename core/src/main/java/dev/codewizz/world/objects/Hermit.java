@@ -12,6 +12,7 @@ import dev.codewizz.utils.Logger;
 import dev.codewizz.world.Entity;
 import dev.codewizz.world.inventory.Inventory;
 import dev.codewizz.world.objects.behaviour.TaskTemplate;
+import dev.codewizz.world.objects.behaviour.jobs.Job;
 import dev.codewizz.world.objects.behaviour.templates.ClearInventoryTemplate;
 import dev.codewizz.world.objects.behaviour.templates.IdleWaitTemplate;
 
@@ -24,6 +25,7 @@ public class Hermit extends Entity {
     private static final Model MODEL = new ModelBuilder().createBox(0.8f, 1.5f, 0.8f, MATERIAL,VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
 
     private Inventory inventory;
+    private Job job;
 
     public Hermit() {
         super("vxr:hermit");
