@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.Queue;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
 import dev.codewizz.world.inventory.Item;
+import dev.codewizz.world.inventory.types.ItemType;
 import dev.codewizz.world.objects.Hermit;
 import dev.codewizz.world.objects.Storage;
 import dev.codewizz.world.objects.behaviour.TaskTemplate;
@@ -49,6 +50,28 @@ public class Settlement {
 
         for (Storage storage : storages) {
             if (storage.accepts(hermit.getInventory().getItems().values())) {
+                return storage;
+            }
+        }
+
+        return null;
+    }
+
+    public Item findItem(ItemType type) {
+        Item item = new Item(type, 0);
+        for (Storage storage : getStorages()) {
+            item.setSize(item.getSize() + storage.getInventory().getItemSize(type));
+        }
+
+        return item;
+    }
+
+    public Storage findStorage(Item item, Hermit hermit) {
+        List<Storage> storages = new ArrayList<>(getStorages());
+        storages.sort((o1, o2) -> compare(o1, o2, hermit));
+
+        for (Storage storage : storages) {
+            if (storage.getInventory().containsItem(item)) {
                 return storage;
             }
         }

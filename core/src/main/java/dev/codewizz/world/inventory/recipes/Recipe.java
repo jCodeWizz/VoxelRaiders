@@ -70,7 +70,7 @@ public class Recipe {
     }
 
     public Array<Item> getOutput() {
-        return output;
+        return new Array<>(output);
     }
 
     public void setOutput(Array<Item> output) {
@@ -78,7 +78,7 @@ public class Recipe {
     }
 
     public Array<Item> getInput() {
-        return input;
+        return new Array<>(input);
     }
 
     public void setInput(Array<Item> input) {

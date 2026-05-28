@@ -26,7 +26,7 @@ public class ClearInventoryTemplate implements TaskTemplate {
             return new BehaviorTree<>(
                 new Sequence<>(
                       new Wait<>(2f),
-                      new ActionLeaf<>() {
+                      new ActionLeaf<Entity>() {
                           @Override
                           public boolean action() {
                               hermit.getInventory().getItems().clear(); //TODO: clearing items when no storage found
@@ -42,7 +42,7 @@ public class ClearInventoryTemplate implements TaskTemplate {
             new Sequence<>(
                 new MoveToLeaf(NavAgent.graph.getCell(storage.getPosition())),
                 new WaitArriveLeaf(),
-                new ActionLeaf<>() {
+                new ActionLeaf<Entity>() {
                     @Override
                     public boolean action() {
                         for (Item item : hermit.getInventory().getItems().values()) {

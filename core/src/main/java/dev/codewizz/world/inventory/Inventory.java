@@ -1,5 +1,7 @@
 package dev.codewizz.world.inventory;
 
+import dev.codewizz.world.inventory.types.ItemType;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +58,13 @@ public class Inventory {
         if (items.size() == maxSize) { return false; }
         items.put(item.getType().getId(), item);
         return true;
+    }
+
+    public int getItemSize(ItemType type) {
+        if (items.containsKey(type.getId())) {
+            return items.get(type.getId()).getSize();
+        }
+        return 0;
     }
 
     public HashMap<String, Item> getItems() {
