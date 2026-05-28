@@ -6,6 +6,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.model.Animation;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonReader;
+import dev.codewizz.world.inventory.Item;
+import dev.codewizz.world.inventory.recipes.Recipe;
+import dev.codewizz.world.inventory.types.ItemType;
 import net.mgsx.gltf.loaders.gltf.GLTFLoader;
 import net.mgsx.gltf.scene3d.scene.SceneAsset;
 
@@ -27,6 +33,8 @@ public class Assets {
         sprites.put("select-menu", new Sprite(new Texture(Gdx.files.internal("ui/drawables/select-menu.png"))));
         sprites.put("select-menu-head", new Sprite(new Texture(Gdx.files.internal("ui/drawables/select-menu-head.png"))));
 
+        Recipe.register("vxr:wood", Recipe.fromJson("data/recipes/planks.json"));
+        Recipe.register("vxr:firewood", Recipe.fromJson("data/recipes/firewood.json"));
     }
 
     public static Model findModel(String id) {

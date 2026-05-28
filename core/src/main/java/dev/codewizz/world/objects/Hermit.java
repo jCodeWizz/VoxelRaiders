@@ -6,12 +6,16 @@ import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
+import com.badlogic.gdx.graphics.g3d.model.Node;
+import com.badlogic.gdx.graphics.g3d.model.NodePart;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
+import com.badlogic.gdx.utils.Timer;
 import dev.codewizz.main.Main;
 import dev.codewizz.utils.Logger;
 import dev.codewizz.world.Entity;
 import dev.codewizz.world.inventory.Inventory;
 import dev.codewizz.world.objects.behaviour.TaskTemplate;
+import dev.codewizz.world.objects.behaviour.jobs.Builder;
 import dev.codewizz.world.objects.behaviour.jobs.Job;
 import dev.codewizz.world.objects.behaviour.templates.ClearInventoryTemplate;
 import dev.codewizz.world.objects.behaviour.templates.IdleWaitTemplate;
@@ -36,6 +40,7 @@ public class Hermit extends Entity {
         instance = new ModelInstance(MODEL);
         getSize().set(0.8f, 1.5f, 0.8f);
         inventory = new Inventory(5);
+        setJob(new Builder(this));
     }
 
     @Override
@@ -45,20 +50,15 @@ public class Hermit extends Entity {
             return CLEAR;
         }
 
-        TaskTemplate next = null;
-        for (TaskTemplate t : Main.instance.getWorld().getSettlement().getTasks()) {
-            if (t.canTake(this)) {
-                next = t;
-                break;
-            }
-        }
+        TaskTemplate task = job.findNewTask();
 
-        if (next != null) {
-            Main.instance.getWorld().getSettlement().getTasks().removeValue(next, false);
-            return next;
-        }
+        return task == null ? WAIT : task;
+    }
 
-        return WAIT;
+    public Job getJob() { return job; }
+
+    public void setJob(Job job) {
+        this.job = job;
     }
 
     public Inventory getInventory() {
