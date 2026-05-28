@@ -35,6 +35,7 @@ public class Cow extends Entity {
 
     @Override
     public TaskTemplate findNewTask() {
+        animationController.setAnimation(null);
         int type = WUtils.getRandom(0, 3);
 
         if (type == 0) {

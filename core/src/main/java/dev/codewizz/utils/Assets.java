@@ -33,7 +33,7 @@ public class Assets {
         sprites.put("select-menu", new Sprite(new Texture(Gdx.files.internal("ui/drawables/select-menu.png"))));
         sprites.put("select-menu-head", new Sprite(new Texture(Gdx.files.internal("ui/drawables/select-menu-head.png"))));
 
-        Recipe.register("vxr:wood", Recipe.fromJson("data/recipes/planks.json"));
+        Recipe.register("vxr:planks", Recipe.fromJson("data/recipes/planks.json"));
         Recipe.register("vxr:firewood", Recipe.fromJson("data/recipes/firewood.json"));
     }
 

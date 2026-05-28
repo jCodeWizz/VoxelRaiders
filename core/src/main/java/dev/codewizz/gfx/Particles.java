@@ -34,6 +34,7 @@ public class Particles {
 
     public void load() {
         assets.load("particles/dust.pfx", ParticleEffect.class, loadParam);
+        assets.load("particles/grass.pfx", ParticleEffect.class, loadParam);
         assets.finishLoading();
     }
 
