@@ -1,0 +1,103 @@
+
+ui.png
+size: 512, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+build-icon
+  rotate: false
+  xy: 158, 108
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+close-icon
+  rotate: false
+  xy: 260, 608
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+icon
+  rotate: false
+  xy: 158, 82
+  size: 22, 24
+  split: 6, 6, 6, 8
+  pad: 0, 0, 0, 0
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+raw-icon
+  rotate: false
+  xy: 158, 82
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+icon-board
+  rotate: false
+  xy: 260, 634
+  size: 146, 20
+  orig: 146, 20
+  offset: 0, 0
+  index: -1
+icon-board-extension
+  rotate: false
+  xy: 408, 643
+  size: 1, 11
+  orig: 1, 11
+  offset: 0, 0
+  index: -1
+icon-pressed
+  rotate: false
+  xy: 2, 2
+  size: 22, 24
+  split: 6, 6, 8, 6
+  pad: 0, 0, 0, 0
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+raw-icon-pressed
+  rotate: false
+  xy: 2, 2
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+icon-unavailable
+  rotate: false
+  xy: 52, 52
+  size: 22, 24
+  split: 6, 6, 6, 8
+  pad: 0, 0, 0, 0
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+raw-icon-unavailable
+  rotate: false
+  xy: 52, 52
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+path-menu
+  rotate: false
+  xy: 2, 134
+  size: 256, 520
+  orig: 256, 520
+  offset: 0, 0
+  index: -1
+select-menu
+  rotate: false
+  xy: 2, 78
+  size: 154, 54
+  orig: 154, 54
+  offset: 0, 0
+  index: -1
+select-menu-head
+  rotate: false
+  xy: 2, 28
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1

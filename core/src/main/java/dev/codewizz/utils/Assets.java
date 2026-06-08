@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.model.Animation;
 import com.badlogic.gdx.utils.Array;
@@ -23,15 +24,16 @@ public class Assets {
 
     private static final HashMap<String, Model> models = new HashMap<>();
     private static final HashMap<String, Sprite> sprites = new HashMap<>();
+    private static final HashMap<String, TextureAtlas> atlases = new HashMap<>();
 
     public static void load() {
-        sprites.put("icon-board-extension", new Sprite(new Texture(Gdx.files.internal("ui/drawables/icon-board-extension.png"))));
-        sprites.put("icon-board", new Sprite(new Texture(Gdx.files.internal("ui/drawables/icon-board.png"))));
-        sprites.put("build-icon", new Sprite(new Texture(Gdx.files.internal("ui/drawables/build-icon.png"))));
-        sprites.put("close-icon", new Sprite(new Texture(Gdx.files.internal("ui/drawables/close-icon.png"))));
-        sprites.put("path-menu", new Sprite(new Texture(Gdx.files.internal("ui/drawables/path-menu.png"))));
-        sprites.put("select-menu", new Sprite(new Texture(Gdx.files.internal("ui/drawables/select-menu.png"))));
-        sprites.put("select-menu-head", new Sprite(new Texture(Gdx.files.internal("ui/drawables/select-menu-head.png"))));
+        atlases.put("ui", new TextureAtlas(Gdx.files.internal("packs/ui.atlas")));
+
+        for (TextureAtlas t : atlases.values()) {
+            for (TextureAtlas.AtlasRegion s : t.getRegions()) {
+                sprites.put(s.name, t.createSprite(s.name));
+            }
+        }
 
         Recipe.register("vxr:planks", Recipe.fromJson("data/recipes/planks.json"));
         Recipe.register("vxr:firewood", Recipe.fromJson("data/recipes/firewood.json"));
