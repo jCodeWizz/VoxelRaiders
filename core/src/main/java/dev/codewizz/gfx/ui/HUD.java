@@ -52,15 +52,15 @@ public class HUD extends Table {
 
         ImageButton settlementButton = icon("manage-icon");
         ImageButton pathButton = icon("path-icon");
-        ImageButton buildButton = icon("construction-icon");
+        ImageButton constructionButton = icon("construction-icon");
         ImageButton peopleButton = icon("people-icon");
         ImageButton buildingButton = icon("build-icon");
 
         center.add(settlementButton).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
         center.add(pathButton).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE).padLeft(6 * UI.SCALE).padRight(6 * UI.SCALE);
 
-        center.add(buildButton).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
-        buildButton.addListener(new ChangeListener() {
+        center.add(constructionButton).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
+        constructionButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
                 Main.instance.getRenderer().getUI().open(new ObjectPanel());
