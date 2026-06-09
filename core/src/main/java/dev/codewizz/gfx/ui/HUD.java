@@ -50,10 +50,15 @@ public class HUD extends Table {
     private Table centerTable() {
         Table center = new Table();
 
-        center.add(new ImageButton(UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
-        center.add(new ImageButton(UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE).padLeft(6 * UI.SCALE).padRight(6 * UI.SCALE);
+        ImageButton settlementButton = icon("manage-icon");
+        ImageButton pathButton = icon("path-icon");
+        ImageButton buildButton = icon("construction-icon");
+        ImageButton peopleButton = icon("people-icon");
+        ImageButton buildingButton = icon("build-icon");
 
-        ImageButton buildButton = icon("build-icon");
+        center.add(settlementButton).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
+        center.add(pathButton).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE).padLeft(6 * UI.SCALE).padRight(6 * UI.SCALE);
+
         center.add(buildButton).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
         buildButton.addListener(new ChangeListener() {
             @Override
@@ -63,8 +68,8 @@ public class HUD extends Table {
         });
 
 
-        center.add(new ImageButton(UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE).padLeft(6 * UI.SCALE).padRight(6 * UI.SCALE);
-        center.add(new ImageButton(UI.skin)).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
+        center.add(buildingButton).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE).padLeft(6 * UI.SCALE).padRight(6 * UI.SCALE);
+        center.add(peopleButton).size(22 * UI.SCALE, 24 * UI.SCALE).padBottom(16 * UI.SCALE);
 
         return center;
     }
