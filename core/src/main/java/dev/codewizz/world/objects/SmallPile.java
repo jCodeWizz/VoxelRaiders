@@ -1,12 +1,16 @@
 package dev.codewizz.world.objects;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.utils.Assets;
+import dev.codewizz.world.inventory.Item;
 import dev.codewizz.world.inventory.types.ItemType;
 
-public class SmallPile extends Storage {
+import java.util.List;
+
+public class SmallPile extends Storage implements IBuy{
 
     private ItemType storageType;
     private final ModelInstance instance;
@@ -38,5 +42,15 @@ public class SmallPile extends Storage {
     @Override
     public void render(Renderer renderer) {
         renderer.renderObjectInstance(this, instance);
+    }
+
+    @Override
+    public Model getIconModel() {
+        return Assets.findModel(getId());
+    }
+
+    @Override
+    public List<Item> getCosts() {
+        return List.of(new Item(ItemType.LOG, 2), new Item(ItemType.PLANK, 3));
     }
 }

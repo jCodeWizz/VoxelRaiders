@@ -44,7 +44,7 @@ public class UI {
 
     public void open(Panel panel) {
         panel.open();
-        panel.setFillParent(false);
+        panel.setFillParent(true);
         stage.addActor(panel);
         panels.add(panel);
     }

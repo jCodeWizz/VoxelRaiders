@@ -6,14 +6,35 @@ filter: Linear, Linear
 repeat: none
 default
   rotate: false
-  xy: 1, 151
+  xy: 1, 238
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
+buyslot
+  rotate: false
+  xy: 1, 151
+  size: 85, 85
+  orig: 85, 85
+  offset: 0, 0
+  index: -1
+buyslot-hover
+  rotate: false
+  xy: 259, 281
+  size: 85, 85
+  orig: 85, 85
+  offset: 0, 0
+  index: -1
+buyslot-pressed
+  rotate: false
+  xy: 1, 64
+  size: 85, 85
+  orig: 85, 85
+  offset: 0, 0
+  index: -1
 icon
   rotate: false
-  xy: 1, 125
+  xy: 88, 212
   size: 22, 24
   split: 6, 6, 6, 8
   pad: 0, 0, 0, 0
@@ -22,7 +43,7 @@ icon
   index: -1
 raw-icon
   rotate: false
-  xy: 1, 125
+  xy: 88, 212
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
@@ -45,7 +66,7 @@ raw-icon-pressed
   index: -1
 icon-unavailable
   rotate: false
-  xy: 1, 99
+  xy: 346, 342
   size: 22, 24
   split: 6, 6, 6, 8
   pad: 0, 0, 0, 0
@@ -54,7 +75,7 @@ icon-unavailable
   index: -1
 raw-icon-unavailable
   rotate: false
-  xy: 1, 99
+  xy: 346, 342
   size: 22, 24
   orig: 22, 24
   offset: 0, 0

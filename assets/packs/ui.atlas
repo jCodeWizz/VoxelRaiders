@@ -1,61 +1,82 @@
 
 ui.png
-size: 512, 1024
+size: 512, 512
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 area-icon
   rotate: false
-  xy: 158, 160
+  xy: 440, 486
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 build-icon
   rotate: false
-  xy: 260, 660
+  xy: 158, 22
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
+buyslot
+  rotate: false
+  xy: 266, 425
+  size: 85, 85
+  orig: 85, 85
+  offset: 0, 0
+  index: -1
+buyslot-hover
+  rotate: false
+  xy: 266, 338
+  size: 85, 85
+  orig: 85, 85
+  offset: 0, 0
+  index: -1
+buyslot-pressed
+  rotate: false
+  xy: 353, 425
+  size: 85, 85
+  orig: 85, 85
+  offset: 0, 0
+  index: -1
 close-icon
   rotate: false
-  xy: 2, 54
+  xy: 266, 312
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 construction-icon
   rotate: false
-  xy: 52, 104
+  xy: 353, 349
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 discord-icon
   rotate: false
-  xy: 158, 134
+  xy: 403, 399
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 done-icon
   rotate: false
-  xy: 182, 160
+  xy: 440, 460
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 door-icon
   rotate: false
-  xy: 260, 634
+  xy: 464, 486
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 icon
   rotate: false
-  xy: 26, 54
+  xy: 266, 286
   size: 22, 24
   split: 6, 6, 6, 8
   pad: 0, 0, 0, 0
@@ -64,28 +85,28 @@ icon
   index: -1
 raw-icon
   rotate: false
-  xy: 26, 54
+  xy: 266, 286
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 icon-board
   rotate: false
-  xy: 260, 686
+  xy: 158, 48
   size: 146, 20
   orig: 146, 20
   offset: 0, 0
   index: -1
 icon-board-extension
   rotate: false
-  xy: 308, 647
+  xy: 403, 386
   size: 1, 11
   orig: 1, 11
   offset: 0, 0
   index: -1
 icon-pressed
   rotate: false
-  xy: 284, 660
+  xy: 488, 486
   size: 22, 24
   split: 6, 6, 8, 6
   pad: 0, 0, 0, 0
@@ -94,14 +115,14 @@ icon-pressed
   index: -1
 raw-icon-pressed
   rotate: false
-  xy: 284, 660
+  xy: 488, 486
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 icon-unavailable
   rotate: false
-  xy: 2, 28
+  xy: 182, 22
   size: 22, 24
   split: 6, 6, 6, 8
   pad: 0, 0, 0, 0
@@ -110,133 +131,133 @@ icon-unavailable
   index: -1
 raw-icon-unavailable
   rotate: false
-  xy: 2, 28
+  xy: 182, 22
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 manage-icon
   rotate: false
-  xy: 76, 104
+  xy: 290, 312
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 new-build-icon
   rotate: false
-  xy: 182, 134
+  xy: 377, 349
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 path-icon
   rotate: false
-  xy: 206, 160
+  xy: 440, 434
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 path-menu
   rotate: false
-  xy: 2, 186
-  size: 256, 520
-  orig: 256, 520
+  xy: 2, 70
+  size: 262, 440
+  orig: 262, 440
   offset: 0, 0
   index: -1
 people-icon
   rotate: false
-  xy: 260, 608
+  xy: 464, 460
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 plus-icon
   rotate: false
-  xy: 284, 634
+  xy: 488, 460
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 select-menu
   rotate: false
-  xy: 2, 130
+  xy: 2, 14
   size: 154, 54
   orig: 154, 54
   offset: 0, 0
   index: -1
 select-menu-head
   rotate: false
-  xy: 2, 80
+  xy: 353, 375
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 speed-0
   rotate: false
-  xy: 206, 148
+  xy: 82, 2
   size: 9, 10
   orig: 9, 10
   offset: 0, 0
   index: -1
 speed-0-pressed
   rotate: false
-  xy: 260, 596
+  xy: 104, 2
   size: 9, 10
   orig: 9, 10
   offset: 0, 0
   index: -1
 speed-1
   rotate: false
-  xy: 230, 174
+  xy: 93, 2
   size: 9, 10
   orig: 9, 10
   offset: 0, 0
   index: -1
 speed-1-pressed
   rotate: false
-  xy: 284, 622
+  xy: 115, 2
   size: 9, 10
   orig: 9, 10
   offset: 0, 0
   index: -1
 speed-2
   rotate: false
-  xy: 26, 42
+  xy: 48, 2
   size: 15, 10
   orig: 15, 10
   offset: 0, 0
   index: -1
 speed-2-pressed
   rotate: false
-  xy: 100, 118
+  xy: 65, 2
   size: 15, 10
   orig: 15, 10
   offset: 0, 0
   index: -1
 speed-3
   rotate: false
-  xy: 408, 696
+  xy: 2, 2
   size: 21, 10
   orig: 21, 10
   offset: 0, 0
   index: -1
 speed-3-pressed
   rotate: false
-  xy: 52, 92
+  xy: 25, 2
   size: 21, 10
   orig: 21, 10
   offset: 0, 0
   index: -1
 tool-icon
   rotate: false
-  xy: 308, 660
+  xy: 206, 22
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 work-icon
   rotate: false
-  xy: 2, 2
+  xy: 266, 260
   size: 22, 24
   orig: 22, 24
   offset: 0, 0

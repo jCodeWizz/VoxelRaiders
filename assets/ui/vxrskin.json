@@ -47,6 +47,11 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 		disabled: raw-icon-unavailable
 		pressedOffsetY: -2
 	}
+	buyslot: {
+		up: buyslot
+		down: buyslot-pressed
+		over: buyslot-hover
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: {
