@@ -22,6 +22,8 @@ import java.util.List;
 
 public class ConsoleMenu extends Menu {
 
+    public final static String ID = "console";
+
     private UITextField input;
     private InputListener clickListener;
     private InputListener escapeKeyListener;

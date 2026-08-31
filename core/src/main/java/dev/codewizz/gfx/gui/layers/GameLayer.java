@@ -1,7 +1,6 @@
 package dev.codewizz.gfx.gui.layers;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
@@ -10,25 +9,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import dev.codewizz.gfx.gui.UI;
 import dev.codewizz.gfx.gui.elements.UIIconButton;
-import dev.codewizz.gfx.gui.elements.UIIconMenu;
 import dev.codewizz.gfx.gui.elements.UITextTooltip;
 import dev.codewizz.gfx.gui.elements.UIToggle;
-import dev.codewizz.gfx.gui.menus.*;
+import dev.codewizz.gfx.gui.menus.AreaMenu;
+import dev.codewizz.gfx.gui.menus.ConsoleMenu;
+import dev.codewizz.gfx.gui.menus.NotificationMenu;
 import dev.codewizz.utils.Assets;
-import dev.codewizz.utils.Timer;
-import dev.codewizz.world.World;
-
-import java.util.ArrayList;
 
 public class GameLayer extends Layer {
-
-    public ArrayList<Menu> menus = new ArrayList<>();
-
-    public UIIconMenu areaMenu;
-    private NotificationMenu notificationMenu;
-    public ConsoleMenu consoleMenu;
-
-    private final Timer updateTimer;
 
     public Table main;
     private UIIconButton constructionMenuButton;
@@ -40,48 +28,15 @@ public class GameLayer extends Layer {
     public UIToggle speed2;
     public UIToggle speed3;
 
-    public GameLayer() {
-        updateTimer = new Timer(0.2f) {
-            @Override
-            public void timer() {
-                for (Menu m : menus) {
-                    if (m.isOpen() && m instanceof IUpdateDataMenu) {
-                        ((IUpdateDataMenu) m).updateData();
-                    }
-                }
-            }
-        };
-        updateTimer.setRepeat(true);
-    }
-
     @Override
     public void open(Stage stage) {
         setup();
 
-        notificationMenu = new NotificationMenu();
-        consoleMenu = new ConsoleMenu();
+        menus.put(NotificationMenu.ID, new NotificationMenu());
+        menus.put(ConsoleMenu.ID, new ConsoleMenu());
+        menus.put(AreaMenu.ID, new AreaMenu(areaMenuButton));
 
-        areaMenu = new AreaMenu(areaMenuButton);
-
-        menus.add(areaMenu);
-        menus.add(notificationMenu);
-        menus.add(consoleMenu);
-
-        notificationMenu.open();
-    }
-
-    @Override
-    public void update(float d) {
-        updateTimer.update(d);
-    }
-
-    @Override
-    public void render(SpriteBatch b) {
-        for (Menu m : menus) {
-            if (m.isOpen()) {
-                m.render(b);
-            }
-        }
+        menus.get(NotificationMenu.ID).open();
     }
 
     @Override
@@ -119,7 +74,7 @@ public class GameLayer extends Layer {
         areaMenuButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                openMenu(areaMenu);
+                openMenu(AreaMenu.ID);
             }
         });
         areaMenuButton.addListener(UITextTooltip.create("Areas"));
@@ -219,40 +174,5 @@ public class GameLayer extends Layer {
         bottomRightTable.add(speed3).size(21 * UI.SCALE, 10 * UI.SCALE).pad(0, 2 * UI.SCALE, 5 * UI.SCALE, 153 * UI.SCALE + Gdx.graphics.getWidth() * 0.01f);
 
         UI.stage.addActor(bottomRightTable);
-    }
-
-    public void openMenu(Menu menu) {
-        for (Menu m : menus) {
-            if (m.isOpen() && m.shouldClose()) {
-                if (m.equals(menu)) {
-                    m.close();
-                    return;
-                }
-
-                m.close();
-            }
-        }
-
-        menu.open();
-        if (menu instanceof IUpdateDataMenu) {
-            ((IUpdateDataMenu) menu).updateData();
-        }
-    }
-
-    public void closeMenus() {
-        for (Menu m : menus) {
-            if (m.isOpen() && m.shouldClose()) {
-                m.close();
-            }
-        }
-    }
-
-    public boolean menusClosed() {
-        for (Menu m : menus) {
-            if (m.isOpen() && m.shouldClose()) {
-                return false;
-            }
-        }
-        return true;
     }
 }

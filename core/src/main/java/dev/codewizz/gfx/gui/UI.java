@@ -20,4 +20,8 @@ public class UI {
         UI.layer = layer;
         UI.layer.open(stage);
     }
+
+    public static Layer getLayer() {
+        return layer;
+    }
 }

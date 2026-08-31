@@ -14,6 +14,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class NotificationMenu extends Menu {
 
+    public final static String ID = "notification";
+
     private static List<Notification> notifications;
 
     private static Table main;

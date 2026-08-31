@@ -8,6 +8,7 @@ import dev.codewizz.gfx.Renderer;
 import dev.codewizz.gfx.gui.UI;
 import dev.codewizz.input.KeyInput;
 import dev.codewizz.input.MouseInput;
+import dev.codewizz.input.console.Console;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.Logger;
 import dev.codewizz.world.GameObject;
@@ -32,6 +33,7 @@ public class Main extends ApplicationAdapter {
 
         Logger.log("Loading assets...");
         Assets.load();
+        Console.register();
         Logger.log("Loaded assets");
 
         Logger.log("Creating renderer...");

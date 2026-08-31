@@ -5,6 +5,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector3;
 import dev.codewizz.gfx.Camera;
+import dev.codewizz.gfx.gui.UI;
+import dev.codewizz.gfx.gui.menus.ConsoleMenu;
 import dev.codewizz.input.result.PickAreaListener;
 import dev.codewizz.input.result.PickChunkResult;
 import dev.codewizz.main.Main;
@@ -33,17 +35,8 @@ public class KeyInput implements InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
 
-        if (keycode == Input.Keys.R) {
-            if (world.getSettlement() != null) {
-                PickChunkResult result = MouseInput.pickChunk(camera, world, Gdx.input.getX(), Gdx.input.getY());
-                if (result.getChunk() != null) {
-
-                    NavCell cell = NavAgent.graph.getCell(result.getIntersection());
-                    world.getSettlement().addTask(new MoveToTemplate(cell));
-
-                    return true;
-                }
-            }
+        if (keycode == Input.Keys.F1) {
+            UI.getLayer().openMenu(ConsoleMenu.ID);
         }
 
         if (keycode == Input.Keys.H) {
@@ -59,17 +52,6 @@ public class KeyInput implements InputProcessor {
                     }
                 };
             }
-        }
-
-        if (keycode == Input.Keys.G) {
-            world.getObjectsToRender().clear();
-            world.generateFeatures();
-        }
-
-        if (keycode == Input.Keys.SPACE) {
-            SmallPile pile = new SmallPile();
-            pile.getPosition().set(new Vector3(world.getSettlement().getPosition()).add(2, 0, 2));
-            world.addObject(pile);
         }
 
         return false;

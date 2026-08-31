@@ -9,6 +9,8 @@ import dev.codewizz.utils.Logger;
 
 public class AreaMenu extends UIIconMenu {
 
+    public final static String ID = "area";
+
     public AreaMenu(UIIconButton parent) {
         super(parent);
 
