@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import dev.codewizz.gfx.gui.layers.Layer;
+import dev.codewizz.gfx.gui.UI;
 
 public class UILabel extends Label {
 
@@ -24,18 +24,18 @@ public class UILabel extends Label {
     }
 
     public static void generateFonts() {
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/basic.ttf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("ui/fonts/basic.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = (int) (11 * Layer.scale);
+        parameter.size = (int) (11 * UI.SCALE);
         buttonFont = generator.generateFont(parameter);
-        parameter.size = (int) (5 * Layer.scale);
+        parameter.size = (int) (5 * UI.SCALE);
         smallFont = generator.generateFont(parameter);
-        parameter.size = (int) (8 * Layer.scale);
+        parameter.size = (int) (8 * UI.SCALE);
         mediumFont = generator.generateFont(parameter);
 
         parameter.borderColor = Color.BLACK;
         parameter.borderWidth = 2;
-        parameter.size = (int) (6 * Layer.scale);
+        parameter.size = (int) (6 * UI.SCALE);
         toolTipFont = generator.generateFont(parameter);
 
         generator.dispose();

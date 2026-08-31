@@ -60,7 +60,7 @@ public class Assets {
         }
     }
 
-    public static Sprite findSprite(String id) {
+    public static Sprite getSprite(String id) {
         if (sprites.containsKey(id)) {
             return sprites.get(id);
         } else  {

@@ -6,8 +6,6 @@ import dev.codewizz.gfx.gui.elements.*;
 
 public abstract class Layer {
 
-    public static float scale = 3f;
-
     public static void reload() {
         UILabel.reload();
         UIIconButton.reload();

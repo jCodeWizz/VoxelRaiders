@@ -1,82 +1,124 @@
 
 ui.png
-size: 512, 512
+size: 2048, 2048
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 area-icon
   rotate: false
-  xy: 440, 486
+  xy: 1084, 1393
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 build-icon
   rotate: false
-  xy: 158, 22
+  xy: 1137, 1446
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
+button
+  rotate: false
+  xy: 1856, 2015
+  size: 66, 24
+  orig: 66, 24
+  offset: 0, 0
+  index: -1
+button-pressed
+  rotate: false
+  xy: 1236, 1498
+  size: 66, 24
+  orig: 66, 24
+  offset: 0, 0
+  index: -1
+button-unavailable
+  rotate: false
+  xy: 150, 11
+  size: 66, 24
+  orig: 66, 24
+  offset: 0, 0
+  index: -1
 buyslot
   rotate: false
-  xy: 266, 425
+  xy: 1342, 1610
   size: 85, 85
   orig: 85, 85
   offset: 0, 0
   index: -1
 buyslot-hover
   rotate: false
-  xy: 266, 338
+  xy: 1598, 1916
   size: 85, 85
   orig: 85, 85
   offset: 0, 0
   index: -1
 buyslot-pressed
   rotate: false
-  xy: 353, 425
+  xy: 854, 816
   size: 85, 85
   orig: 85, 85
   offset: 0, 0
   index: -1
 close-icon
   rotate: false
-  xy: 266, 312
+  xy: 1342, 1531
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 construction-icon
   rotate: false
-  xy: 353, 349
+  xy: 1395, 1584
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
+craftsman-icon
+  rotate: false
+  xy: 941, 869
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 discord-icon
   rotate: false
-  xy: 403, 399
+  xy: 1429, 1618
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 done-icon
   rotate: false
-  xy: 440, 460
+  xy: 1482, 1671
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 door-icon
   rotate: false
-  xy: 464, 486
+  xy: 468, 453
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+farmer-icon
+  rotate: false
+  xy: 266, 343
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+icon
+  rotate: false
+  xy: 1924, 2015
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 icon
   rotate: false
-  xy: 266, 286
+  xy: 1924, 2015
   size: 22, 24
   split: 6, 6, 6, 8
   pad: 0, 0, 0, 0
@@ -85,28 +127,35 @@ icon
   index: -1
 raw-icon
   rotate: false
-  xy: 266, 286
+  xy: 1924, 2015
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 icon-board
   rotate: false
-  xy: 158, 48
-  size: 146, 20
-  orig: 146, 20
+  xy: 2, 5
+  size: 146, 30
+  orig: 146, 30
   offset: 0, 0
   index: -1
 icon-board-extension
   rotate: false
-  xy: 403, 386
+  xy: 1076, 946
   size: 1, 11
   orig: 1, 11
   offset: 0, 0
   index: -1
 icon-pressed
   rotate: false
-  xy: 488, 486
+  xy: 1236, 1472
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+icon-pressed
+  rotate: false
+  xy: 1236, 1472
   size: 22, 24
   split: 6, 6, 8, 6
   pad: 0, 0, 0, 0
@@ -115,14 +164,21 @@ icon-pressed
   index: -1
 raw-icon-pressed
   rotate: false
-  xy: 488, 486
+  xy: 1236, 1472
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 icon-unavailable
   rotate: false
-  xy: 182, 22
+  xy: 1304, 1498
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+icon-unavailable
+  rotate: false
+  xy: 1304, 1498
   size: 22, 24
   split: 6, 6, 6, 8
   pad: 0, 0, 0, 0
@@ -131,134 +187,253 @@ icon-unavailable
   index: -1
 raw-icon-unavailable
   rotate: false
-  xy: 182, 22
+  xy: 1304, 1498
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
+info-menu
+  rotate: false
+  xy: 1084, 1697
+  size: 512, 342
+  orig: 512, 342
+  offset: 0, 0
+  index: -1
+main-menu
+  rotate: false
+  xy: 2, 959
+  size: 1080, 1080
+  orig: 1080, 1080
+  offset: 0, 0
+  index: -1
 manage-icon
   rotate: false
-  xy: 290, 312
+  xy: 218, 11
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 new-build-icon
   rotate: false
-  xy: 377, 349
+  xy: 1598, 1871
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
+notification
+  rotate: false
+  xy: 1598, 2003
+  size: 256, 36
+  orig: 256, 36
+  offset: 0, 0
+  index: -1
 path-icon
   rotate: false
-  xy: 440, 434
+  xy: 1685, 1958
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 path-menu
   rotate: false
-  xy: 2, 70
+  xy: 2, 37
   size: 262, 440
   orig: 262, 440
   offset: 0, 0
   index: -1
 people-icon
   rotate: false
-  xy: 464, 460
+  xy: 854, 771
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 plus-icon
   rotate: false
-  xy: 488, 460
+  xy: 941, 843
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
+resource-menu-background
+  rotate: false
+  xy: 266, 427
+  size: 150, 50
+  orig: 150, 50
+  offset: 0, 0
+  index: -1
 select-menu
   rotate: false
-  xy: 2, 14
+  xy: 854, 903
   size: 154, 54
   orig: 154, 54
   offset: 0, 0
   index: -1
+select-menu-background
+  rotate: false
+  xy: 1084, 1472
+  size: 150, 50
+  orig: 150, 50
+  offset: 0, 0
+  index: -1
 select-menu-head
   rotate: false
-  xy: 353, 375
+  xy: 418, 429
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
+selected-background
+  rotate: false
+  xy: 1084, 1524
+  size: 256, 171
+  orig: 256, 171
+  offset: 0, 0
+  index: -1
+settlement-menu
+  rotate: false
+  xy: 2, 479
+  size: 850, 478
+  orig: 850, 478
+  offset: 0, 0
+  index: -1
+slider
+  rotate: false
+  xy: 2, 2
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+slot-background
+  rotate: false
+  xy: 1084, 1419
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1
+slot-background-hovering
+  rotate: false
+  xy: 1342, 1557
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1
+slot-background-pressed
+  rotate: false
+  xy: 1429, 1644
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1
 speed-0
   rotate: false
-  xy: 82, 2
+  xy: 300, 365
   size: 9, 10
   orig: 9, 10
   offset: 0, 0
   index: -1
 speed-0-pressed
   rotate: false
-  xy: 104, 2
+  xy: 366, 415
   size: 9, 10
   orig: 9, 10
   offset: 0, 0
   index: -1
 speed-1
   rotate: false
-  xy: 93, 2
+  xy: 332, 381
   size: 9, 10
   orig: 9, 10
   offset: 0, 0
   index: -1
 speed-1-pressed
   rotate: false
-  xy: 115, 2
+  xy: 1084, 1381
   size: 9, 10
   orig: 9, 10
   offset: 0, 0
   index: -1
 speed-2
   rotate: false
-  xy: 48, 2
+  xy: 1742, 1991
   size: 15, 10
   orig: 15, 10
   offset: 0, 0
   index: -1
 speed-2-pressed
   rotate: false
-  xy: 65, 2
+  xy: 911, 804
   size: 15, 10
   orig: 15, 10
   offset: 0, 0
   index: -1
 speed-3
   rotate: false
-  xy: 2, 2
+  xy: 1856, 2003
   size: 21, 10
   orig: 21, 10
   offset: 0, 0
   index: -1
 speed-3-pressed
   rotate: false
-  xy: 25, 2
+  xy: 1655, 1904
   size: 21, 10
   orig: 21, 10
   offset: 0, 0
   index: -1
+tab-button
+  rotate: false
+  xy: 1598, 1897
+  size: 55, 17
+  orig: 55, 17
+  offset: 0, 0
+  index: -1
+tab-button-pressed
+  rotate: false
+  xy: 1685, 1984
+  size: 55, 17
+  orig: 55, 17
+  offset: 0, 0
+  index: -1
+tab-button-unavailable
+  rotate: false
+  xy: 854, 797
+  size: 55, 17
+  orig: 55, 17
+  offset: 0, 0
+  index: -1
+tile-highlight
+  rotate: false
+  xy: 1010, 909
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
+tile-highlight2
+  rotate: false
+  xy: 266, 377
+  size: 64, 48
+  orig: 64, 48
+  offset: 0, 0
+  index: -1
 tool-icon
   rotate: false
-  xy: 206, 22
+  xy: 975, 877
   size: 22, 24
   orig: 22, 24
   offset: 0, 0
   index: -1
 work-icon
   rotate: false
-  xy: 266, 260
+  xy: 266, 317
   size: 22, 24
   orig: 22, 24
+  offset: 0, 0
+  index: -1
+worker-icon
+  rotate: false
+  xy: 332, 393
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1

@@ -1,12 +1,11 @@
 package dev.codewizz.gfx.gui.elements;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import dev.codewizz.gfx.gui.layers.GameLayer;
-import dev.codewizz.gfx.gui.layers.Layer;
+import dev.codewizz.gfx.gui.UI;
 import dev.codewizz.gfx.gui.menus.Menu;
+
 import java.util.ArrayList;
 
 public abstract class UIIconMenu extends Menu {
@@ -15,9 +14,7 @@ public abstract class UIIconMenu extends Menu {
     private final UIIconButton parent;
     private final Table main;
 
-    public UIIconMenu(Stage stage, GameLayer layer, UIIconButton parent) {
-        super(stage, layer);
-
+    public UIIconMenu(UIIconButton parent) {
         this.parent = parent;
         this.icons = new ArrayList<>();
 
@@ -34,10 +31,10 @@ public abstract class UIIconMenu extends Menu {
             UIIconButton icon = icons.get(i);
 
             if(i == icons.size() - 1) {
-                main.add(icon).size(22 * Layer.scale, 24 * Layer.scale).pad(5, 5, 24 * Layer.scale + 10, 5);
+                main.add(icon).size(22 * UI.SCALE, 24 * UI.SCALE).pad(5, 5, 24 * UI.SCALE + 10, 5);
                 main.row();
             } else {
-                main.add(icon).size(22 * Layer.scale, 24 * Layer.scale).pad(5, 5, 0, 5);
+                main.add(icon).size(22 * UI.SCALE, 24 * UI.SCALE).pad(5, 5, 0, 5);
                 main.row();
             }
         }

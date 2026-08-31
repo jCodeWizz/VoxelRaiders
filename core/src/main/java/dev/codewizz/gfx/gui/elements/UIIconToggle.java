@@ -2,7 +2,7 @@ package dev.codewizz.gfx.gui.elements;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import dev.codewizz.gfx.gui.layers.Layer;
+import dev.codewizz.gfx.gui.UI;
 import dev.codewizz.utils.Assets;
 
 public class UIIconToggle extends UIIconButton {
@@ -30,7 +30,7 @@ public class UIIconToggle extends UIIconButton {
     public void draw(Batch batch, float parentAlpha) {
         if(pressed) {
             batch.draw(ICON_PRESSED, getX(), getY(), getWidth(), getHeight());
-            batch.draw(icon, this.getX(), this.getY() - Layer.scale * 2, getWidth(), getHeight());
+            batch.draw(icon, this.getX(), this.getY() - UI.SCALE * 2, getWidth(), getHeight());
         } else if(isDisabled()) {
             batch.draw(ICON_UNAVAILABLE, getX(), getY(), getWidth(), getHeight());
             batch.draw(icon, this.getX(), this.getY(), getWidth(), getHeight());

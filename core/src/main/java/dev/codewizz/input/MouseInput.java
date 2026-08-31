@@ -5,8 +5,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.VertexAttributes;
-import com.badlogic.gdx.graphics.g3d.*;
-import com.badlogic.gdx.graphics.g3d.attributes.BlendingAttribute;
+import com.badlogic.gdx.graphics.g3d.Material;
+import com.badlogic.gdx.graphics.g3d.Model;
+import com.badlogic.gdx.graphics.g3d.ModelBatch;
+import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.IntAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
@@ -15,22 +17,15 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.math.collision.Ray;
 import dev.codewizz.gfx.Camera;
-import dev.codewizz.gfx.ui.panels.SelectPanel;
 import dev.codewizz.input.result.PickAreaListener;
 import dev.codewizz.input.result.PickChunkResult;
 import dev.codewizz.input.result.PickObjectResult;
 import dev.codewizz.main.Main;
-import dev.codewizz.utils.Logger;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
 import dev.codewizz.world.objects.Beacon;
-import dev.codewizz.world.objects.Gatherable;
-import dev.codewizz.world.objects.behaviour.pathfinding.NavAgent;
-import dev.codewizz.world.objects.behaviour.pathfinding.NavCell;
-import dev.codewizz.world.objects.behaviour.templates.GatherTemplate;
 import dev.codewizz.world.settlement.Settlement;
 import dev.codewizz.world.voxel.Chunk;
-import dev.codewizz.world.voxel.VoxelData;
 
 public class MouseInput implements InputProcessor {
 
@@ -75,17 +70,18 @@ public class MouseInput implements InputProcessor {
         } else {
             if (button == Input.Buttons.LEFT) {
 
-                if (Main.instance.getRenderer().getUI().selectPanel != null) {
-                    Main.instance.getRenderer().getUI().selectPanel.close();
-                    Main.instance.getRenderer().getUI().selectPanel = null;
-                }
-
-                PickObjectResult objectResult = pickObject(camera, world, screenX, screenY);
-                if (objectResult.getObject() != null) {
-                    Main.instance.getRenderer().getUI().selectPanel = new SelectPanel(objectResult.getObject());
-                    Main.instance.getRenderer().getUI().open(Main.instance.getRenderer().getUI().selectPanel);
-                    return true;
-                }
+                //TODO: select menu
+//                if (Main.instance.getRenderer().getUI().selectPanel != null) {
+//                    Main.instance.getRenderer().getUI().selectPanel.close();
+//                    Main.instance.getRenderer().getUI().selectPanel = null;
+//                }
+//
+//                PickObjectResult objectResult = pickObject(camera, world, screenX, screenY);
+//                if (objectResult.getObject() != null) {
+//                    Main.instance.getRenderer().getUI().selectPanel = new SelectPanel(objectResult.getObject());
+//                    Main.instance.getRenderer().getUI().open(Main.instance.getRenderer().getUI().selectPanel);
+//                    return true;
+//                }
             }
 
             if (button == Input.Buttons.RIGHT) {

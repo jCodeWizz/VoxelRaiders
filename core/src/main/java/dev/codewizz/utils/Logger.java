@@ -25,7 +25,7 @@ public class Logger {
         Gdx.app.error(time(), prefix() + "[ERROR]: " + msg.toString(), e);
     }
 
-    private static String time() {
+    public static String time() {
         return TIME_FORMAT.format(LocalDateTime.now());
     }
 

@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
-import dev.codewizz.gfx.gui.layers.Layer;
+import dev.codewizz.gfx.gui.UI;
 import dev.codewizz.utils.Assets;
 
 public class UIToggle extends CheckBox {
@@ -43,25 +43,25 @@ public class UIToggle extends CheckBox {
         speed1Style.font = new BitmapFont();
         speed0Style.font = new BitmapFont();
 
-        speed3Style.checkboxOff.setMinWidth(21 * Layer.scale);
-        speed3Style.checkboxOff.setMinHeight(10 * Layer.scale);
-        speed3Style.checkboxOn.setMinWidth(21 * Layer.scale);
-        speed3Style.checkboxOn.setMinHeight(10 * Layer.scale);
+        speed3Style.checkboxOff.setMinWidth(21 * UI.SCALE);
+        speed3Style.checkboxOff.setMinHeight(10 * UI.SCALE);
+        speed3Style.checkboxOn.setMinWidth(21 * UI.SCALE);
+        speed3Style.checkboxOn.setMinHeight(10 * UI.SCALE);
 
-        speed2Style.checkboxOff.setMinWidth(15 * Layer.scale);
-        speed2Style.checkboxOff.setMinHeight(10 * Layer.scale);
-        speed2Style.checkboxOn.setMinWidth(15 * Layer.scale);
-        speed2Style.checkboxOn.setMinHeight(10 * Layer.scale);
+        speed2Style.checkboxOff.setMinWidth(15 * UI.SCALE);
+        speed2Style.checkboxOff.setMinHeight(10 * UI.SCALE);
+        speed2Style.checkboxOn.setMinWidth(15 * UI.SCALE);
+        speed2Style.checkboxOn.setMinHeight(10 * UI.SCALE);
 
-        speed1Style.checkboxOff.setMinWidth(9 * Layer.scale);
-        speed1Style.checkboxOff.setMinHeight(10 * Layer.scale);
-        speed1Style.checkboxOn.setMinWidth(9 * Layer.scale);
-        speed1Style.checkboxOn.setMinHeight(10 * Layer.scale);
+        speed1Style.checkboxOff.setMinWidth(9 * UI.SCALE);
+        speed1Style.checkboxOff.setMinHeight(10 * UI.SCALE);
+        speed1Style.checkboxOn.setMinWidth(9 * UI.SCALE);
+        speed1Style.checkboxOn.setMinHeight(10 * UI.SCALE);
 
-        speed0Style.checkboxOff.setMinWidth(9 * Layer.scale);
-        speed0Style.checkboxOff.setMinHeight(10 * Layer.scale);
-        speed0Style.checkboxOn.setMinWidth(9 * Layer.scale);
-        speed0Style.checkboxOn.setMinHeight(10 * Layer.scale);
+        speed0Style.checkboxOff.setMinWidth(9 * UI.SCALE);
+        speed0Style.checkboxOff.setMinHeight(10 * UI.SCALE);
+        speed0Style.checkboxOn.setMinWidth(9 * UI.SCALE);
+        speed0Style.checkboxOn.setMinHeight(10 * UI.SCALE);
     }
 
     public static UIToggle create(CheckBoxStyle style) {

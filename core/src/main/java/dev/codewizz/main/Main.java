@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.ai.GdxAI;
 import dev.codewizz.gfx.Renderer;
+import dev.codewizz.gfx.gui.UI;
 import dev.codewizz.input.KeyInput;
 import dev.codewizz.input.MouseInput;
 import dev.codewizz.utils.Assets;
@@ -47,7 +48,7 @@ public class Main extends ApplicationAdapter {
             world.addObject(cow);
         }
 
-        Gdx.input.setInputProcessor(new InputMultiplexer(renderer.getUiStage(), new MouseInput(renderer.getCamera(), world), new KeyInput(renderer.getCamera(), world), renderer.getCamera()));
+        Gdx.input.setInputProcessor(new InputMultiplexer(UI.stage, new MouseInput(renderer.getCamera(), world), new KeyInput(renderer.getCamera(), world), renderer.getCamera()));
         Logger.log("Game started");
     }
 

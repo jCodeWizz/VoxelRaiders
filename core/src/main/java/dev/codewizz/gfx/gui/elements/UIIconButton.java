@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
-import dev.codewizz.gfx.gui.layers.Layer;
+import dev.codewizz.gfx.gui.UI;
 import dev.codewizz.utils.Assets;
 
 public class UIIconButton extends Button {
@@ -26,9 +26,9 @@ public class UIIconButton extends Button {
         defaultStyle.up = new NinePatchDrawable(buttonUpPatchDefault);
         defaultStyle.down = new NinePatchDrawable(buttonDownPatchDefault);
         defaultStyle.disabled = new NinePatchDrawable(buttonDisabledPatchDefault);
-        buttonUpPatchDefault.scale(Layer.scale, Layer.scale);
-        buttonDownPatchDefault.scale(Layer.scale, Layer.scale);
-        buttonDisabledPatchDefault.scale(Layer.scale, Layer.scale);
+        buttonUpPatchDefault.scale(UI.SCALE, UI.SCALE);
+        buttonDownPatchDefault.scale(UI.SCALE, UI.SCALE);
+        buttonDisabledPatchDefault.scale(UI.SCALE, UI.SCALE);
 
         NinePatch buttonUpPatchSmall = new NinePatch(Assets.getSprite("icon"), border, border, border, border);
         NinePatch buttonDownPatchSmall = new NinePatch(Assets.getSprite("icon-pressed"), border, border, border, border);
@@ -60,7 +60,7 @@ public class UIIconButton extends Button {
         super.draw(batch, parentAlpha);
 
         if (this.isPressed()) {
-            batch.draw(icon, this.getX(), this.getY() - Layer.scale * 2, getWidth(), getHeight());
+            batch.draw(icon, this.getX(), this.getY() - UI.SCALE * 2, getWidth(), getHeight());
         } else {
             batch.draw(icon, this.getX(), this.getY(), getWidth(), getHeight());
         }

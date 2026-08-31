@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import dev.codewizz.gfx.gui.UI;
 import dev.codewizz.gfx.gui.layers.Layer;
 import dev.codewizz.utils.Assets;
 
@@ -14,7 +15,7 @@ public class UITextButton extends TextButton {
     public final static TextButtonStyle smallStyle = new TextButtonStyle();
     public final static TextButtonStyle resourceStyle = new TextButtonStyle();
 
-    private float moveText = Layer.scale * 2;
+    private float moveText = UI.SCALE * 2;
 
     static {
         reload();
@@ -33,9 +34,9 @@ public class UITextButton extends TextButton {
         defaultStyle.fontColor = Color.WHITE;
         defaultStyle.downFontColor = Color.LIGHT_GRAY;
 
-        buttonUpPatch.scale(Layer.scale, Layer.scale);
-        buttonDownPatch.scale(Layer.scale, Layer.scale);
-        buttonDisabledPatch.scale(Layer.scale, Layer.scale);
+        buttonUpPatch.scale(UI.SCALE, UI.SCALE);
+        buttonDownPatch.scale(UI.SCALE, UI.SCALE);
+        buttonDisabledPatch.scale(UI.SCALE, UI.SCALE);
 
         NinePatch buttonUpPatchSmall = new NinePatch(Assets.getSprite("button"), border, border, border, border);
         NinePatch buttonDownPatchSmall = new NinePatch(Assets.getSprite("button-pressed"), border, border, border, border);

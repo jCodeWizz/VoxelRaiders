@@ -3,13 +3,12 @@ package dev.codewizz.gfx.gui.menus;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import dev.codewizz.gfx.gui.UI;
 import dev.codewizz.gfx.gui.elements.UILabel;
-import dev.codewizz.gfx.gui.layers.GameLayer;
-import dev.codewizz.gfx.gui.layers.Layer;
 import dev.codewizz.utils.Assets;
+
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -19,9 +18,7 @@ public class NotificationMenu extends Menu {
 
     private static Table main;
 
-    public NotificationMenu(Stage stage, GameLayer layer) {
-        super(stage, layer);
-
+    public NotificationMenu() {
         this.shouldClose = false;
     }
 
@@ -55,7 +52,7 @@ public class NotificationMenu extends Menu {
         notifications = new CopyOnWriteArrayList<>();
 
         main = new Table();
-        base.add(main).expand().right().top().pad(10 * Layer.scale, 0, 0, 10 * Layer.scale);
+        base.add(main).expand().right().top().pad(10 * UI.SCALE, 0, 0, 10 * UI.SCALE);
 
         refresh();
     }
@@ -64,7 +61,7 @@ public class NotificationMenu extends Menu {
         main.clear();
 
         for (Notification notification : notifications) {
-            main.add(notification.table).size(256 * Layer.scale, 36 * Layer.scale).padBottom(3 * Layer.scale);
+            main.add(notification.table).size(256 * UI.SCALE, 36 * UI.SCALE).padBottom(3 * UI.SCALE);
             main.row();
         }
     }
@@ -80,17 +77,17 @@ class Notification {
         table.setBackground(new Image(Assets.getSprite("notification")).getDrawable());
 
         Image image  = new Image(sprite);
-        table.add(image).pad(2 * Layer.scale).size(32 * Layer.scale);
+        table.add(image).pad(2 * UI.SCALE).size(32 * UI.SCALE);
 
         Table textTable = new Table();
         table.add(textTable).expand().fill();
 
         UILabel titleLabel = UILabel.create(title, UILabel.defaultStyle);
-        textTable.add(titleLabel).expand().left().padLeft(6 * Layer.scale);
+        textTable.add(titleLabel).expand().left().padLeft(6 * UI.SCALE);
 
         textTable.row();
 
         UILabel textLabel = UILabel.create(text, UILabel.mediumStyle);
-        textTable.add(textLabel).expand().left().padLeft(Layer.scale);
+        textTable.add(textLabel).expand().left().padLeft(UI.SCALE);
     }
 }

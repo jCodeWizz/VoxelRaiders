@@ -38,10 +38,6 @@ public abstract class GameObject {
         Main.instance.getWorld().removeObject(this);
     }
 
-    public void addButtonsToSelectMenu(GameObject target, Table buttons)  {
-
-    }
-
     public Vector3 getPosition() {
         return position;
     }

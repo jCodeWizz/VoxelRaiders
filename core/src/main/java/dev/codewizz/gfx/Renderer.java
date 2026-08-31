@@ -3,6 +3,7 @@ package dev.codewizz.gfx;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.VertexAttributes;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.Environment;
 import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
@@ -12,10 +13,10 @@ import com.badlogic.gdx.graphics.g3d.environment.DirectionalShadowLight;
 import com.badlogic.gdx.graphics.g3d.utils.DepthShaderProvider;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
+import dev.codewizz.gfx.gui.UI;
+import dev.codewizz.gfx.gui.layers.GameLayer;
 import dev.codewizz.gfx.shaders.ObjectShaderProvider;
-import dev.codewizz.gfx.ui.UI;
 import dev.codewizz.input.MouseInput;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavGraph;
@@ -34,7 +35,7 @@ public class Renderer {
     private final ModelBatch shadowBatch;
     private boolean shadow = false;
 
-    private final UI uiHandler;
+    private final SpriteBatch uiBatch;
 
     public Renderer() {
         modelBatch = new ModelBatch(new ObjectShaderProvider());
@@ -43,7 +44,8 @@ public class Renderer {
         particles = new Particles(camera);
         particles.load();
 
-        uiHandler = new UI();
+        uiBatch = new SpriteBatch();
+        UI.openLayer(new GameLayer());
 
         environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
         shadowLight = new DirectionalShadowLight(2048, 2048, 30f, 30f, 20f, 80f);
@@ -103,9 +105,13 @@ public class Renderer {
 
         modelBatch.end();
 
-        uiHandler.getStage().act(Gdx.graphics.getDeltaTime());
-        uiHandler.update();
-        uiHandler.getStage().draw();
+        uiBatch.begin();
+
+        UI.render(uiBatch);
+        UI.stage.act(Gdx.graphics.getDeltaTime());
+        UI.stage.draw();
+
+        uiBatch.end();
     }
 
     ModelInstance instance = new ModelInstance(new ModelBuilder().createLineGrid(
@@ -131,25 +137,13 @@ public class Renderer {
         }
     }
 
-    public void resize(int width, int height) {
-        uiHandler.getStage().getViewport().update(width, height, true);
-    }
-
     public void dispose() {
         modelBatch.dispose();
-        uiHandler.getStage().dispose();
-    }
-
-    public Stage getUiStage() {
-        return uiHandler.getStage();
+        uiBatch.dispose();
     }
 
     public Camera getCamera() {
         return camera;
-    }
-
-    public UI getUI() {
-        return uiHandler;
     }
 
     public Particles getParticles() {

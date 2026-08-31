@@ -5,11 +5,9 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import dev.codewizz.gfx.gui.layers.GameLayer;
-import dev.codewizz.world.Cell;
+import dev.codewizz.gfx.gui.UI;
 import dev.codewizz.world.GameObject;
 
 public abstract class Menu {
@@ -18,20 +16,14 @@ public abstract class Menu {
 
     protected boolean shouldClose = true;
 
-    protected Stage stage;
     protected Table base;
-    protected GameLayer layer;
 
-    public Menu(Stage stage, GameLayer layer) {
-        this.stage = stage;
-        this.layer = layer;
-
+    public Menu() {
         base = new Table();
         base.setFillParent(true);
-        stage.addActor(base);
+        UI.stage.addActor(base);
 
         setup();
-
         close();
     }
 
@@ -73,10 +65,6 @@ public abstract class Menu {
     }
 
     public void onClose() {
-
-    }
-
-    public void clickedOn(Cell cell) {
 
     }
 
