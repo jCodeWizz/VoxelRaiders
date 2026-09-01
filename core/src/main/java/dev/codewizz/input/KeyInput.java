@@ -35,6 +35,13 @@ public class KeyInput implements InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
 
+        if (keycode == Input.Keys.ESCAPE) {
+            UI.getLayer().closeMenus();
+            if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
+                Gdx.app.exit();
+            }
+        }
+
         if (keycode == Input.Keys.F1) {
             UI.getLayer().openMenu(ConsoleMenu.ID);
         }

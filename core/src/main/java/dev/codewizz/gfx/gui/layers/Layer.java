@@ -60,6 +60,11 @@ public abstract class Layer {
 
         Menu menu = menus.get(id);
 
+        if (menu.isOpen()) {
+            menu.close();
+            return;
+        }
+
         closeMenus();
 
         menu.open();
