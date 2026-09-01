@@ -2,6 +2,9 @@ package dev.codewizz.world.settlement;
 
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Queue;
+import dev.codewizz.gfx.gui.UI;
+import dev.codewizz.gfx.gui.menus.NotificationMenu;
+import dev.codewizz.utils.Assets;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
 import dev.codewizz.world.inventory.Item;
@@ -92,6 +95,7 @@ public class Settlement {
     public void addMember(Hermit hermit) {
         members.add(hermit);
         world.addObject(hermit);
+        NotificationMenu.makeNotification(Assets.getSprite("people-icon"), "A new Hermit arrived!",  "Please welcome " + hermit.getName() + " to your settlement");
     }
 
     public Vector3 getPosition() {

@@ -15,6 +15,7 @@ import dev.codewizz.gfx.gui.menus.AreaMenu;
 import dev.codewizz.gfx.gui.menus.ConsoleMenu;
 import dev.codewizz.gfx.gui.menus.NotificationMenu;
 import dev.codewizz.main.Main;
+import dev.codewizz.gfx.gui.menus.ObjectMenu;
 import dev.codewizz.utils.Assets;
 
 public class GameLayer extends Layer {
@@ -36,6 +37,7 @@ public class GameLayer extends Layer {
         menus.put(NotificationMenu.ID, new NotificationMenu());
         menus.put(ConsoleMenu.ID, new ConsoleMenu());
         menus.put(AreaMenu.ID, new AreaMenu(areaMenuButton));
+        menus.put(ObjectMenu.ID, new ObjectMenu());
 
         menus.get(NotificationMenu.ID).open();
     }
@@ -85,7 +87,7 @@ public class GameLayer extends Layer {
         constructionMenuButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //openMenu(constructionMenu);
+                openMenu("object");
             }
         });
         constructionMenuButton.addListener(UITextTooltip.create("Construction"));

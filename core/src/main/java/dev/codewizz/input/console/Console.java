@@ -24,7 +24,7 @@ public class Console {
         UILabel l = UILabel.create("[" + Logger.time() + "] " + text, UILabel.smallStyle);
         l.setColor(color);
 
-        menu.lines.add(l);
+        menu.lines.add(0, l);
         menu.refresh();
     }
 }

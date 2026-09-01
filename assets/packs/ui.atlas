@@ -39,6 +39,20 @@ button-unavailable
   orig: 66, 24
   offset: 0, 0
   index: -1
+buy-menu
+  rotate: false
+  xy: 2, 37
+  size: 262, 440
+  orig: 262, 440
+  offset: 0, 0
+  index: -1
+path-menu
+  rotate: false
+  xy: 2, 37
+  size: 262, 440
+  orig: 262, 440
+  offset: 0, 0
+  index: -1
 buyslot
   rotate: false
   xy: 1342, 1610
@@ -232,13 +246,6 @@ path-icon
   xy: 1685, 1958
   size: 22, 24
   orig: 22, 24
-  offset: 0, 0
-  index: -1
-path-menu
-  rotate: false
-  xy: 2, 37
-  size: 262, 440
-  orig: 262, 440
   offset: 0, 0
   index: -1
 people-icon
