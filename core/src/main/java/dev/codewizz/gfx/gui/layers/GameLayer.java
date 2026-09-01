@@ -14,6 +14,7 @@ import dev.codewizz.gfx.gui.elements.UIToggle;
 import dev.codewizz.gfx.gui.menus.AreaMenu;
 import dev.codewizz.gfx.gui.menus.ConsoleMenu;
 import dev.codewizz.gfx.gui.menus.NotificationMenu;
+import dev.codewizz.main.Main;
 import dev.codewizz.utils.Assets;
 
 public class GameLayer extends Layer {
@@ -51,7 +52,7 @@ public class GameLayer extends Layer {
         Table backGroundImage = new Table();
         backGroundImage.setBackground(
                 new Image(Assets.getSprite("icon-board-extension")).getDrawable());
-        backGround.add(backGroundImage).expand().fillX().height(11 * UI.SCALE).bottom();
+        backGround.add(backGroundImage).expand().width(Gdx.graphics.getWidth() + 100).height(11 * UI.SCALE).bottom().right();
 
         main = new Table();
         main.setFillParent(true);
@@ -120,7 +121,6 @@ public class GameLayer extends Layer {
         board.add(toolMenuButton).size(22 * UI.SCALE, 24 * UI.SCALE)
                 .pad(0, 3 * UI.SCALE, bottomPad, 0);
 
-        // Add new buttons
         Table bottomRightTable = new Table();
         bottomRightTable.bottom().right();
         bottomRightTable.setFillParent(true);
@@ -129,7 +129,7 @@ public class GameLayer extends Layer {
         speed0.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //World.gameSpeed = 0;
+                Main.gameSpeed = 0;
             }
         });
         speed0.addListener(UITextTooltip.create("Pause (0)"));
@@ -138,7 +138,7 @@ public class GameLayer extends Layer {
         speed1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //World.gameSpeed = 1;
+                Main.gameSpeed = 1;
             }
         });
         speed1.addListener(UITextTooltip.create("x1 (1)"));
@@ -147,7 +147,7 @@ public class GameLayer extends Layer {
         speed2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //World.gameSpeed = 3;
+                Main.gameSpeed = 3;
             }
         });
         speed2.addListener(UITextTooltip.create("x3 (2)"));
@@ -156,7 +156,7 @@ public class GameLayer extends Layer {
         speed3.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //World.gameSpeed = 5;
+                Main.gameSpeed = 5;
             }
         });
         speed3.addListener(UITextTooltip.create("x5 (3)"));
@@ -171,7 +171,7 @@ public class GameLayer extends Layer {
         bottomRightTable.add(speed0).size(9 * UI.SCALE, 10 * UI.SCALE).pad(0, 2 * UI.SCALE, 5 * UI.SCALE, 0);
         bottomRightTable.add(speed1).size(9 * UI.SCALE, 10 * UI.SCALE).pad(0, 2 * UI.SCALE, 5 * UI.SCALE, 0);
         bottomRightTable.add(speed2).size(15 * UI.SCALE, 10 * UI.SCALE).pad(0, 2 * UI.SCALE, 5 * UI.SCALE, 0);
-        bottomRightTable.add(speed3).size(21 * UI.SCALE, 10 * UI.SCALE).pad(0, 2 * UI.SCALE, 5 * UI.SCALE, 153 * UI.SCALE + Gdx.graphics.getWidth() * 0.01f);
+        bottomRightTable.add(speed3).size(21 * UI.SCALE, 10 * UI.SCALE).pad(0, 2 * UI.SCALE, 5 * UI.SCALE, 20 * UI.SCALE);
 
         UI.stage.addActor(bottomRightTable);
     }

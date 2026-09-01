@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector3;
 import dev.codewizz.gfx.Camera;
 import dev.codewizz.gfx.gui.UI;
+import dev.codewizz.gfx.gui.layers.GameLayer;
 import dev.codewizz.gfx.gui.menus.ConsoleMenu;
 import dev.codewizz.input.result.PickAreaListener;
 import dev.codewizz.input.result.PickChunkResult;
@@ -34,6 +35,29 @@ public class KeyInput implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.NUM_0) {
+            GameLayer layer = (GameLayer) UI.getLayer();
+            layer.speed0.setChecked(true);
+            Main.gameSpeed = 0;
+        }
+
+        if (keycode == Input.Keys.NUM_1) {
+            GameLayer layer = (GameLayer) UI.getLayer();
+            layer.speed1.setChecked(true);
+            Main.gameSpeed = 1;
+        }
+
+        if (keycode == Input.Keys.NUM_2) {
+            GameLayer layer = (GameLayer) UI.getLayer();
+            layer.speed2.setChecked(true);
+            Main.gameSpeed = 3;
+        }
+
+        if (keycode == Input.Keys.NUM_3) {
+            GameLayer layer = (GameLayer) UI.getLayer();
+            layer.speed3.setChecked(true);
+            Main.gameSpeed = 5;
+        }
 
         if (keycode == Input.Keys.ESCAPE) {
             UI.getLayer().closeMenus();
