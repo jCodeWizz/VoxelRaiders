@@ -7,11 +7,12 @@ import dev.codewizz.utils.Assets;
 import dev.codewizz.world.GameObject;
 
 public class Pebbles extends GameObject {
+    public static final String ID = "vxr:pebbles";
 
     private final ModelInstance instance;
 
     public Pebbles() {
-        super("vxr:pebbles");
+        super(ID);
 
         this.name = "Pebbles";
         this.description = "Don't step on them with bare feet...";

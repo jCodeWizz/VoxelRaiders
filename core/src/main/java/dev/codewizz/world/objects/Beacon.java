@@ -12,6 +12,8 @@ import dev.codewizz.gfx.Renderer;
 import dev.codewizz.world.GameObject;
 
 public class Beacon extends GameObject {
+    public static final String ID = "vxr:beacon";
+
 
     private static final Material MATERIAL = new Material(ColorAttribute.createDiffuse(Color.WHITE));
     private static final Model MODEL = new ModelBuilder().createBox(1f, 1f, 1f, MATERIAL, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
@@ -19,7 +21,7 @@ public class Beacon extends GameObject {
     private final ModelInstance instance;
 
     public Beacon() {
-        super("vxr:beacon");
+        super(ID);
 
         this.name = "Beacon";
         this.description = "Marker of your home base, a true treasure";

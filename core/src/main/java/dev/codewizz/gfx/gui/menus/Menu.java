@@ -5,9 +5,12 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import dev.codewizz.gfx.gui.UI;
+import dev.codewizz.gfx.gui.elements.UIIconButton;
 import dev.codewizz.world.GameObject;
 
 public abstract class Menu {
@@ -54,6 +57,19 @@ public abstract class Menu {
         pixmap.dispose();
 
         return new TextureRegionDrawable(new TextureRegion(texture));
+    }
+
+    protected UIIconButton closeButton() {
+        UIIconButton button = UIIconButton.create("close-icon");
+
+        button.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                close();
+            }
+        });
+
+        return button;
     }
 
     public boolean isOpen() {

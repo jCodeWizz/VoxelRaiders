@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import dev.codewizz.gfx.gui.elements.UILabel;
 import dev.codewizz.gfx.gui.menus.ConsoleMenu;
 import dev.codewizz.input.console.commands.HelpCommand;
+import dev.codewizz.input.console.commands.RegistersCommand;
 import dev.codewizz.main.Registers;
 import dev.codewizz.utils.Logger;
 
@@ -13,6 +14,7 @@ public class Console {
 
     public static void register() {
         Registers.registerCommand("help", new HelpCommand());
+        Registers.registerCommand("registers", new RegistersCommand());
     }
 
     public static void printLine(String text) {

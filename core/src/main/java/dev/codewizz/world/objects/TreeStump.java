@@ -7,11 +7,12 @@ import dev.codewizz.utils.Assets;
 import dev.codewizz.world.GameObject;
 
 public class TreeStump extends GameObject {
+    public static final String ID = "vxr:tree-stump";
 
     private final ModelInstance instance;
 
     public TreeStump() {
-        super("vxr:tree-stump");
+        super(ID);
 
         this.name = "Tree Stump";
         this.description = "Crude crafting with logs";

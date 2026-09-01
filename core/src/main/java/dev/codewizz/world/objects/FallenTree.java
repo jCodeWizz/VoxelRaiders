@@ -8,11 +8,12 @@ import dev.codewizz.world.inventory.Item;
 import dev.codewizz.world.inventory.types.ItemType;
 
 public class FallenTree extends Gatherable {
+    public static final String ID = "vxr:fallen-tree";
 
     private final ModelInstance instance;
 
     public FallenTree() {
-        super("vxr:fallen-tree");
+        super(ID);
 
         instance = new ModelInstance(Assets.findModel(getId()));
     }

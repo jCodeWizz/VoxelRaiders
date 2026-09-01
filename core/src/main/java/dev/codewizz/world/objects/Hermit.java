@@ -21,6 +21,7 @@ import dev.codewizz.world.objects.behaviour.templates.ClearInventoryTemplate;
 import dev.codewizz.world.objects.behaviour.templates.IdleWaitTemplate;
 
 public class Hermit extends Entity {
+    public static final String ID = "vxr:hermit";
 
     private static final IdleWaitTemplate WAIT = new IdleWaitTemplate(2f, 5f);
     private static final ClearInventoryTemplate CLEAR = new ClearInventoryTemplate();
@@ -32,7 +33,7 @@ public class Hermit extends Entity {
     private Job job;
 
     public Hermit() {
-        super("vxr:hermit");
+        super(ID);
 
         this.name = "Hermit";
         this.description = "Friends!";

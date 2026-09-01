@@ -11,13 +11,14 @@ import dev.codewizz.world.objects.behaviour.templates.IdleWaitTemplate;
 import dev.codewizz.world.objects.behaviour.templates.WanderTemplate;
 
 public class Cow extends Entity {
+    public static final String ID = "vxr:cow";
 
     private final static WanderTemplate WANDER = new WanderTemplate();
     private final static IdleWaitTemplate WAIT = new IdleWaitTemplate(2f, 5f);
     private final static GrazeTemplate GRAZE = new GrazeTemplate();
 
     public Cow() {
-        super("vxr:cow");
+        super(ID);
 
         this.name = "Cow";
         this.description = "Likes to Mooove it Mooove it";

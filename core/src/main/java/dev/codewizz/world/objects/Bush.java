@@ -12,13 +12,14 @@ import dev.codewizz.world.inventory.Item;
 import dev.codewizz.world.inventory.types.ItemType;
 
 public class Bush extends Gatherable {
+    public static final String ID = "vxr:bush";
 
     private final ModelInstance instance;
 
     private boolean hasBerries = true;
 
     public Bush() {
-        super("vxr:bush");
+        super(ID);
 
         this.name = "Berry Bush";
         this.description = "Can be harvested for berries, tasty!";

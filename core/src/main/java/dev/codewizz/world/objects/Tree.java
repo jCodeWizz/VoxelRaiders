@@ -9,6 +9,7 @@ import dev.codewizz.world.inventory.Item;
 import dev.codewizz.world.inventory.types.ItemType;
 
 public class Tree extends Gatherable {
+    public static final String ID = "vxr:tree";
 
     private final ModelInstance instance;
     private final ModelInstance choppedInstance;
@@ -16,7 +17,7 @@ public class Tree extends Gatherable {
     private boolean chopped = false;
 
     public Tree() {
-        super("vxr:tree");
+        super(ID);
 
         this.name = "Tree";
         this.description = "For all your oxygen needs";

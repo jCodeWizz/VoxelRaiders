@@ -12,6 +12,7 @@ import dev.codewizz.input.console.Console;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.Logger;
 import dev.codewizz.world.GameObject;
+import dev.codewizz.world.GameObjects;
 import dev.codewizz.world.World;
 import dev.codewizz.world.objects.Cow;
 import dev.codewizz.world.objects.Tree;
@@ -34,6 +35,7 @@ public class Main extends ApplicationAdapter {
         Logger.log("Loading assets...");
         Assets.load();
         Console.register();
+        GameObjects.register();
         Logger.log("Loaded assets");
 
         Logger.log("Creating renderer...");

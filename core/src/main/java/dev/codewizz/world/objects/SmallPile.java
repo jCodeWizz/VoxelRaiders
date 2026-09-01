@@ -11,12 +11,13 @@ import dev.codewizz.world.inventory.types.ItemType;
 import java.util.List;
 
 public class SmallPile extends Storage implements IBuy{
+    public static final String ID = "vxr:small-pile";
 
     private ItemType storageType;
     private final ModelInstance instance;
 
     public SmallPile() {
-        super("vxr:small-pile", 1);
+        super(ID, 1);
 
         this.name = "Small Pile";
         this.description = "Can store infinte amounts of 1 type";
