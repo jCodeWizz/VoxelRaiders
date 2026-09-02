@@ -26,12 +26,20 @@ public class Registers {
     }
 
     public static boolean registerObject(String id, Class<? extends GameObject> object) {
+        return registerObject(id, object, null);
+    }
+
+    public static boolean registerObject(String id, Class<? extends GameObject> object, ObjectMenu.Info info) {
         if (objects.containsKey(id)) {
             Logger.error("Tried to register object " + id + " but it already exists!");
             return false;
         }
 
         objects.put(id, object);
+
+        if (info != null) {
+            ObjectMenu.objects.add(info);
+        }
 
         return true;
     }
