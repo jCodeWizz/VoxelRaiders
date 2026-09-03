@@ -17,6 +17,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.math.collision.Ray;
 import dev.codewizz.gfx.Camera;
+import dev.codewizz.gfx.gui.menus.ObjectMenu;
 import dev.codewizz.input.result.PickAreaListener;
 import dev.codewizz.input.result.PickChunkResult;
 import dev.codewizz.input.result.PickObjectResult;
@@ -69,6 +70,13 @@ public class MouseInput implements InputProcessor {
             }
         } else {
             if (button == Input.Buttons.LEFT) {
+
+                if (ObjectMenu.selected != null) {
+                    //TODO: Place
+
+
+
+                }
 
                 //TODO: select menu
 //                if (Main.instance.getRenderer().getUI().selectPanel != null) {

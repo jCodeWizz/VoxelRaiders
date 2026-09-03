@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.Timer;
 import dev.codewizz.main.Main;
 import dev.codewizz.utils.Logger;
 import dev.codewizz.world.Entity;
+import dev.codewizz.world.GameObjectInfo;
 import dev.codewizz.world.inventory.Inventory;
 import dev.codewizz.world.objects.behaviour.TaskTemplate;
 import dev.codewizz.world.objects.behaviour.jobs.Builder;
@@ -21,7 +22,7 @@ import dev.codewizz.world.objects.behaviour.templates.ClearInventoryTemplate;
 import dev.codewizz.world.objects.behaviour.templates.IdleWaitTemplate;
 
 public class Hermit extends Entity {
-    public static final String ID = "vxr:hermit";
+    public static final GameObjectInfo INFO = new GameObjectInfo("vxr:hermit", "Hermit", "Friends!", Hermit.class);
 
     private static final IdleWaitTemplate WAIT = new IdleWaitTemplate(2f, 5f);
     private static final ClearInventoryTemplate CLEAR = new ClearInventoryTemplate();
@@ -33,7 +34,7 @@ public class Hermit extends Entity {
     private Job job;
 
     public Hermit() {
-        super(ID);
+        super(INFO.getId());
 
         this.name = "Hermit";
         this.description = "Friends!";

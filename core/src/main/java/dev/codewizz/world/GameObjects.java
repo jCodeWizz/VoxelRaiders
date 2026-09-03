@@ -9,14 +9,14 @@ import dev.codewizz.world.objects.*;
 public class GameObjects {
 
     public static void register() {
-        Registers.registerObject(Beacon.ID, Beacon.class);
-        Registers.registerObject(Bush.ID, Bush.class);
-        Registers.registerObject(Cow.ID, Cow.class);
-        Registers.registerObject(FallenTree.ID, FallenTree.class);
-        Registers.registerObject(Hermit.ID, Hermit.class);
-        Registers.registerObject(Pebbles.ID, Pebbles.class);
-        Registers.registerObject(SmallPile.ID, SmallPile.class, new ObjectMenu.Info(SmallPile.ID, SmallPile.ID, "Small Pile", "Storage for 1", new Item(ItemType.LOG, 2), new Item(ItemType.PLANK, 3)));
-        Registers.registerObject(Tree.ID, Tree.class);
-        Registers.registerObject(TreeStump.ID, TreeStump.class);
+        Registers.registerObject(Beacon.INFO);
+        Registers.registerObject(Bush.INFO);
+        Registers.registerObject(Cow.INFO);
+        Registers.registerObject(FallenTree.INFO);
+        Registers.registerObject(Hermit.INFO);
+        Registers.registerObject(Pebbles.INFO);
+        Registers.registerObject(SmallPile.INFO);
+        Registers.registerObject(Tree.INFO);
+        Registers.registerObject(TreeStump.INFO);
     }
 }

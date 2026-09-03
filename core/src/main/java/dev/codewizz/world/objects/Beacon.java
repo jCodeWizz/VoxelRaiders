@@ -10,10 +10,10 @@ import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.world.GameObject;
+import dev.codewizz.world.GameObjectInfo;
 
 public class Beacon extends GameObject {
-    public static final String ID = "vxr:beacon";
-
+    public static final GameObjectInfo INFO = new GameObjectInfo("vxr:beacon", "Beacon", "Marker of your home base, a true treasure", Beacon.class);
 
     private static final Material MATERIAL = new Material(ColorAttribute.createDiffuse(Color.WHITE));
     private static final Model MODEL = new ModelBuilder().createBox(1f, 1f, 1f, MATERIAL, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
@@ -21,7 +21,7 @@ public class Beacon extends GameObject {
     private final ModelInstance instance;
 
     public Beacon() {
-        super(ID);
+        super(INFO.getId());
 
         this.name = "Beacon";
         this.description = "Marker of your home base, a true treasure";

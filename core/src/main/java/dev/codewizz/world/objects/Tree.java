@@ -5,11 +5,12 @@ import com.badlogic.gdx.math.Vector3;
 import dev.codewizz.gfx.Renderer;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.WUtils;
+import dev.codewizz.world.GameObjectInfo;
 import dev.codewizz.world.inventory.Item;
 import dev.codewizz.world.inventory.types.ItemType;
 
 public class Tree extends Gatherable {
-    public static final String ID = "vxr:tree";
+    public static final GameObjectInfo INFO = new GameObjectInfo("vxr:tree", "Tree", "For all your oxygen needs", Tree.class);
 
     private final ModelInstance instance;
     private final ModelInstance choppedInstance;
@@ -17,7 +18,7 @@ public class Tree extends Gatherable {
     private boolean chopped = false;
 
     public Tree() {
-        super(ID);
+        super(INFO.getId());
 
         this.name = "Tree";
         this.description = "For all your oxygen needs";

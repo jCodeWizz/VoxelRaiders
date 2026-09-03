@@ -4,6 +4,8 @@ import dev.codewizz.gfx.gui.menus.ObjectMenu;
 import dev.codewizz.input.console.CommandExecutor;
 import dev.codewizz.utils.Logger;
 import dev.codewizz.world.GameObject;
+import dev.codewizz.world.GameObjectInfo;
+import dev.codewizz.world.GameObjectInfoShop;
 import dev.codewizz.world.objects.IBuy;
 
 import java.util.HashMap;
@@ -13,7 +15,7 @@ import java.util.function.BiFunction;
 public class Registers {
 
     public static final Map<String, CommandExecutor> commands = new HashMap<>();
-    public static final Map<String, Class<? extends GameObject>> objects = new HashMap<>();
+    public static final Map<String, GameObjectInfo> objects = new HashMap<>();
 
     public static boolean registerCommand(String name, CommandExecutor e) {
         if (commands.containsKey(name)) {
@@ -25,20 +27,16 @@ public class Registers {
         return true;
     }
 
-    public static boolean registerObject(String id, Class<? extends GameObject> object) {
-        return registerObject(id, object, null);
-    }
-
-    public static boolean registerObject(String id, Class<? extends GameObject> object, ObjectMenu.Info info) {
-        if (objects.containsKey(id)) {
-            Logger.error("Tried to register object " + id + " but it already exists!");
+    public static boolean registerObject(GameObjectInfo info) {
+        if (objects.containsKey(info.getId())) {
+            Logger.error("Tried to register object " + info.getId() + " but it already exists!");
             return false;
         }
 
-        objects.put(id, object);
+        objects.put(info.getId(), info);
 
-        if (info != null) {
-            ObjectMenu.objects.add(info);
+        if (info instanceof GameObjectInfoShop) {
+            ObjectMenu.objects.add((GameObjectInfoShop) info);
         }
 
         return true;
@@ -51,7 +49,7 @@ public class Registers {
         }
 
         try {
-            return objects.get(id).getConstructor().newInstance();
+            return objects.get(id).getClazz().getConstructor().newInstance();
         } catch (Exception e) {
             Logger.error("Exception while trying to create GameObject: " + id, e);
             return null;

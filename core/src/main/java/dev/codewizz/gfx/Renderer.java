@@ -16,6 +16,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import dev.codewizz.gfx.gui.UI;
 import dev.codewizz.gfx.gui.layers.GameLayer;
+import dev.codewizz.gfx.gui.menus.ObjectMenu;
 import dev.codewizz.gfx.shaders.ObjectShaderProvider;
 import dev.codewizz.input.MouseInput;
 import dev.codewizz.world.GameObject;

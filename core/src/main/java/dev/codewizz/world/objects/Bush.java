@@ -8,18 +8,19 @@ import dev.codewizz.gfx.Renderer;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.Logger;
 import dev.codewizz.utils.WUtils;
+import dev.codewizz.world.GameObjectInfo;
 import dev.codewizz.world.inventory.Item;
 import dev.codewizz.world.inventory.types.ItemType;
 
 public class Bush extends Gatherable {
-    public static final String ID = "vxr:bush";
+    public static final GameObjectInfo INFO = new GameObjectInfo("vxr:bush", "Berry Bush", "Can be harvested for berries, tasty!", Bush.class);
 
     private final ModelInstance instance;
 
     private boolean hasBerries = true;
 
     public Bush() {
-        super(ID);
+        super(INFO.getId());
 
         this.name = "Berry Bush";
         this.description = "Can be harvested for berries, tasty!";

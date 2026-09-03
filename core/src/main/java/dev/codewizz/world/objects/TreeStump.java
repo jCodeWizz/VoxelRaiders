@@ -5,20 +5,20 @@ import dev.codewizz.gfx.Renderer;
 import dev.codewizz.main.Main;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.world.GameObject;
+import dev.codewizz.world.GameObjectInfo;
 
 public class TreeStump extends GameObject {
-    public static final String ID = "vxr:tree-stump";
+    public static final GameObjectInfo INFO = new GameObjectInfo("vxr:tree-stump", "Tree Stump", "Crude crafting with logs", TreeStump.class);
 
     private final ModelInstance instance;
 
     public TreeStump() {
-        super(ID);
+        super(INFO.getId());
 
         this.name = "Tree Stump";
         this.description = "Crude crafting with logs";
 
         this.instance = new ModelInstance(Assets.findModel(getId()));
-        Main.instance.getWorld().getSettlement().addStation(this);
     }
 
     @Override

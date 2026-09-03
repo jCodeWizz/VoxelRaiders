@@ -5,20 +5,21 @@ import com.badlogic.gdx.graphics.g3d.utils.AnimationController;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.WUtils;
 import dev.codewizz.world.Entity;
+import dev.codewizz.world.GameObjectInfo;
 import dev.codewizz.world.objects.behaviour.TaskTemplate;
 import dev.codewizz.world.objects.behaviour.templates.GrazeTemplate;
 import dev.codewizz.world.objects.behaviour.templates.IdleWaitTemplate;
 import dev.codewizz.world.objects.behaviour.templates.WanderTemplate;
 
 public class Cow extends Entity {
-    public static final String ID = "vxr:cow";
+    public static final GameObjectInfo INFO = new GameObjectInfo("vxr:cow", "Cow", "Likes to Mooove it Mooove it", Cow.class);
 
     private final static WanderTemplate WANDER = new WanderTemplate();
     private final static IdleWaitTemplate WAIT = new IdleWaitTemplate(2f, 5f);
     private final static GrazeTemplate GRAZE = new GrazeTemplate();
 
     public Cow() {
-        super(ID);
+        super(INFO.getId());
 
         this.name = "Cow";
         this.description = "Likes to Mooove it Mooove it";

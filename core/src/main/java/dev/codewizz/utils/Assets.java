@@ -39,6 +39,12 @@ public class Assets {
         Recipe.register("vxr:firewood", Recipe.fromJson("data/recipes/firewood.json"));
     }
 
+    public static Model loadModel(String name) {
+        FileHandle handle = Gdx.files.internal("models/" + name + ".gltf");
+        SceneAsset asset = new GLTFLoader().load(handle);
+        return asset.scene.model;
+    }
+
     public static Model findModel(String id) {
         if (models.containsKey(id)) {
             return models.get(id);
@@ -49,10 +55,7 @@ public class Assets {
         String modelIdentifier = split[1];
 
         if (moduleIdentifier.equals(ID)) {
-            FileHandle handle = Gdx.files.internal("models/" + modelIdentifier + ".gltf");
-            SceneAsset asset = new GLTFLoader().load(handle);
-
-            models.put(id, asset.scene.model);
+            models.put(id, loadModel(modelIdentifier));
             return models.get(id);
         } else {
             //TODO: find root of modules somehow as FileHandle
