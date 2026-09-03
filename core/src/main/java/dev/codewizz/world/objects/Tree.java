@@ -45,7 +45,7 @@ public class Tree extends Gatherable {
         if (chopped) {
             destroy();
         } else {
-            hermit.getInventory().addItem(new Item(ItemType.LOG, WUtils.getRandom(3, 5)));
+            hermit.getInventory().addItem(new Item(ItemType.WOOD, WUtils.getRandom(3, 5)));
             chopped = true;
         }
     }

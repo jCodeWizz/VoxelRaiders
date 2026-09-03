@@ -21,7 +21,7 @@ public class FallenTree extends Gatherable {
 
     @Override
     public void gather(Hermit hermit) {
-        hermit.getInventory().addItem(new Item(ItemType.LOG, WUtils.getRandom(2, 4)));
+        hermit.getInventory().addItem(new Item(ItemType.WOOD, WUtils.getRandom(2, 4)));
         destroy();
     }
 

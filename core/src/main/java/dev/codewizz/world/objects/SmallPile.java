@@ -1,6 +1,5 @@
 package dev.codewizz.world.objects;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import dev.codewizz.gfx.Renderer;
@@ -13,7 +12,7 @@ import dev.codewizz.world.inventory.types.ItemType;
 import java.util.List;
 
 public class SmallPile extends Storage implements IBuy{
-    public static final GameObjectInfo INFO = new GameObjectInfoShop("vxr:small-pile", "Small Pile", "Can store infinite amounts of 1 type", SmallPile.class, "vxr:small-pile", new Item(ItemType.LOG, 2), new Item(ItemType.PLANK, 3));
+    public static final GameObjectInfo INFO = new GameObjectInfoShop("vxr:small-pile", "Small Pile", "Can store infinite amounts of 1 type", SmallPile.class, "vxr:small-pile", new Item(ItemType.WOOD, 2), new Item(ItemType.PLANK, 3));
 
     private ItemType storageType;
     private final ModelInstance instance;
@@ -54,6 +53,6 @@ public class SmallPile extends Storage implements IBuy{
 
     @Override
     public List<Item> getCosts() {
-        return List.of(new Item(ItemType.LOG, 2), new Item(ItemType.PLANK, 3));
+        return List.of(new Item(ItemType.WOOD, 2), new Item(ItemType.PLANK, 3));
     }
 }

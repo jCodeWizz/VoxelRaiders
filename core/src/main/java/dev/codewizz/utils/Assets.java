@@ -28,7 +28,7 @@ public class Assets {
 
     public static void load() {
         atlases.put("ui", new TextureAtlas(Gdx.files.internal("packs/ui.atlas")));
-        atlases.put("items", new TextureAtlas(Gdx.files.internal("packs/item.atlas")));
+        atlases.put("items", new TextureAtlas(Gdx.files.internal("packs/items.atlas")));
 
         for (TextureAtlas t : atlases.values()) {
             for (TextureAtlas.AtlasRegion s : t.getRegions()) {

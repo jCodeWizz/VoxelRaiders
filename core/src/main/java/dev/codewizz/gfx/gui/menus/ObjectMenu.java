@@ -72,10 +72,10 @@ public class ObjectMenu extends Menu {
 
         base.add(main).size(148 * UI.SCALE, 328 * UI.SCALE).expand().left().padLeft(10 * UI.SCALE);
 
-        main.add(top).expand().size(148 * UI.SCALE, 25*UI.SCALE).row();
-        main.add(categories).expand().size(148 * UI.SCALE, 26*UI.SCALE).row();
-        main.add(scrollPane).expand().size(148 * UI.SCALE, 144*UI.SCALE).row();
-        main.add(view).expand().size(148 * UI.SCALE, 133*UI.SCALE).row();
+        main.add(top).expand().size(148 * UI.SCALE, 25 * UI.SCALE).row();
+        main.add(categories).expand().size(148 * UI.SCALE, 26 * UI.SCALE).row();
+        main.add(scrollPane).expand().size(148 * UI.SCALE, 144 * UI.SCALE).row();
+        main.add(view).expand().size(148 * UI.SCALE, 133 * UI.SCALE).row();
 
         top.add(UILabel.create("Build Object", UILabel.defaultStyle)).expand().left().padLeft(5 * UI.SCALE);
         top.add(closeButton()).expand().right().size(22 * UI.SCALE, 24 * UI.SCALE).pad(UI.SCALE, 0, 0, UI.SCALE);
@@ -150,32 +150,16 @@ public class ObjectMenu extends Menu {
         Table previewContainer = new Table();
         previewContainer.add(preview).size(96 * UI.SCALE);
 
-        bottom.add(previewContainer)
-            .size(110 * UI.SCALE)
-            .left()
-            .top()
-            .padRight(12);
+        bottom.add(previewContainer);
 
 
         // ---------- COSTS ----------
         Table costs = new Table();
-        costs.defaults()
-            .left()
-            .padBottom(4);
-
-        costs.add(UILabel.create("Costs", UILabel.smallStyle))
-            .left()
-            .row();
-
         for (Item i : selected.getCosts()) {
             Table cost = new Table();
 
-            // Once Item has an icon:
-            //
-            // Image icon = new Image(i.getSprite());
-            // cost.add(icon)
-            //         .size(24 * UI.SCALE)
-            //         .padRight(5);
+            Image icon = new Image(i.getType().getSprite());
+            cost.add(icon).size(16 * UI.SCALE).padRight(4 * UI.SCALE);
 
             cost.add(
                     UILabel.create(
@@ -185,13 +169,14 @@ public class ObjectMenu extends Menu {
 
             costs.add(cost)
                 .left()
+                .bottom()
                 .row();
         }
 
         bottom.add(costs)
             .expand()
             .fill()
-            .top()
+            .bottom()
             .left();
 
 
