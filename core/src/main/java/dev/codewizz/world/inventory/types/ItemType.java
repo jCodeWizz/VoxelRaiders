@@ -1,5 +1,7 @@
 package dev.codewizz.world.inventory.types;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import dev.codewizz.utils.Assets;
 import dev.codewizz.world.inventory.Item;
 import java.util.HashMap;
 
@@ -14,10 +16,12 @@ public class ItemType {
 
     private final String id;
     private final String name;
+    private final Sprite sprite;
 
     public ItemType(String id, String name) {
         this.id = id;
         this.name = name;
+        this.sprite = Assets.getSprite(id.split(":")[1]);
     }
 
     public static ItemType register(ItemType type) {
@@ -37,8 +41,7 @@ public class ItemType {
         return name;
     }
 
-    @Override
-    public String toString() {
-        return "ItemType{" + "id='" + id + '\'' + ", name='" + name + '\'' + '}';
+    public Sprite getSprite() {
+        return sprite;
     }
 }

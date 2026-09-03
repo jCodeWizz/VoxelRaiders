@@ -19,6 +19,7 @@ import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -48,14 +49,9 @@ public class ObjectMenu extends Menu {
     public static List<GameObjectInfoShop> objects = new ArrayList<>();
     public static GameObjectInfoShop selected;
 
-    static {
-        //objects.add(new Cow());
-        //objects.add(new Cow());
-        //objects.add(new Cow());
-    }
-
     private Table scrollTable;
     private ScrollPane scrollPane;
+    private Table view;
 
     @Override
     protected void setup() {
@@ -72,7 +68,7 @@ public class ObjectMenu extends Menu {
         scrollPane.setScrollbarsVisible(true);
         fillScrollTable(objects);
 
-        Table view = new Table();
+        view = new Table();
 
         base.add(main).size(148 * UI.SCALE, 328 * UI.SCALE).expand().left().padLeft(10 * UI.SCALE);
 
@@ -112,6 +108,7 @@ public class ObjectMenu extends Menu {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     selected = o;
+                    fillViewTable();
                 }
             });
 
@@ -133,6 +130,77 @@ public class ObjectMenu extends Menu {
                 scrollTable.row();
             }
         }
+    }
+
+    public void fillViewTable() {
+        view.clear();
+
+        // ---------- TOP ----------
+        Table top = new Table();
+        top.defaults().left();
+
+        top.add(UILabel.create(selected.getName())).expandX().fillX().left().padTop(6 * UI.SCALE).padLeft(7 * UI.SCALE).row();
+        top.add(UILabel.create(selected.getDescription(), UILabel.smallStyle)).expandX().fillX().left().padTop(UI.SCALE).padLeft(7 * UI.SCALE);
+
+        view.add(top).expandX().fillX().row();
+
+        Table bottom = new Table();
+        Image preview = new Image(spriteFromModel(selected.getModel()));
+
+        Table previewContainer = new Table();
+        previewContainer.add(preview).size(96 * UI.SCALE);
+
+        bottom.add(previewContainer)
+            .size(110 * UI.SCALE)
+            .left()
+            .top()
+            .padRight(12);
+
+
+        // ---------- COSTS ----------
+        Table costs = new Table();
+        costs.defaults()
+            .left()
+            .padBottom(4);
+
+        costs.add(UILabel.create("Costs", UILabel.smallStyle))
+            .left()
+            .row();
+
+        for (Item i : selected.getCosts()) {
+            Table cost = new Table();
+
+            // Once Item has an icon:
+            //
+            // Image icon = new Image(i.getSprite());
+            // cost.add(icon)
+            //         .size(24 * UI.SCALE)
+            //         .padRight(5);
+
+            cost.add(
+                    UILabel.create(
+                        "x" + i.getSize(),
+                        UILabel.smallStyle))
+                .left();
+
+            costs.add(cost)
+                .left()
+                .row();
+        }
+
+        bottom.add(costs)
+            .expand()
+            .fill()
+            .top()
+            .left();
+
+
+        view.add(bottom)
+            .expandX()
+            .fillX()
+            .padLeft(10)
+            .padRight(10)
+            .padBottom(10);
     }
 
     public Sprite spriteFromModel(Model model) {

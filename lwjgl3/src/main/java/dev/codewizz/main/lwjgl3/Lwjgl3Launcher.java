@@ -20,7 +20,8 @@ public class Lwjgl3Launcher {
         Settings settings = new Settings();
         settings.maxWidth = 2048;
         settings.maxHeight = 2048;
-        TexturePacker.process(settings, "assets/ui/drawables", "assets/packs", "ui");
+        TexturePacker.process(settings, "assets/textures/items", "assets/packs", "items");
+        TexturePacker.process(settings, "assets/textures/ui", "assets/packs", "ui");
     }
 
     private static Lwjgl3Application createApplication() {
