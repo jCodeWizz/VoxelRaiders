@@ -22,7 +22,7 @@ public class SmallPile extends Storage implements IBuy{
         super(INFO.getId(), 1);
 
         this.name = "Small Pile";
-        this.description = "Can store infinte amounts of 1 type";
+        this.description = "Can store infinite amounts of 1 type";
 
         this.instance = new ModelInstance(Assets.findModel(getId()));
     }
