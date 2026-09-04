@@ -2,7 +2,6 @@ package dev.codewizz.world.objects;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.VertexAttributes;
-import com.badlogic.gdx.graphics.g3d.Attribute;
 import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
@@ -12,18 +11,18 @@ import dev.codewizz.gfx.Renderer;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.GameObjectInfo;
 
-public class Beacon extends GameObject {
-    public static final GameObjectInfo INFO = new GameObjectInfo("vxr:beacon", "Beacon", "Marker of your home base, a true treasure", Beacon.class);
+public class Well extends GameObject {
+    public static final GameObjectInfo INFO = new GameObjectInfo("vxr:well", "Well", "Marker of your home base, a true treasure", Well.class);
 
     private static final Material MATERIAL = new Material(ColorAttribute.createDiffuse(Color.WHITE));
     private static final Model MODEL = new ModelBuilder().createBox(1f, 1f, 1f, MATERIAL, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
 
     private final ModelInstance instance;
 
-    public Beacon() {
+    public Well() {
         super(INFO.getId());
 
-        this.name = "Beacon";
+        this.name = "Well";
         this.description = "Marker of your home base, a true treasure";
 
         instance = new ModelInstance(MODEL);

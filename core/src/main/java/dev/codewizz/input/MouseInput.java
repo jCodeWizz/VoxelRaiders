@@ -22,13 +22,10 @@ import dev.codewizz.input.result.PickAreaListener;
 import dev.codewizz.input.result.PickChunkResult;
 import dev.codewizz.input.result.PickObjectResult;
 import dev.codewizz.main.Main;
-import dev.codewizz.utils.Logger;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
-import dev.codewizz.world.objects.Beacon;
+import dev.codewizz.world.objects.Well;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavAgent;
-import dev.codewizz.world.objects.behaviour.pathfinding.NavGraph;
-import dev.codewizz.world.objects.behaviour.templates.BuildObjectTemplate;
 import dev.codewizz.world.settlement.Settlement;
 import dev.codewizz.world.voxel.Chunk;
 
@@ -64,7 +61,7 @@ public class MouseInput implements InputProcessor {
         if (world.getSettlement() == null) {
             PickChunkResult result = pickChunk(camera, world, screenX, screenY);
             if (result.getChunk() != null) {
-                GameObject beacon = new Beacon();
+                GameObject beacon = new Well();
                 beacon.getPosition().set(result.getIntersection());
                 world.addObject(beacon);
 
