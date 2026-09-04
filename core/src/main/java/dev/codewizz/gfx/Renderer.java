@@ -1,6 +1,7 @@
 package dev.codewizz.gfx;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -110,7 +111,9 @@ public class Renderer {
 
         particles.render(modelBatch);
 
-        //renderDebug();
+        if (Gdx.input.isKeyPressed(Input.Keys.TAB)) {
+            renderDebug();
+        }
 
         modelBatch.end();
 
