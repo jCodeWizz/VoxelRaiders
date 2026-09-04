@@ -48,6 +48,7 @@ public class ObjectMenu extends Menu {
 
     public static List<GameObjectInfoShop> objects = new ArrayList<>();
     public static GameObjectInfoShop selected;
+    public static ModelInstance selectedModelInstance;
 
     private Table scrollTable;
     private ScrollPane scrollPane;
@@ -96,6 +97,12 @@ public class ObjectMenu extends Menu {
         });
     }
 
+    @Override
+    public void onClose() {
+        selected = null;
+        selectedModelInstance = null;
+    }
+
     public void fillScrollTable(List<GameObjectInfoShop> objects) {
         scrollTable.clear();
         scrollTable.top();
@@ -108,6 +115,7 @@ public class ObjectMenu extends Menu {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     selected = o;
+                    selectedModelInstance = new ModelInstance(selected.getModel());
                     fillViewTable();
                 }
             });

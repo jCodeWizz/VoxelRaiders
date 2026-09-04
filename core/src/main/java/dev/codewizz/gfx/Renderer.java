@@ -19,7 +19,10 @@ import dev.codewizz.gfx.gui.layers.GameLayer;
 import dev.codewizz.gfx.gui.menus.ObjectMenu;
 import dev.codewizz.gfx.shaders.ObjectShaderProvider;
 import dev.codewizz.input.MouseInput;
+import dev.codewizz.input.result.PickChunkResult;
+import dev.codewizz.main.Main;
 import dev.codewizz.world.GameObject;
+import dev.codewizz.world.objects.behaviour.pathfinding.NavAgent;
 import dev.codewizz.world.objects.behaviour.pathfinding.NavGraph;
 import dev.codewizz.world.voxel.Chunk;
 
@@ -99,6 +102,12 @@ public class Renderer {
 
         MouseInput.update();
         MouseInput.renderSelectArea(modelBatch);
+
+        if (ObjectMenu.selected != null) {
+            PickChunkResult chunkResult = MouseInput.pickChunk(camera, Main.instance.getWorld(), Gdx.input.getX(), Gdx.input.getY());
+            ObjectMenu.selectedModelInstance.transform.setToTranslation(NavAgent.graph.getCell(chunkResult.getIntersection()).position);
+            modelBatch.render(ObjectMenu.selectedModelInstance);
+        }
 
         particles.render(modelBatch);
 

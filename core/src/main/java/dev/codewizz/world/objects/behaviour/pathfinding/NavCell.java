@@ -2,11 +2,13 @@ package dev.codewizz.world.objects.behaviour.pathfinding;
 
 import com.badlogic.gdx.ai.pfa.Connection;
 import com.badlogic.gdx.ai.pfa.DefaultConnection;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
 public class NavCell {
 
     public float x, y, z;
+    public Vector3 position = new Vector3();
     public int index, indexX, indexZ;
 
     public int height;
@@ -19,6 +21,7 @@ public class NavCell {
         this.x = x;
         this.y = y;
         this.z = z;
+        this.position = new Vector3(x, y, z);
         this.index = index;
         this.indexX = indexX;
         this.indexZ = indexZ;

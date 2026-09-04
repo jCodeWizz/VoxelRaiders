@@ -15,6 +15,7 @@ public class GameObjects {
         Registers.registerObject(FallenTree.INFO);
         Registers.registerObject(Hermit.INFO);
         Registers.registerObject(Pebbles.INFO);
+        Registers.registerObject(Placeholder.INFO);
         Registers.registerObject(SmallPile.INFO);
         Registers.registerObject(Tree.INFO);
         Registers.registerObject(TreeStump.INFO);

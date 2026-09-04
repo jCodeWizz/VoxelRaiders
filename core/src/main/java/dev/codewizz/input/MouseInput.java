@@ -22,9 +22,13 @@ import dev.codewizz.input.result.PickAreaListener;
 import dev.codewizz.input.result.PickChunkResult;
 import dev.codewizz.input.result.PickObjectResult;
 import dev.codewizz.main.Main;
+import dev.codewizz.utils.Logger;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
 import dev.codewizz.world.objects.Beacon;
+import dev.codewizz.world.objects.behaviour.pathfinding.NavAgent;
+import dev.codewizz.world.objects.behaviour.pathfinding.NavGraph;
+import dev.codewizz.world.objects.behaviour.templates.BuildObjectTemplate;
 import dev.codewizz.world.settlement.Settlement;
 import dev.codewizz.world.voxel.Chunk;
 
@@ -72,10 +76,10 @@ public class MouseInput implements InputProcessor {
             if (button == Input.Buttons.LEFT) {
 
                 if (ObjectMenu.selected != null) {
-                    //TODO: Place
-
-
-
+                    PickChunkResult chunkResult = pickChunk(camera, world, screenX, screenY);
+                    if (chunkResult.getChunk() != null) {
+                        Main.instance.getWorld().getSettlement().addTasks(ObjectMenu.selected.createBuildTaskTemplates(NavAgent.graph.getCell(chunkResult.getIntersection())));
+                    }
                 }
 
                 //TODO: select menu
@@ -108,12 +112,9 @@ public class MouseInput implements InputProcessor {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-
-
         if (button == Input.Buttons.RIGHT) {
             if (world.getSettlement() != null) {
                 if (dragPosition != null) {
-
                     if (pickAreaListener != null) {
                         Vector3 min = new Vector3(
                             Math.min(dragPosition.x, dragPosition2.x),
@@ -130,9 +131,6 @@ public class MouseInput implements InputProcessor {
                         pickAreaListener = null;
                     }
 
-
-
-
                     dragPosition = null;
                     dragPosition2 = null;
                     selectModelInstance.transform
@@ -141,7 +139,6 @@ public class MouseInput implements InputProcessor {
                 }
             }
         }
-
 
         return false;
     }

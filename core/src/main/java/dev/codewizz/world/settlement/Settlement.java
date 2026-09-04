@@ -92,6 +92,12 @@ public class Settlement {
         tasks.addLast(task);
     }
 
+    public void addTasks(List<TaskTemplate> tasks) {
+        for (TaskTemplate taskTemplate : tasks) {
+            addTask(taskTemplate);
+        }
+    }
+
     public void addMember(Hermit hermit) {
         members.add(hermit);
         world.addObject(hermit);
