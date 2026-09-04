@@ -1,7 +1,9 @@
 package dev.codewizz.world.objects;
 
+import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import dev.codewizz.gfx.Renderer;
+import dev.codewizz.gfx.attributes.PlaceholderAttribute;
 import dev.codewizz.main.Main;
 import dev.codewizz.main.Registers;
 import dev.codewizz.utils.Logger;
@@ -30,6 +32,9 @@ public class Placeholder extends GameObject {
     public void setInfo(GameObjectInfoShop info) {
         this.info = info;
         this.modelInstance = new ModelInstance(this.info.getModel());
+        for (Material material : this.modelInstance.materials) {
+            material.set(new PlaceholderAttribute());
+        }
     }
 
     @Override

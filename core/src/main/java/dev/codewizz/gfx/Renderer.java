@@ -91,7 +91,6 @@ public class Renderer {
         for (int i = 0; i < chunks.length; i++) {
             for (int j = 0; j < chunks[i].length; j++) {
                 if (chunks[i][j].isDirty()) chunks[i][j].buildMesh();
-
                 modelBatch.render(chunks[i][j].getModelInstance(), environment);
             }
         }

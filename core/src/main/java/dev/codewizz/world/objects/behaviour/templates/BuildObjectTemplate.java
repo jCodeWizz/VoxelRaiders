@@ -40,13 +40,13 @@ public class BuildObjectTemplate implements TaskTemplate {
                 new ActionLeaf<>() {
                     @Override
                     public boolean action() {
-                        if (hermit.getInventory().containsItem(cost)) {
+                        //if (hermit.getInventory().containsItem(cost)) {
                             hermit.getInventory().removeItem(cost);
                             placeholder.addItem(cost);
                             return true;
-                        } else {
-                            return false;
-                        }
+                        //} else {
+                        //    return true;
+                        //}
                     }
                 }
             ),

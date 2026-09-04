@@ -7,10 +7,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g3d.Environment;
-import com.badlogic.gdx.graphics.g3d.Model;
-import com.badlogic.gdx.graphics.g3d.ModelBatch;
-import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.badlogic.gdx.graphics.g3d.*;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
@@ -25,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import dev.codewizz.gfx.attributes.PlaceholderAttribute;
 import dev.codewizz.gfx.gui.UI;
 import dev.codewizz.gfx.gui.elements.UIIconButton;
 import dev.codewizz.gfx.gui.elements.UIImageButton;
@@ -116,6 +114,9 @@ public class ObjectMenu extends Menu {
                 public void clicked(InputEvent event, float x, float y) {
                     selected = o;
                     selectedModelInstance = new ModelInstance(selected.getModel());
+                    for (Material material : ObjectMenu.selectedModelInstance.materials) {
+                        material.set(new PlaceholderAttribute());
+                    }
                     fillViewTable();
                 }
             });
