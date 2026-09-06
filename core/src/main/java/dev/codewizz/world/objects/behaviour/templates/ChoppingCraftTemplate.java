@@ -34,27 +34,16 @@ public class ChoppingCraftTemplate implements TaskTemplate {
         Hermit hermit = (Hermit) entity;
 
         Array<Item> input = recipe.getInput();
-        List<Storage> storages = new ArrayList<>();
-        for (Item item : recipe.getInput()) {
-            Storage storage = Main.instance.getWorld().getSettlement().findStorage(item, hermit);
-            if (storage == null) {
-                Logger.error("ERROR");
-                throw new RuntimeException("Cannot find storage for item " + item.getType().getId());
-            }
-
-            storages.add(storage);
-        }
         Sequence<Entity> root = new Sequence<>();
+        root.addChild(new MoveToLeaf(NavAgent.graph.getCell(Main.instance.getWorld().getSettlement().getPosition())));
+        root.addChild(new WaitArriveLeaf());
 
-        for (int i = 0; i < storages.size(); i++) {
-            Storage storage = storages.get(i);
+        for (int i = 0; i < input.size; i++) {
             int index = i;
-            root.addChild(new MoveToLeaf(NavAgent.graph.getCell(storage.getPosition())));
-            root.addChild(new WaitArriveLeaf());
             root.addChild(new ActionLeaf<>() {
                 @Override
                 public boolean action() {
-                    boolean a = storage.getInventory().removeItem(input.get(index));
+                    boolean a = Main.instance.getWorld().getSettlement().getInventory().removeItem(input.get(index));
                     if (a) {
                         hermit.getInventory().addItem(input.removeIndex(index));
                         return true;

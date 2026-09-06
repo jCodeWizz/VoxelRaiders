@@ -22,14 +22,7 @@ public class Craftsman extends Job {
     @Override
     public TaskTemplate findNewTask() {
 
-        if (Main.instance.getWorld().getSettlement().findItem(ItemType.PLANK).getSize() >= PLANK_LIMIT) {
-            return CRAFT_PLANK;
-        }
-
-        if (Main.instance.getWorld().getSettlement().findItem(ItemType.FIREWOOD).getSize() >= FIREWOOD_LIMIT) {
-            return CRAFT_FIREWOOD;
-        }
-
+        //TODO: auto crafting essentials
         return super.findNewTask();
     }
 }

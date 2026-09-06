@@ -16,7 +16,6 @@ public abstract class Storage extends GameObject {
         super(id);
 
         inventory = new Inventory(size);
-        Main.instance.getWorld().getSettlement().addStorage(this);
     }
 
     public boolean accepts(Collection<Item> items) {
@@ -32,11 +31,6 @@ public abstract class Storage extends GameObject {
             }
         }
         return true;
-    }
-
-    @Override
-    public void onDestroy() {
-        Main.instance.getWorld().getSettlement().removeStorage(this);
     }
 
     public abstract boolean checkType(ItemType type);

@@ -20,36 +20,17 @@ public class ClearInventoryTemplate implements TaskTemplate {
     @Override
     public BehaviorTree<Entity> create(Entity entity) {
         Hermit hermit = (Hermit) entity;
-        Storage storage = Main.instance.getWorld().getSettlement().findStorage(hermit);
-
-        if (storage == null) {
-            return new BehaviorTree<>(
-                new Sequence<>(
-                      new Wait<>(2f),
-                      new ActionLeaf<Entity>() {
-                          @Override
-                          public boolean action() {
-                              hermit.getInventory().getItems().clear(); //TODO: clearing items when no storage found
-                              return true;
-                          }
-                      }
-                ),
-                entity
-            );
-        }
 
         return new BehaviorTree<>(
             new Sequence<>(
-                new MoveToLeaf(NavAgent.graph.getCell(storage.getPosition())),
+                new MoveToLeaf(NavAgent.graph.getCell(Main.instance.getWorld().getSettlement().getPosition())),
                 new WaitArriveLeaf(),
                 new ActionLeaf<Entity>() {
                     @Override
                     public boolean action() {
                         for (Item item : hermit.getInventory().getItems().values()) {
-                            if (!storage.getInventory().isFull(item) && storage.checkType(item.getType())) {
-                                storage.getInventory().addItem(item);
-                                hermit.getInventory().removeItem(item);
-                            }
+                            Main.instance.getWorld().getSettlement().getInventory().addItem(item);
+                            hermit.getInventory().removeItem(item);
                         }
 
                         return true;

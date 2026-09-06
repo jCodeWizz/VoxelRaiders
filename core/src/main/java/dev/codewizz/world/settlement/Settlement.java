@@ -2,20 +2,15 @@ package dev.codewizz.world.settlement;
 
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Queue;
-import dev.codewizz.gfx.gui.UI;
 import dev.codewizz.gfx.gui.menus.NotificationMenu;
 import dev.codewizz.utils.Assets;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
-import dev.codewizz.world.inventory.Item;
-import dev.codewizz.world.inventory.types.ItemType;
+import dev.codewizz.world.inventory.Inventory;
 import dev.codewizz.world.objects.Hermit;
 import dev.codewizz.world.objects.Storage;
 import dev.codewizz.world.objects.behaviour.TaskTemplate;
-
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Settlement {
@@ -25,15 +20,16 @@ public class Settlement {
 
     private final Queue<TaskTemplate> tasks;
     private final List<Hermit> members;
-    private final List<Storage> storages;
+    private final Inventory inventory;
     private final List<GameObject> stations;
 
     public Settlement(World world, Vector3 position) {
         this.world = world;
         this.position = new Vector3(position);
+
         this.tasks = new Queue<>();
         this.members = new ArrayList<>();
-        this.storages = new ArrayList<>();
+        this.inventory = new Inventory();
         this.stations = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
@@ -45,41 +41,6 @@ public class Settlement {
 
     public Queue<TaskTemplate> getTasks() {
         return tasks;
-    }
-
-    public Storage findStorage(Hermit hermit) {
-        List<Storage> storages = new ArrayList<>(getStorages());
-        storages.sort((o1, o2) -> compare(o1, o2, hermit));
-
-        for (Storage storage : storages) {
-            if (storage.accepts(hermit.getInventory().getItems().values())) {
-                return storage;
-            }
-        }
-
-        return null;
-    }
-
-    public Item findItem(ItemType type) {
-        Item item = new Item(type, 0);
-        for (Storage storage : getStorages()) {
-            item.setSize(item.getSize() + storage.getInventory().getItemSize(type));
-        }
-
-        return item;
-    }
-
-    public Storage findStorage(Item item, Hermit hermit) {
-        List<Storage> storages = new ArrayList<>(getStorages());
-        storages.sort((o1, o2) -> compare(o1, o2, hermit));
-
-        for (Storage storage : storages) {
-            if (storage.getInventory().containsItem(item)) {
-                return storage;
-            }
-        }
-
-        return null;
     }
 
     private int compare(Storage s1, Storage s2, Hermit h) {
@@ -112,20 +73,12 @@ public class Settlement {
         return members;
     }
 
-    public void addStorage(Storage storage) {
-        storages.add(storage);
-    }
-
-    public List<Storage> getStorages() {
-        return storages;
-    }
-
-    public void removeStorage(Storage storage) {
-        storages.remove(storage);
-    }
-
     public void addStation(GameObject station) {
         stations.add(station);
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 
     public List<GameObject> getStations() {
