@@ -8,14 +8,12 @@ import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import dev.codewizz.gfx.Renderer;
+import dev.codewizz.utils.Assets;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.GameObjectInfo;
 
 public class Well extends GameObject {
     public static final GameObjectInfo INFO = new GameObjectInfo("vxr:well", "Well", "Marker of your home base, a true treasure", Well.class);
-
-    private static final Material MATERIAL = new Material(ColorAttribute.createDiffuse(Color.WHITE));
-    private static final Model MODEL = new ModelBuilder().createBox(1f, 1f, 1f, MATERIAL, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
 
     private final ModelInstance instance;
 
@@ -25,7 +23,7 @@ public class Well extends GameObject {
         this.name = "Well";
         this.description = "Marker of your home base, a true treasure";
 
-        instance = new ModelInstance(MODEL);
+        instance = new ModelInstance(Assets.findModel(getId()));
     }
 
     @Override

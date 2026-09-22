@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Queue;
 import dev.codewizz.gfx.gui.menus.NotificationMenu;
 import dev.codewizz.utils.Assets;
+import dev.codewizz.utils.WUtils;
 import dev.codewizz.world.GameObject;
 import dev.codewizz.world.World;
 import dev.codewizz.world.inventory.Inventory;
@@ -34,7 +35,7 @@ public class Settlement {
 
         for (int i = 0; i < 5; i++) {
             Hermit hermit = new Hermit();
-            hermit.getPosition().set(position.x, position.y, position.z);
+            hermit.getPosition().set(position.x + WUtils.getRandomInBounds(3, 1), position.y, position.z + WUtils.getRandomInBounds(3, 1));
             addMember(hermit);
         }
     }

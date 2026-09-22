@@ -62,7 +62,7 @@ public class MouseInput implements InputProcessor {
             PickChunkResult result = pickChunk(camera, world, screenX, screenY);
             if (result.getChunk() != null) {
                 GameObject beacon = new Well();
-                beacon.getPosition().set(result.getIntersection());
+                beacon.getPosition().set(NavAgent.graph.getCell(result.getIntersection()).position);
                 world.addObject(beacon);
 
                 world.setSettlement(new Settlement(world, result.getIntersection()));
