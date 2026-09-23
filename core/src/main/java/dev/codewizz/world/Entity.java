@@ -124,7 +124,7 @@ public abstract class Entity extends GameObject {
     }
 
     public boolean isMoving() {
-        return !agent.getPath().isEmpty();
+        return agent.getPath().size > 1;
     }
 
     public BehaviorTree<Entity> getBehaviorTree() {
