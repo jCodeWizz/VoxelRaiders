@@ -11,17 +11,14 @@ import dev.codewizz.gfx.gui.UI;
 import dev.codewizz.gfx.gui.elements.UIIconButton;
 import dev.codewizz.gfx.gui.elements.UITextTooltip;
 import dev.codewizz.gfx.gui.elements.UIToggle;
-import dev.codewizz.gfx.gui.menus.AreaMenu;
-import dev.codewizz.gfx.gui.menus.ConsoleMenu;
-import dev.codewizz.gfx.gui.menus.NotificationMenu;
+import dev.codewizz.gfx.gui.menus.*;
 import dev.codewizz.main.Main;
-import dev.codewizz.gfx.gui.menus.ObjectMenu;
 import dev.codewizz.utils.Assets;
 
 public class GameLayer extends Layer {
 
     public Table main;
-    private UIIconButton constructionMenuButton;
+    private UIIconButton buildMenuButton;
     private UIIconButton toolMenuButton;
     private UIIconButton areaMenuButton;
 
@@ -34,11 +31,14 @@ public class GameLayer extends Layer {
     public void open(Stage stage) {
         setup();
 
-        menus.put(NotificationMenu.ID, new NotificationMenu());
         menus.put(ConsoleMenu.ID, new ConsoleMenu());
-        menus.put(AreaMenu.ID, new AreaMenu(areaMenuButton));
-        menus.put(ObjectMenu.ID, new ObjectMenu());
+        menus.put(NotificationMenu.ID, new NotificationMenu());
 
+        menus.put(AreaMenu.ID, new AreaMenu(areaMenuButton));
+        menus.put(BuildMenu.ID, new BuildMenu(buildMenuButton));
+
+        menus.put(StructureMenu.ID, new StructureMenu());
+        menus.put(ObjectMenu.ID, new ObjectMenu());
         menus.get(NotificationMenu.ID).open();
     }
 
@@ -83,14 +83,14 @@ public class GameLayer extends Layer {
         areaMenuButton.addListener(UITextTooltip.create("Areas"));
 
 
-        constructionMenuButton = UIIconButton.create("build-icon");
-        constructionMenuButton.addListener(new ClickListener() {
+        buildMenuButton = UIIconButton.create("build-icon");
+        buildMenuButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                openMenu("object");
+                openMenu(BuildMenu.ID);
             }
         });
-        constructionMenuButton.addListener(UITextTooltip.create("Construction"));
+        buildMenuButton.addListener(UITextTooltip.create("Building"));
 
         UIIconButton peopleIcon = UIIconButton.create("people-icon");
         peopleIcon.addListener(new ClickListener() {
@@ -116,7 +116,7 @@ public class GameLayer extends Layer {
                 .pad(0, 0, bottomPad, 3 * UI.SCALE);
         board.add(areaMenuButton).size(22 * UI.SCALE, 24 * UI.SCALE)
                 .pad(0, 3 * UI.SCALE, bottomPad, 3 * UI.SCALE);
-        board.add(constructionMenuButton).size(22 * UI.SCALE, 24 * UI.SCALE)
+        board.add(buildMenuButton).size(22 * UI.SCALE, 24 * UI.SCALE)
                 .pad(0, 3 * UI.SCALE, bottomPad, 3 * UI.SCALE);
         board.add(peopleIcon).size(22 * UI.SCALE, 24 * UI.SCALE)
                 .pad(0, 3 * UI.SCALE, bottomPad, 3 * UI.SCALE);
