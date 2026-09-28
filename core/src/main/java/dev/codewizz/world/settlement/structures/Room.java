@@ -18,6 +18,14 @@ public class Room {
         return completed;
     }
 
+    public Vector3 getA() {
+        return a;
+    }
+
+    public Vector3 getB() {
+        return b;
+    }
+
     //TODO:
     // - requirements
     // - types
