@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g3d.model.NodePart;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.utils.Timer;
 import dev.codewizz.main.Main;
+import dev.codewizz.utils.Assets;
 import dev.codewizz.utils.Logger;
 import dev.codewizz.world.Entity;
 import dev.codewizz.world.GameObjectInfo;
@@ -27,9 +28,6 @@ public class Hermit extends Entity {
     private static final IdleWaitTemplate WAIT = new IdleWaitTemplate(2f, 5f);
     private static final ClearInventoryTemplate CLEAR = new ClearInventoryTemplate();
 
-    private static final Material MATERIAL = new Material(ColorAttribute.createDiffuse(new Color(0.1f, 0.93f, 0.95f, 1.0f)));
-    private static final Model MODEL = new ModelBuilder().createBox(0.8f, 1.5f, 0.8f, MATERIAL,VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
-
     private Inventory inventory;
     private Job job;
 
@@ -39,7 +37,7 @@ public class Hermit extends Entity {
         this.name = "Hermit";
         this.description = "Friends!";
 
-        instance = new ModelInstance(MODEL);
+        instance = new ModelInstance(Assets.findModel(getId()));
         getSize().set(0.8f, 1.5f, 0.8f);
         inventory = new Inventory(5);
         setJob(new Builder(this));
