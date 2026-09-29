@@ -24,6 +24,7 @@ public class StructureMenu extends Menu {
     @Override
     public void onOpen() {
         structure = new Structure();
+        Main.instance.getWorld().addObject(structure);
     }
 
     @Override
@@ -54,7 +55,7 @@ public class StructureMenu extends Menu {
         done.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Main.instance.getWorld().addObject(structure);
+
             }
         });
     }

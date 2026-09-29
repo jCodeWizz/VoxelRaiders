@@ -4,26 +4,26 @@ import com.badlogic.gdx.math.Vector3;
 
 public class Room {
 
-    private boolean completed;
+    private final Vector3 position;
+    private final int width;
+    private final int depth;
 
-    private final Vector3 a;
-    private final Vector3 b;
-
-    public Room(Vector3 a, Vector3 b) {
-        this.a = a;
-        this.b = b;
+    public Room(Vector3 position, int width, int depth) {
+        this.position = position;
+        this.width = width;
+        this.depth = depth;
     }
 
-    public boolean isCompleted() {
-        return completed;
+    public Vector3 getPosition() {
+        return position;
     }
 
-    public Vector3 getA() {
-        return a;
+    public int getWidth() {
+        return width;
     }
 
-    public Vector3 getB() {
-        return b;
+    public int getDepth() {
+        return depth;
     }
 
     //TODO:

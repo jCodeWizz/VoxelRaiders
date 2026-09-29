@@ -124,7 +124,22 @@ public class MouseInput implements InputProcessor {
                             Math.max(dragPosition.y, dragPosition2.y),
                             Math.max(dragPosition.z, dragPosition2.z)
                         );
-                        pickAreaListener.handle(min, max);
+
+                        float cellSize = 1f;
+
+                        Vector3 pos1 = new Vector3(
+                            (float)Math.floor(min.x / cellSize) * cellSize,
+                            min.y,
+                            (float)Math.floor(min.z / cellSize) * cellSize
+                        );
+
+                        Vector3 pos2 = new Vector3(
+                            (float)Math.ceil (max.x / cellSize) * cellSize,
+                            max.y,
+                            (float)Math.ceil (max.z / cellSize) * cellSize
+                        );
+
+                        pickAreaListener.handle(pos1, pos2);
                         pickAreaListener = null;
                     }
 
@@ -143,7 +158,7 @@ public class MouseInput implements InputProcessor {
     private static void updateSelectInstance(Camera camera, World world) {
         PickChunkResult chunkResult = pickChunk(camera, world, Gdx.input.getX(), Gdx.input.getY());
         if (chunkResult.getChunk() != null) {
-            float cellSize = 0.5f;
+            float cellSize = 1f;
 
             dragPosition2 = chunkResult.getIntersection();
 
